@@ -55,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\DBA.cs" />
+    <Compile Include="Presentation\frmChinhSuaNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmChinhSuaNguoiDung.designer.cs">
+      <DependentUpon>frmChinhSuaNguoiDung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,12 @@
     <Compile Include="Presentation\FrmThemHK.designer.cs">
       <DependentUpon>FrmThemHK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmThemNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmThemNguoiDung.designer.cs">
+      <DependentUpon>frmThemNguoiDung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\FrmThemNK.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,9 @@
       <DependentUpon>Them_TinhThanh.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TinhThanh.cs" />
+    <EmbeddedResource Include="Presentation\frmChinhSuaNguoiDung.resx">
+      <DependentUpon>frmChinhSuaNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FrmThemHK.resx">
       <DependentUpon>FrmThemHK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmThemNguoiDung.resx">
+      <DependentUpon>frmThemNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FrmThemNK.resx">
       <DependentUpon>FrmThemNK.cs</DependentUpon>
