@@ -26,5 +26,10 @@ namespace T02_Source_Code
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

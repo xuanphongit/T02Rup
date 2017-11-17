@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.0.0.3, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -53,68 +54,86 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBA.cs" />
-    <Compile Include="frmMain.cs">
+    <Compile Include="Model\DBA.cs" />
+    <Compile Include="Presentation\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Presentation\frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSuaHK.cs">
+    <Compile Include="Presentation\FrmSuaHK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSuaHK.designer.cs">
+    <Compile Include="Presentation\FrmSuaHK.designer.cs">
       <DependentUpon>FrmSuaHK.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSuaNK.cs">
+    <Compile Include="Presentation\FrmSuaNK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSuaNK.designer.cs">
+    <Compile Include="Presentation\FrmSuaNK.designer.cs">
       <DependentUpon>FrmSuaNK.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTachHK.cs">
+    <Compile Include="Presentation\FrmTachHK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTachHK.designer.cs">
+    <Compile Include="Presentation\FrmTachHK.designer.cs">
       <DependentUpon>FrmTachHK.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmThemHK.cs">
+    <Compile Include="Presentation\frmThayDoiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmThemHK.designer.cs">
+    <Compile Include="Presentation\frmThayDoiMatKhau.designer.cs">
+      <DependentUpon>frmThayDoiMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FrmThemHK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FrmThemHK.designer.cs">
       <DependentUpon>FrmThemHK.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmThemNK.cs">
+    <Compile Include="Presentation\FrmThemNK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmThemNK.designer.cs">
+    <Compile Include="Presentation\FrmThemNK.designer.cs">
       <DependentUpon>FrmThemNK.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Them_TinhThanh.cs">
+    <Compile Include="Presentation\Them_TinhThanh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Them_TinhThanh.designer.cs">
+    <Compile Include="Presentation\Them_TinhThanh.designer.cs">
       <DependentUpon>Them_TinhThanh.cs</DependentUpon>
     </Compile>
-    <Compile Include="TinhThanh.cs" />
-    <EmbeddedResource Include="frmMain.resx">
+    <Compile Include="Model\TinhThanh.cs" />
+    <EmbeddedResource Include="Presentation\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSuaHK.resx">
+    <EmbeddedResource Include="Presentation\FrmSuaHK.resx">
       <DependentUpon>FrmSuaHK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSuaNK.resx">
+    <EmbeddedResource Include="Presentation\FrmSuaNK.resx">
       <DependentUpon>FrmSuaNK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTachHK.resx">
+    <EmbeddedResource Include="Presentation\FrmTachHK.resx">
       <DependentUpon>FrmTachHK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmThemHK.resx">
+    <EmbeddedResource Include="Presentation\frmThayDoiMatKhau.resx">
+      <DependentUpon>frmThayDoiMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FrmThemHK.resx">
       <DependentUpon>FrmThemHK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmThemNK.resx">
+    <EmbeddedResource Include="Presentation\FrmThemNK.resx">
       <DependentUpon>FrmThemNK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -127,7 +146,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Them_TinhThanh.resx">
+    <EmbeddedResource Include="Presentation\Them_TinhThanh.resx">
       <DependentUpon>Them_TinhThanh.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
