@@ -16,5 +16,10 @@ namespace T02_Source_Code
         {
             InitializeComponent();
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
