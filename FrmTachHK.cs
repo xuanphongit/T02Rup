@@ -8,23 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace Rup
 {
-    public partial class frmMain : Form
+    public partial class FrmTachHK : Form
     {
-        public frmMain()
+        public FrmTachHK()
         {
             InitializeComponent();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show("Tách thành công");
         }
     }
 }

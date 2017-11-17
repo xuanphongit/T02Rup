@@ -8,23 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace Rup
 {
-    public partial class frmMain : Form
+    public partial class FrmSuaHK : Form
     {
-        public frmMain()
+        public FrmSuaHK()
         {
             InitializeComponent();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show("Vui lòng nhập các thông tin bắt buộc (*)");
         }
     }
 }

@@ -8,23 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace Rup
 {
-    public partial class frmMain : Form
+    public partial class FrmThemHK : Form
     {
-        public frmMain()
+        public FrmThemHK()
         {
             InitializeComponent();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show("Số hồ sơ hộ khẩu bị trùng. Vui lòng nhập lại");
         }
     }
 }
