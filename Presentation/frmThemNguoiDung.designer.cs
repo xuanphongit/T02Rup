@@ -1,4 +1,4 @@
-﻿namespace Rup
+﻿namespace T02_Source_Code
 {
     partial class frmThemNguoiDung
     {
@@ -244,6 +244,7 @@
             this.MinimizeBox = false;
             this.Name = "frmThemNguoiDung";
             this.Text = "Thêm người dùng";
+            this.Load += new System.EventHandler(this.frmThemNguoiDung_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Rup
+namespace T02_Source_Code
 {
     public partial class FrmThemNK : Form
     {
@@ -29,6 +22,11 @@ namespace Rup
            // MessageBox.Show("Ngày chuyển đến không hợp lệ, vui lòng nhập lại, ví dụ 05/15/2016");
             MessageBox.Show("Vui lòng nhập các thông tin bắt buộc (*)");
             MessageBox.Show("Thêm thành công");
+        }
+
+        private void FrmThemNK_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

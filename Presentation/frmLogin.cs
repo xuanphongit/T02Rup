@@ -1,70 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
+using T02_Source_Code.Model;
 
-namespace RUP
+namespace T02_Source_Code.Presentation
 {
-    public partial class frmLogin : Form
+    public partial class FrmLogin : Form
     {
-        public frmLogin()
+        public FrmLogin()
         {
             InitializeComponent();
         }
-        public static string TenTaiKhoan="";
-        Bo.DangNhapBo dangnhapbo = new Bo.DangNhapBo();
-        private void Login_Load(object sender, EventArgs e)
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //txtTen.Text = "";
-            //txtMatKhau.Text = "";
+
         }
 
-        private void buttonX1_Click(object sender, EventArgs e)
+        private void Reset()
         {
-            bool kTraDangNhap = dangnhapbo.kTraDangNhap(txtTen.Text, txtMatKhau.Text);
-            if (kTraDangNhap)
+           
+            
+            lblMa.Text = "*";
+            lblMatKhau.Text = "*";
+        }
+
+        private void ResetInfo()
+        {
+            txtID.Text = "";
+            txtPassword.Text = "";
+        }
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Reset();
+            int countError = 0;
+            if (txtID.Text.Equals(""))
             {
-                TenTaiKhoan = txtTen.Text;
-                new frmThayDoiMatKhau().ShowDialog();
+                countError++;
+                lblMa.Text = "Mời nhập mã !";
             }
-            else
+            if (txtPassword.Text.Equals(""))
             {
-                
-                if (txtTen.Text.Equals(""))
+                countError++;
+                lblMatKhau.Text = "Mời nhập mật khẩu !";
+            }
+            if (countError==0)
+            {
+                DungChung dungChung = new DungChung();
+                var q = from s in DungChung.Db.NguoiDungs
+                        where s.MaNguoiDung.Equals(txtID.Text) && s.MatKhau.Equals(txtPassword.Text)
+                        select s;
+                if (q.Any())
                 {
-                    txtLoiTen.Text = "Nhập tên";
+                    DungChung.HoTen = q.First().TenNguoiDung;
+                    DungChung.MaChucVu = q.First().MaChucVu;
+                    DungChung.MaNguoiDung = q.First().MaNguoiDung;
+                    FrmMain frmMain = new FrmMain();
+                    Hide();
+                    frmMain.ShowDialog();
+                    Close();
                 }
                 else
                 {
-
-                    txtLoiTen.Text = "";
-                }
-                if (txtMatKhau.Text.Equals(""))
-                {
-                    txtLoiMatKhau.Text = "Nhập Mật Khẩu";
-                }
-                else
-                {
-                    txtLoiMatKhau.Text = "";
-                }
-                if (!txtTen.Text.Equals("")&&!txtMatKhau.Equals(""))
-                {
-                    MessageBox.Show("Tài khoản không tồn tại");
-                }
+                    MessageBox.Show("Mời kiểm tra lại !");
+                    ResetInfo();}
             }
-            txtTen.ForeColor = Color.Black;
-            txtMatKhau.ForeColor = Color.Black;
-            txtMatKhau.PasswordChar = '*';
+           
+
         }
 
-        private void buttonX2_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
+            Close();}
     }
 }

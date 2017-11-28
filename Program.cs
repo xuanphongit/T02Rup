@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using T02_Source_Code.Presentation;
 
 namespace T02_Source_Code
 {
@@ -16,7 +14,6 @@ namespace T02_Source_Code
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-        }
+            Application.Run(new FrmLogin());}
     }
 }

@@ -54,18 +54,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DBA.cs" />
+    <Compile Include="Db.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DungChung.cs" />
     <Compile Include="Presentation\frmChinhSuaNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\frmChinhSuaNguoiDung.designer.cs">
       <DependentUpon>frmChinhSuaNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\frmLogin.cs">
+    <Compile Include="Presentation\FrmDoiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\frmLogin.designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <Compile Include="Presentation\FrmDoiMatKhau.Designer.cs">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmMain.cs">
       <SubType>Form</SubType>
@@ -90,12 +101,6 @@
     </Compile>
     <Compile Include="Presentation\FrmTachHK.designer.cs">
       <DependentUpon>FrmTachHK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\frmThayDoiMatKhau.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\frmThayDoiMatKhau.designer.cs">
-      <DependentUpon>frmThayDoiMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\FrmThemHK.cs">
       <SubType>Form</SubType>
@@ -123,12 +128,17 @@
     <Compile Include="Presentation\Them_TinhThanh.designer.cs">
       <DependentUpon>Them_TinhThanh.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\TinhThanh.cs" />
+    <None Include="Db.dbml.layout">
+      <DependentUpon>Db.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Presentation\frmChinhSuaNguoiDung.resx">
       <DependentUpon>frmChinhSuaNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\FrmDoiMatKhau.resx">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -141,9 +151,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FrmTachHK.resx">
       <DependentUpon>FrmTachHK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\frmThayDoiMatKhau.resx">
-      <DependentUpon>frmThayDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FrmThemHK.resx">
       <DependentUpon>FrmThemHK.cs</DependentUpon>
@@ -167,6 +174,11 @@
     <EmbeddedResource Include="Presentation\Them_TinhThanh.resx">
       <DependentUpon>Them_TinhThanh.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Db.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Db.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -182,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

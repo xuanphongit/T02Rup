@@ -1,4 +1,4 @@
-﻿namespace Rup
+﻿namespace T02_Source_Code
 {
     partial class FrmSuaNK
     {
@@ -363,6 +363,7 @@
             this.Controls.Add(this.label2);
             this.Name = "FrmSuaNK";
             this.Text = "FrmSuaNK";
+            this.Load += new System.EventHandler(this.FrmSuaNK_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,4 @@
-﻿namespace Rup
+﻿namespace T02_Source_Code
 {
     partial class frmChinhSua
     {
@@ -245,6 +245,7 @@
             this.MinimizeBox = false;
             this.Name = "frmChinhSua";
             this.Text = "Chỉnh sửa";
+            this.Load += new System.EventHandler(this.frmChinhSua_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

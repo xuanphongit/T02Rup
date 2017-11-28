@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace Rup
+namespace T02_Source_Code
 {
     public partial class frmChinhSua : Form
     {
         public frmChinhSua()
         {
             InitializeComponent();
+        }
+
+        private void frmChinhSua_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
