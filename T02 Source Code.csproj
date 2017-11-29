@@ -54,12 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bo\NguoiDungBO.cs" />
     <Compile Include="Db.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
     <Compile Include="Model\DungChung.cs" />
+    <Compile Include="Model\NguoiDungBean.cs" />
     <Compile Include="Presentation\frmChinhSuaNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,9 +194,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bo\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
