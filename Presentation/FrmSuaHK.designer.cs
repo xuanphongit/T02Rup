@@ -1,4 +1,4 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
     partial class FrmSuaHK
     {

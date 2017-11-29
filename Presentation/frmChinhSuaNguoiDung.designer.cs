@@ -1,6 +1,6 @@
 ﻿namespace T02_Source_Code
 {
-    partial class frmChinhSua
+    partial class FrmChinhSua
     {
         /// <summary>
         /// Required designer variable.
@@ -243,7 +243,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmChinhSua";
+            this.Name = "FrmChinhSua";
             this.Text = "Chỉnh sửa";
             this.Load += new System.EventHandler(this.frmChinhSua_Load);
             this.ResumeLayout(false);

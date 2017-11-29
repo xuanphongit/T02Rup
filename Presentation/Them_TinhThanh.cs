@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace T02_Source_Code.Presentation
 {
-    public partial class Them_TinhThanh : Form
+    public partial class ThemTinhThanh : Form
     {
-        public Them_TinhThanh()
+        public ThemTinhThanh()
         {
             InitializeComponent();
         }
 
         private void Them_TinhThanh_Load(object sender, EventArgs e)
         {
-            this.Text = "Them_";
+            Text = "Them_";
 
-            textBox1.Enabled = false; button1.Text = "Cập nhật"; this.Text = "CapNhat_";
+            textBox1.Enabled = false; button1.Text = "Cập nhật"; Text = "CapNhat_";
             
-            this.Text += "PhuongXa";
+            Text += "PhuongXa";
         }
     }
 }

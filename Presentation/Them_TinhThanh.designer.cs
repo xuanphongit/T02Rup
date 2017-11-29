@@ -1,6 +1,6 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
-    partial class Them_TinhThanh
+    partial class ThemTinhThanh
     {
         /// <summary>
         /// Required designer variable.
@@ -203,7 +203,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Them_TinhThanh";
+            this.Name = "ThemTinhThanh";
             this.Text = "Them_TinhThanh";
             this.Load += new System.EventHandler(this.Them_TinhThanh_Load);
             this.ResumeLayout(false);

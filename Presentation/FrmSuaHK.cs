@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace T02_Source_Code.Presentation
 {
     public partial class FrmSuaHK : Form
     {

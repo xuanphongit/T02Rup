@@ -1,6 +1,6 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
-    partial class frmThemNguoiDung
+    partial class FrmThemNguoiDung
     {
         /// <summary>
         /// Required designer variable.
@@ -242,7 +242,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmThemNguoiDung";
+            this.Name = "FrmThemNguoiDung";
             this.Text = "Thêm người dùng";
             this.Load += new System.EventHandler(this.frmThemNguoiDung_Load);
             this.ResumeLayout(false);

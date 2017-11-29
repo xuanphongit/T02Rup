@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace T02_Source_Code.Presentation
 {
-    public partial class frmThemNguoiDung : Form
+    public partial class FrmThemNguoiDung : Form
     {
-        public frmThemNguoiDung()
+        public FrmThemNguoiDung()
         {
             InitializeComponent();
         }

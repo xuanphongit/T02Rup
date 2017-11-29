@@ -2,9 +2,9 @@
 
 namespace T02_Source_Code
 {
-    public partial class frmChinhSua : Form
+    public partial class FrmChinhSua : Form
     {
-        public frmChinhSua()
+        public FrmChinhSua()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
     partial class FrmMain
     {
@@ -74,9 +74,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTimKiemHoKhauNhanKhau = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnTimKiemHoKhauNhanKhau = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -618,9 +618,9 @@
             this.tabPage4.Controls.Add(this.button5);
             this.tabPage4.Controls.Add(this.button6);
             this.tabPage4.Controls.Add(this.button7);
-            this.tabPage4.Controls.Add(this.textBox1);
+            this.tabPage4.Controls.Add(this.txtTimKiemHoKhauNhanKhau);
             this.tabPage4.Controls.Add(this.groupBox1);
-            this.tabPage4.Controls.Add(this.button8);
+            this.tabPage4.Controls.Add(this.btnTimKiemHoKhauNhanKhau);
             this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.button3);
             this.tabPage4.Controls.Add(this.button2);
@@ -652,6 +652,7 @@
             this.button6.TabIndex = 17;
             this.button6.Text = "Sửa NK";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -661,14 +662,15 @@
             this.button7.TabIndex = 18;
             this.button7.Text = "Thêm NK";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // textBox1
+            // txtTimKiemHoKhauNhanKhau
             // 
-            this.textBox1.Location = new System.Drawing.Point(364, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 20);
-            this.textBox1.TabIndex = 15;
-            this.textBox1.Text = "Hồ Thị Diệu Vân";
+            this.txtTimKiemHoKhauNhanKhau.Location = new System.Drawing.Point(364, 20);
+            this.txtTimKiemHoKhauNhanKhau.Name = "txtTimKiemHoKhauNhanKhau";
+            this.txtTimKiemHoKhauNhanKhau.Size = new System.Drawing.Size(236, 20);
+            this.txtTimKiemHoKhauNhanKhau.TabIndex = 15;
+            this.txtTimKiemHoKhauNhanKhau.Text = "Hồ Thị Diệu Vân";
             // 
             // groupBox1
             // 
@@ -679,14 +681,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin hộ khẩu/ nhân khẩu";
             // 
-            // button8
+            // btnTimKiemHoKhauNhanKhau
             // 
-            this.button8.Location = new System.Drawing.Point(619, 17);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "Tìm kiếm";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnTimKiemHoKhauNhanKhau.Location = new System.Drawing.Point(619, 17);
+            this.btnTimKiemHoKhauNhanKhau.Name = "btnTimKiemHoKhauNhanKhau";
+            this.btnTimKiemHoKhauNhanKhau.Size = new System.Drawing.Size(75, 23);
+            this.btnTimKiemHoKhauNhanKhau.TabIndex = 9;
+            this.btnTimKiemHoKhauNhanKhau.Text = "Tìm kiếm";
+            this.btnTimKiemHoKhauNhanKhau.UseVisualStyleBackColor = true;
+            this.btnTimKiemHoKhauNhanKhau.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // button4
             // 
@@ -696,6 +699,7 @@
             this.button4.TabIndex = 10;
             this.button4.Text = "Xóa HK";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -705,6 +709,7 @@
             this.button3.TabIndex = 11;
             this.button3.Text = "Sửa HK";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -714,6 +719,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "Tách HK";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -723,6 +729,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Thêm HK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox2
             // 
@@ -739,6 +746,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(251, 134);
             this.listBox1.TabIndex = 8;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -1525,9 +1533,9 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTimKiemHoKhauNhanKhau;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnTimKiemHoKhauNhanKhau;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;

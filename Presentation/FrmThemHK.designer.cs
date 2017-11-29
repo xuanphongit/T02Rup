@@ -1,6 +1,6 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
-    partial class FrmThemHK
+    partial class FrmThemHk
     {
         /// <summary>
         /// Required designer variable.
@@ -311,7 +311,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FrmThemHK";
+            this.Name = "FrmThemHk";
             this.Text = "FrmThemHK";
             this.Load += new System.EventHandler(this.FrmThemHK_Load);
             this.ResumeLayout(false);

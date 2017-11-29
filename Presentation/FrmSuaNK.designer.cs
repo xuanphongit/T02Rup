@@ -1,6 +1,6 @@
-﻿namespace T02_Source_Code
+﻿namespace T02_Source_Code.Presentation
 {
-    partial class FrmSuaNK
+    partial class FrmSuaNk
     {
 
         /// <summary>
@@ -361,7 +361,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "FrmSuaNK";
+            this.Name = "FrmSuaNk";
             this.Text = "FrmSuaNK";
             this.Load += new System.EventHandler(this.FrmSuaNK_Load);
             this.ResumeLayout(false);

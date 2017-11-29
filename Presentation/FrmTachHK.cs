@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace T02_Source_Code
+namespace T02_Source_Code.Presentation
 {
-    public partial class FrmTachHK : Form
+    public partial class FrmTachHk : Form
     {
-        public FrmTachHK()
+        public FrmTachHk()
         {
             InitializeComponent();
         }
