@@ -65,24 +65,42 @@ namespace T02_Source_Code.Bo
             return q.Count() == 0 ? false : true;
         }
         /// <summary>
-        /// Lấy danh sách user của những user ở những tầng thấp hơn
+        /// Tìm kiếm gần đúng theo mã hoặc tên
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public List<NguoiDung> search(List<NguoiDung> ds, string key)
+        {
+            return (from s in ds
+                    where s.MaNguoiDung.Trim().ToLower().Contains(key.Trim().ToLower())
+                        || s.TenNguoiDung.Trim().ToLower().Contains(key.Trim().ToLower())
+                    select s).ToList();
+        }
+        /// <summary>
+        /// Lấy danh sách user của những user ở những tầng thấp hơn hoặc =
         /// </summary>
         /// <param name="id">id người dùng hiện tại</param>
         /// <returns></returns>
-        public List<NguoiDung> getListUser(string id )
+        public List<NguoiDung> getListUser(string id)
         {
             NguoiDung user = getNguoiDungByID(id);
-            if (user.MaTinhThanh == null)           
-                return (from s in DungChung.Db.NguoiDungs select s).ToList();       
-            else if (user.MaQuanHuyen == null)
-            {
-                var q = from s in DungChung.Db.NguoiDungs
-                        where s.m
-            }
 
-            
-                    
-            return DungChung.Db.NguoiDungs.ToList();
+            if (user.MaTinhThanh == null)
+                return (from s in DungChung.Db.NguoiDungs select s).ToList();
+            else if (user.MaQuanHuyen == null)
+                return (from s in DungChung.Db.NguoiDungs
+                        where s.MaTinhThanh.Equals(user.MaTinhThanh)
+                        select s).ToList();
+
+            else if (user.MaPhuongXa == null)
+                return (from s in DungChung.Db.NguoiDungs
+                        where s.MaQuanHuyen.Equals(user.MaQuanHuyen)
+                        select s).ToList();
+            else
+                return (from s in DungChung.Db.NguoiDungs
+                        where s.MaPhuongXa.Equals(user.MaPhuongXa)
+                        select s).ToList();
         }
         /// <summary>
         /// Lấy ra 1 người dùng theo mã người dùng
