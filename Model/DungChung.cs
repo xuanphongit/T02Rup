@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.Linq;
 namespace T02_Source_Code.Model
 {
     public class DungChung
@@ -10,5 +11,7 @@ namespace T02_Source_Code.Model
         {
             Db = new DataClasses1DataContext();
         }
+
+       
     }
 }
