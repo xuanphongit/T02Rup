@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
+using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Presentation
 {
@@ -17,6 +19,13 @@ namespace T02_Source_Code.Presentation
 
         private void FrmThemHK_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var Max = DungChung.Db.HoKhaus.Max(hk => hk.MaHoKhau)+1;
+            txtMaSoHoKhau.Text = Max;
 
         }
     }
