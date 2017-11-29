@@ -55,6 +55,9 @@ namespace T02_Source_Code.Presentation
                     DungChung.HoTen = q.First().TenNguoiDung;
                     DungChung.MaChucVu = q.First().MaChucVu;
                     DungChung.MaNguoiDung = q.First().MaNguoiDung;
+                    DungChung.MaTinh = q.First().MaTinhThanh;
+                    DungChung.MaHuyen = q.First().MaQuanHuyen;
+                    DungChung.MaXa = q.First().MaPhuongXa;
                     FrmMain frmMain = new FrmMain();
                     Hide();
                     frmMain.ShowDialog();

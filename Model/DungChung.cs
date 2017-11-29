@@ -3,7 +3,7 @@ namespace T02_Source_Code.Model
 {
     public class DungChung
     {
-        public static string HoTen,MaChucVu,MaNguoiDung,MaHoKhau,MaNhanKhau;
+        public static string HoTen,MaChucVu,MaNguoiDung,MaTinh,MaHuyen,MaXa;
         public static DataClasses1DataContext Db;
 
         public DungChung()
