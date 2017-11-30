@@ -78,7 +78,7 @@ namespace T02_Source_Code.Bo
           
             
                     
-            return DungChung.Db.NguoiDungs.ToList();
+            
         }
         /// <summary>
         /// Lấy ra 1 người dùng theo mã người dùng
