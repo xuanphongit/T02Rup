@@ -23,7 +23,7 @@ namespace T02_Source_Code.Presentation
 
             //Load cbb loại TK  
             loadCBBLTK();
-
+            //cbbLTK.SelectedIndex = 0;
         }
 
         #region setDefault
@@ -33,7 +33,7 @@ namespace T02_Source_Code.Presentation
             cbbLTK.Enabled = true;
             cbbTinh.Enabled = true;
             cbbHuyen.Enabled = true;
-            cbbXa.Enabled = true;
+            cbbXa.Enabled = true;          
         }
         private void setDefaultCheckLabel()
         {
@@ -48,67 +48,93 @@ namespace T02_Source_Code.Presentation
 
 
         #region evenSelectedIndexChange
+        bool checkload = false;
         private void cbbLTK_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int select = Convert.ToInt32(cbbLTK.SelectedValue.ToString());
-            setDefaultCBB();
-            //Load cbb quyền
-            if (select == 1)
-            {
-                //nếu là tài khoản admin thì k được chọn quyền
-                cbbQuyen.Enabled = false;
-                //
-                cbbTinh.Enabled = false;
-                cbbHuyen.Enabled = false;
-                cbbXa.Enabled = false;
-                return;
-            }
-            else if (select == 2)
-            {
-                loadCBBTinh();
-                cbbHuyen.Enabled = false;
-                cbbXa.Enabled = false;
-            }
-            else if (select == 3)
-            {
-                cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
-                cbbTinh.Enabled = false;
 
-                loadCBBHuyen(DungChung.MaTinh);
-                cbbXa.Enabled = false;
-            }
-            else
+            if (checkload)
             {
-                cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
-                cbbTinh.Enabled = false;
+                int select = Convert.ToInt32(cbbLTK.SelectedValue.ToString());
+                setDefaultCBB();
+                //Load cbb quyền
+                if (select == 1)
+                {
+                    //nếu là tài khoản admin thì k được chọn quyền
+                    cbbQuyen.Enabled = false;
+                    cbbQuyen.DataSource = null;
+                    //
+                    cbbTinh.Enabled = false;
+                    cbbHuyen.Enabled = false;
+                    cbbXa.Enabled = false;
 
-                cbbHuyen.Text = new QuanHuyenBO().get(DungChung.MaHuyen).TenQuanHuyen;
-                cbbHuyen.Enabled = false;
+                    cbbTinh.DataSource = null;
+                    cbbHuyen.DataSource = null;
+                    cbbXa.DataSource = null;
+                    return;
+                }
+                else if (select == 2)
+                {
+                    loadCBBTinh();
+                    cbbHuyen.Enabled = false;
+                    cbbXa.Enabled = false;
+                    cbbHuyen.DataSource = null;
+                    cbbXa.DataSource = null;
+                }
+                else if (select == 3)
+                {
+                    cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
+                    cbbTinh.Enabled = false;
 
-                loadCBBXA(DungChung.MaHuyen);
+                    loadCBBHuyen(DungChung.MaTinh);
+                    cbbXa.Enabled = false;
+                    cbbXa.DataSource = null;
+                }
+                else if (select == 4)
+                {
+                    cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
+                    cbbTinh.Enabled = false;
+
+                    cbbHuyen.Text = new QuanHuyenBO().get(DungChung.MaHuyen).TenQuanHuyen;
+                    cbbHuyen.Enabled = false;
+
+                    loadCBBXA(DungChung.MaHuyen);
+                }
+                loadCBBQuyen();
             }
-            loadCBBQuyen();
+           
         }
   
         private void cbbHuyen_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (cbbXa.Enabled == true)
+            try
             {
-                loadCBBXA(cbbHuyen.SelectedValue.ToString());
+                if (cbbXa.Enabled == true)
+                {
+                    loadCBBXA(cbbHuyen.SelectedValue.ToString());
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
         private void cbbTinh_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (cbbHuyen.Enabled == true)
+            try
             {
-                loadCBBHuyen(cbbTinh.SelectedValue.ToString());
+                if (cbbHuyen.Enabled == true)
+                {
+                    loadCBBHuyen(cbbTinh.SelectedValue.ToString());
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
-
-      
-
-
         #endregion
 
 
@@ -127,6 +153,9 @@ namespace T02_Source_Code.Presentation
             }
             else if (DungChung.MaHuyen == null)
             {
+                cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
+                cbbTinh.Enabled = false;
+
                 dicLoaiTaiKhoan = new Dictionary<int, string>() {
                         {2,"Tài khoản Tỉnh" },
                         {3,"Tài khoản Huyện" },
@@ -135,6 +164,13 @@ namespace T02_Source_Code.Presentation
             }
             else if (DungChung.MaXa == null)
             {
+                
+                cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
+                cbbTinh.Enabled = false;
+
+                cbbHuyen.Text = new QuanHuyenBO().get(DungChung.MaHuyen).TenQuanHuyen;
+                cbbHuyen.Enabled = false;
+
                 dicLoaiTaiKhoan = new Dictionary<int, string>() {
                        {3,"Tài khoản Huyện" },
                         {4,"Tài khoản Xã" }
@@ -142,6 +178,15 @@ namespace T02_Source_Code.Presentation
             }
             else
             {
+                cbbTinh.Text = new TinhThanhBO().get(DungChung.MaTinh).TenTinhThanh;
+                cbbTinh.Enabled = false;
+
+                cbbHuyen.Text = new QuanHuyenBO().get(DungChung.MaHuyen).TenQuanHuyen;
+                cbbHuyen.Enabled = false;
+
+                cbbXa.Text = new PhuongXaBO().get(DungChung.MaXa).TenPhuongXa;
+                cbbXa.Enabled = false;
+
                 dicLoaiTaiKhoan = new Dictionary<int, string>() { { 4, "Tài khoản Xã" } };
 
             }
@@ -149,32 +194,69 @@ namespace T02_Source_Code.Presentation
             cbbLTK.DataSource = new BindingSource(dicLoaiTaiKhoan, null);
             cbbLTK.DisplayMember = "Value";
             cbbLTK.ValueMember = "Key";
+
+
+            loadCBBQuyen();
+            checkload = true;
         }
         private void loadCBBQuyen()
         {
-            cbbQuyen.DataSource = ChucVuBO.getList();
-            cbbQuyen.DisplayMember = "TenChucVu";
-            cbbQuyen.ValueMember = "MaChucVu";
+            try
+            {
+                cbbQuyen.DataSource = ChucVuBO.getList();
+                cbbQuyen.DisplayMember = "TenChucVu";
+                cbbQuyen.ValueMember = "MaChucVu";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         private void loadCBBXA(string maHuyen)
         {
-            cbbHuyen.DataSource = new PhuongXaBO().getList(maHuyen);
-            cbbHuyen.DisplayMember = "TenPhuongXa";
-            cbbHuyen.ValueMember = "MaPhuongXa";
+            try
+            {
+                cbbXa.DataSource = new PhuongXaBO().getList(maHuyen);
+                cbbXa.DisplayMember = "TenPhuongXa";
+                cbbXa.ValueMember = "MaPhuongXa";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void loadCBBHuyen(string maTinh)
         {
-            cbbHuyen.DataSource = new QuanHuyenBO().getList(maTinh);
-            cbbHuyen.DisplayMember = "TenQuanHuyen";
-            cbbHuyen.ValueMember = "MaQuanHuyen";
+            try
+            {
+                cbbHuyen.DataSource = new QuanHuyenBO().getList(maTinh);
+                cbbHuyen.DisplayMember = "TenQuanHuyen";
+                cbbHuyen.ValueMember = "MaQuanHuyen";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void loadCBBTinh()
         {
-            cbbTinh.DataSource = new TinhThanhBO().getList();
-            cbbTinh.DisplayMember = "TenTinhThanh";
-            cbbTinh.ValueMember = "MaTinhThanh";
+            try
+            {
+                cbbTinh.DataSource = new TinhThanhBO().getList();
+                cbbTinh.DisplayMember = "TenTinhThanh";
+                cbbTinh.ValueMember = "MaTinhThanh";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
         #endregion
        
@@ -240,6 +322,11 @@ namespace T02_Source_Code.Presentation
             }
 
             setDefaultCheckLabel();
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

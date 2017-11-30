@@ -13,5 +13,16 @@ namespace T02_Source_Code.Bo
         {
             return DungChung.Db.ChucVus.ToList();
         }
+        public string getNameByID(string idchucvu)
+        {
+            var q = from s in DungChung.Db.ChucVus
+                    where s.MaChucVu.Equals(idchucvu)
+                    select s;
+            if (q.Count()!= 0)
+            {
+                return q.First().TenChucVu;
+            }
+            return null;
+        }
     }
 }

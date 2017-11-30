@@ -58,13 +58,13 @@
             this.comboBox_qlpx_tenTinhThanh = new System.Windows.Forms.ComboBox();
             this.dataGridView_dsPhuongXa = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
+            this.btnXoaUser = new System.Windows.Forms.Button();
+            this.btnThemUser = new System.Windows.Forms.Button();
+            this.btnChinhSuaUser = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.button21 = new System.Windows.Forms.Button();
+            this.dataGVDSUser = new System.Windows.Forms.DataGridView();
+            this.txtTKUser = new System.Windows.Forms.TextBox();
+            this.btnTK = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -182,7 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dsPhuongXa)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVDSUser)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -260,6 +260,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(789, 400);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.Click += new System.EventHandler(this.tabQluser_Click);
             // 
             // tabPage2
             // 
@@ -502,12 +503,12 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button18);
-            this.tabPage3.Controls.Add(this.button19);
-            this.tabPage3.Controls.Add(this.button20);
+            this.tabPage3.Controls.Add(this.btnXoaUser);
+            this.tabPage3.Controls.Add(this.btnThemUser);
+            this.tabPage3.Controls.Add(this.btnChinhSuaUser);
             this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Controls.Add(this.textBox12);
-            this.tabPage3.Controls.Add(this.button21);
+            this.tabPage3.Controls.Add(this.txtTKUser);
+            this.tabPage3.Controls.Add(this.btnTK);
             this.tabPage3.Controls.Add(this.groupBox6);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -517,67 +518,71 @@
             this.tabPage3.Text = "Người Dùng";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // btnXoaUser
             // 
-            this.button18.Location = new System.Drawing.Point(676, 267);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(65, 68);
-            this.button18.TabIndex = 18;
-            this.button18.Text = "Xóa";
-            this.button18.UseVisualStyleBackColor = true;
+            this.btnXoaUser.Location = new System.Drawing.Point(641, 267);
+            this.btnXoaUser.Name = "btnXoaUser";
+            this.btnXoaUser.Size = new System.Drawing.Size(94, 56);
+            this.btnXoaUser.TabIndex = 18;
+            this.btnXoaUser.Text = "Xóa";
+            this.btnXoaUser.UseVisualStyleBackColor = true;
+            this.btnXoaUser.Click += new System.EventHandler(this.btnXoaUser_Click);
             // 
-            // button19
+            // btnThemUser
             // 
-            this.button19.Location = new System.Drawing.Point(535, 267);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(64, 68);
-            this.button19.TabIndex = 20;
-            this.button19.Text = "Thêm người dùng";
-            this.button19.UseVisualStyleBackColor = true;
+            this.btnThemUser.Location = new System.Drawing.Point(407, 267);
+            this.btnThemUser.Name = "btnThemUser";
+            this.btnThemUser.Size = new System.Drawing.Size(94, 56);
+            this.btnThemUser.TabIndex = 20;
+            this.btnThemUser.Text = "Thêm người dùng";
+            this.btnThemUser.UseVisualStyleBackColor = true;
+            this.btnThemUser.Click += new System.EventHandler(this.btnThemUser_Click);
             // 
-            // button20
+            // btnChinhSuaUser
             // 
-            this.button20.Location = new System.Drawing.Point(606, 267);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(64, 68);
-            this.button20.TabIndex = 19;
-            this.button20.Text = "Chỉnh sửa";
-            this.button20.UseVisualStyleBackColor = true;
+            this.btnChinhSuaUser.Location = new System.Drawing.Point(525, 267);
+            this.btnChinhSuaUser.Name = "btnChinhSuaUser";
+            this.btnChinhSuaUser.Size = new System.Drawing.Size(94, 56);
+            this.btnChinhSuaUser.TabIndex = 19;
+            this.btnChinhSuaUser.Text = "Chỉnh sửa";
+            this.btnChinhSuaUser.UseVisualStyleBackColor = true;
+            this.btnChinhSuaUser.Click += new System.EventHandler(this.btnChinhSuaUser_Click);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.dataGridView4);
+            this.groupBox5.Controls.Add(this.dataGVDSUser);
             this.groupBox5.Location = new System.Drawing.Point(35, 37);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(494, 301);
+            this.groupBox5.Size = new System.Drawing.Size(351, 301);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Danh sách người dùng";
             // 
-            // dataGridView4
+            // dataGVDSUser
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(488, 282);
-            this.dataGridView4.TabIndex = 0;
+            this.dataGVDSUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVDSUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGVDSUser.Location = new System.Drawing.Point(3, 16);
+            this.dataGVDSUser.Name = "dataGVDSUser";
+            this.dataGVDSUser.Size = new System.Drawing.Size(345, 282);
+            this.dataGVDSUser.TabIndex = 0;
             // 
-            // textBox12
+            // txtTKUser
             // 
-            this.textBox12.Location = new System.Drawing.Point(535, 42);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(130, 20);
-            this.textBox12.TabIndex = 16;
+            this.txtTKUser.Location = new System.Drawing.Point(392, 42);
+            this.txtTKUser.Name = "txtTKUser";
+            this.txtTKUser.Size = new System.Drawing.Size(273, 20);
+            this.txtTKUser.TabIndex = 16;
             // 
-            // button21
+            // btnTK
             // 
-            this.button21.Location = new System.Drawing.Point(671, 37);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(75, 25);
-            this.button21.TabIndex = 15;
-            this.button21.Text = "Tìm";
-            this.button21.UseVisualStyleBackColor = true;
+            this.btnTK.Location = new System.Drawing.Point(671, 39);
+            this.btnTK.Name = "btnTK";
+            this.btnTK.Size = new System.Drawing.Size(75, 25);
+            this.btnTK.TabIndex = 15;
+            this.btnTK.Text = "Tìm";
+            this.btnTK.UseVisualStyleBackColor = true;
+            this.btnTK.Click += new System.EventHandler(this.btnTK_Click);
             // 
             // groupBox6
             // 
@@ -585,9 +590,9 @@
             this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Controls.Add(this.label28);
             this.groupBox6.Controls.Add(this.label29);
-            this.groupBox6.Location = new System.Drawing.Point(535, 81);
+            this.groupBox6.Location = new System.Drawing.Point(392, 70);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(211, 180);
+            this.groupBox6.Size = new System.Drawing.Size(354, 191);
             this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Thông tin";
@@ -624,9 +629,9 @@
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(11, 26);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(39, 13);
+            this.label29.Size = new System.Drawing.Size(58, 13);
             this.label29.TabIndex = 0;
-            this.label29.Text = "Mã số:";
+            this.label29.Text = "Tài khoản:";
             // 
             // tabPage4
             // 
@@ -1645,7 +1650,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVDSUser)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -1782,13 +1787,13 @@
         private System.Windows.Forms.ComboBox CboNgayKhoiPhucDinhKi;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button btnXoaUser;
+        private System.Windows.Forms.Button btnThemUser;
+        private System.Windows.Forms.Button btnChinhSuaUser;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.DataGridView dataGVDSUser;
+        private System.Windows.Forms.TextBox txtTKUser;
+        private System.Windows.Forms.Button btnTK;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;

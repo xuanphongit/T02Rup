@@ -198,7 +198,6 @@
             this.txtNLMK.PasswordChar = '*';
             this.txtNLMK.Size = new System.Drawing.Size(235, 20);
             this.txtNLMK.TabIndex = 29;
-            this.txtNLMK.Text = " ";
             // 
             // txtMK
             // 
@@ -207,7 +206,6 @@
             this.txtMK.PasswordChar = '*';
             this.txtMK.Size = new System.Drawing.Size(235, 20);
             this.txtMK.TabIndex = 28;
-            this.txtMK.Text = " ";
             // 
             // txtTK
             // 
@@ -306,6 +304,7 @@
             this.btnDong.TabIndex = 40;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // FrmThemNguoiDung
             // 

@@ -59,7 +59,7 @@
       <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
     <Compile Include="Model\DungChung.cs" />
-    <Compile Include="Model\NguoiDungBean.cs" />
+    <Compile Include="Model\infoNguoiDungBean.cs" />
     <Compile Include="Presentation\frmChinhSuaNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>

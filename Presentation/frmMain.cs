@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 using T02_Source_Code.Model;
+using T02_Source_Code.Bo;
+using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Presentation
 {
@@ -16,7 +18,19 @@ namespace T02_Source_Code.Presentation
 
         private List<HoKhau> _danhSachHoKhau;
         private List<NhanKhau> _danhSachNhanKhau;
+        NguoiDungBO qluser = new NguoiDungBO();
 
+
+        FrmThemNguoiDung frmAddUser = null;
+        FrmChinhSua frmEditUser = null;
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            lblTenNguoiDung.Text = "Xin Chào : " + DungChung.HoTen;
+            ResetKhungThongTin();
+        }
+
+        #region QlNhanKhauHoKhau
         private void button8_Click(object sender, EventArgs e)
         {
 
@@ -50,11 +64,6 @@ namespace T02_Source_Code.Presentation
             Show();
         }
         
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            lblTenNguoiDung.Text = "Xin Chào : "+DungChung.HoTen;
-            ResetKhungThongTin();
-        }
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -239,10 +248,56 @@ namespace T02_Source_Code.Presentation
                 DungChung.Db.SubmitChanges();
             }
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
+
+        #endregion
+
+        #region QLUser
+        private void btnThemUser_Click(object sender, EventArgs e)
+        {
+            
+            frmAddUser = new FrmThemNguoiDung();
+            frmAddUser.ShowDialog();
+            dataGVDSUser.DataSource = null;
+            dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung),"");
+        }
+
+        private void btnChinhSuaUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabQluser_Click(object sender, EventArgs e)
+        {
+            dataGVDSUser.DataSource = null;
+            dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+        }
+
+        private void btnTK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGVDSUser.DataSource = null;
+                dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), txtTKUser.Text);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
+
+       
     }
 }

@@ -70,12 +70,17 @@ namespace T02_Source_Code.Bo
         /// <param name="ds"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public List<NguoiDung> search(List<NguoiDung> ds, string key)
+        public List<infoNguoiDungBean> search(List<NguoiDung> ds, string key)
         {
-            return (from s in ds
+            ChucVuBO chucvu = new ChucVuBO();
+            var q = from s in ds
                     where s.MaNguoiDung.Trim().ToLower().Contains(key.Trim().ToLower())
                         || s.TenNguoiDung.Trim().ToLower().Contains(key.Trim().ToLower())
-                    select s).ToList();
+                    select new infoNguoiDungBean()
+                    {
+                        id = s.MaNguoiDung, name=s.TenNguoiDung, chucvu= chucvu.getNameByID(s.MaChucVu)
+                    };
+            return q.ToList();
         }
         /// <summary>
         /// Lấy danh sách user của những user ở những tầng thấp hơn hoặc =
