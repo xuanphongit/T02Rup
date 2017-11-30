@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DevExpress.XtraPrinting.Native;
+
 using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Presentation
@@ -138,7 +138,7 @@ namespace T02_Source_Code.Presentation
         private void FrmThemHK_Load(object sender, EventArgs e)
         {
 
-            if (DungChung.MaTinh.IsEmpty())
+            if (DungChung.MaTinh==null)
             {
                 var q = from s in DungChung.Db.TinhThanhs
                     select s;
@@ -161,7 +161,7 @@ namespace T02_Source_Code.Presentation
                 CboTinh2.DisplayMember = "TenTinhThanh";
                 CboTinh2.ValueMember = "MaTinhThanh";
             }
-            if (!DungChung.MaHuyen.IsEmpty())
+            if (DungChung.MaHuyen!=null)
             {
                 var q2 = from s in DungChung.Db.QuanHuyens
                     where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
@@ -173,7 +173,7 @@ namespace T02_Source_Code.Presentation
                 Cbohuyen2.DisplayMember = "TenQuanHuyen";
                 Cbohuyen2.ValueMember = "MaQuanHuyen";
             }
-            if (!DungChung.MaXa.IsEmpty())
+            if (DungChung.MaXa!=null)
             {
                 var q3 = from s in DungChung.Db.PhuongXas
                     where s.MaPhuongXa.Equals(DungChung.MaXa)

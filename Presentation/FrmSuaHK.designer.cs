@@ -51,6 +51,7 @@
             this.lblNoiCap = new System.Windows.Forms.Label();
             this.lblNguoiCap = new System.Windows.Forms.Label();
             this.lblHoSoHoKhauSo = new System.Windows.Forms.Label();
+            this.lblSoDangKiThuongTru = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -260,6 +261,15 @@
             this.lblHoSoHoKhauSo.TabIndex = 15;
             this.lblHoSoHoKhauSo.Text = "*";
             // 
+            // lblSoDangKiThuongTru
+            // 
+            this.lblSoDangKiThuongTru.AutoSize = true;
+            this.lblSoDangKiThuongTru.Location = new System.Drawing.Point(479, 218);
+            this.lblSoDangKiThuongTru.Name = "lblSoDangKiThuongTru";
+            this.lblSoDangKiThuongTru.Size = new System.Drawing.Size(11, 13);
+            this.lblSoDangKiThuongTru.TabIndex = 15;
+            this.lblSoDangKiThuongTru.Text = "*";
+            // 
             // FrmSuaHk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +282,7 @@
             this.Controls.Add(this.CboTinh1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.CboHoTenChuHo);
+            this.Controls.Add(this.lblSoDangKiThuongTru);
             this.Controls.Add(this.lblHoSoHoKhauSo);
             this.Controls.Add(this.lblNguoiCap);
             this.Controls.Add(this.lblNoiCap);
@@ -321,5 +332,6 @@
         private System.Windows.Forms.Label lblNoiCap;
         private System.Windows.Forms.Label lblNguoiCap;
         private System.Windows.Forms.Label lblHoSoHoKhauSo;
+        private System.Windows.Forms.Label lblSoDangKiThuongTru;
     }
 }

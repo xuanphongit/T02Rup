@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraPrinting.Native;
 using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Presentation
@@ -12,10 +11,15 @@ namespace T02_Source_Code.Presentation
         {
             InitializeComponent();
         }
-        private bool _thayDoi = false;
+        private bool _thayDoi = false,Error=false;
+
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            lblSoDangKiThuongTru.Text = "";
+            if (txtSoDangKiThuongTru.Text.Equals(""))
+            {
+                lblSoDangKiThuongTru.Text = "Mời nhập số đăng kí thường trú";
+            }
         }
 
         private string _maTinh, _maHuyen;
@@ -31,8 +35,13 @@ namespace T02_Source_Code.Presentation
                 where s.MaNguoiDung.Equals(q.First().NguoiDung.ToString())
                 select s.TenNguoiDung).ToString();
             lblNoiCap.Text = FrmMain.LayThongTinDiaDiem(q.First().NoiCap);
-
-            if (DungChung.MaTinh.IsEmpty())
+            var p = from s in DungChung.Db.NhanKhaus
+                where s.MaHoKhau.Equals(FrmMain.MaHoKhau)
+                select s;
+            CboHoTenChuHo.DataSource = p.ToList();
+            CboHoTenChuHo.DisplayMember = "TenNhanKhau";
+            CboHoTenChuHo.ValueMember = "MaNhanKhau";
+            if (DungChung.MaTinh!=null)
             {
                 var q2 = from s in DungChung.Db.TinhThanhs
                         select s;
@@ -51,7 +60,7 @@ namespace T02_Source_Code.Presentation
                 CboTinh1.ValueMember = "MaTinhThanh";
                
             }
-            if (!DungChung.MaHuyen.IsEmpty())
+            if (DungChung.MaHuyen!=null)
             {
                 var q3 = from s in DungChung.Db.QuanHuyens
                          where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
@@ -61,7 +70,7 @@ namespace T02_Source_Code.Presentation
                 CboHuyen1.ValueMember = "MaQuanHuyen";
                 
             }
-            if (!DungChung.MaXa.IsEmpty())
+            if (DungChung.MaXa!=null)
             {
                 var q4 = from s in DungChung.Db.PhuongXas
                          where s.MaPhuongXa.Equals(DungChung.MaXa)
