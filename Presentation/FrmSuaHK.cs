@@ -11,7 +11,7 @@ namespace T02_Source_Code.Presentation
         {
             InitializeComponent();
         }
-        private bool _thayDoi = false,Error=false;
+        private bool _thayDoi = false;
 
         private void button2_Click(object sender, EventArgs e)
         {
