@@ -901,7 +901,7 @@
             // LstHoKhau
             // 
             this.LstHoKhau.FormattingEnabled = true;
-            this.LstHoKhau.Location = new System.Drawing.Point(17, 43);
+            this.LstHoKhau.Location = new System.Drawing.Point(21, 46);
             this.LstHoKhau.Name = "LstHoKhau";
             this.LstHoKhau.Size = new System.Drawing.Size(251, 134);
             this.LstHoKhau.TabIndex = 8;

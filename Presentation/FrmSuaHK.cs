@@ -12,6 +12,7 @@ namespace T02_Source_Code.Presentation
             InitializeComponent();
         }
         private bool _thayDoi = false;
+        private int countError=0;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -19,10 +20,31 @@ namespace T02_Source_Code.Presentation
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
                 lblSoDangKiThuongTru.Text = "Mời nhập số đăng kí thường trú";
+                countError++;
+            }
+            if (!_thayDoi)
+            {
+                if (countError==0)
+                {
+                    MessageBox.Show("Mời thay đổi ít nhất một thông tin");
+                }
+                countError++;
+            }
+            if (countError==0)
+            {
+                var q = from s in DungChung.Db.HoKhaus
+                       where s.MaHoKhau.Equals(FrmMain.MaHoKhau)
+                       select s;
+                q.First().TenChuHo = CboHoTenChuHo.Text;
+                q.First().NoiThuongTru = CboXa1.SelectedValue.ToString();
+                q.First().SoDKThuongTru = int.Parse(txtSoDangKiThuongTru.Text);
+                DungChung.Db.SubmitChanges();
+                MessageBox.Show("Thay đổi thành công");
             }
         }
 
         private string _maTinh, _maHuyen;
+        
         private void FrmSuaHK_Load(object sender, EventArgs e)
         {
             var q = from s in DungChung.Db.HoKhaus
