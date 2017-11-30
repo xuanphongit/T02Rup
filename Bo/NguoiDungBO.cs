@@ -76,8 +76,8 @@ namespace T02_Source_Code.Bo
                 return (from s in DungChung.Db.NguoiDungs select s).ToList();       
             else if (user.MaQuanHuyen == null)
             {
-                var q = from s in DungChung.Db.NguoiDungs
-                        where s.m
+               // var q = from s in DungChung.Db.NguoiDungs
+                  //      where s.m
             }
 
             

@@ -44,9 +44,8 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.lblNoiThuongTru = new System.Windows.Forms.Label();
             this.lblHoTen = new System.Windows.Forms.Label();
-            this.lblNguoiCap = new System.Windows.Forms.Label();
+            this.lblMaSO = new System.Windows.Forms.Label();
             this.lblNoiCap = new System.Windows.Forms.Label();
-            this.lblNgayCap = new System.Windows.Forms.Label();
             this.txtMaSoHoKhau = new System.Windows.Forms.Label();
             this.lblHoSoHoKhauSo = new System.Windows.Forms.Label();
             this.lblSoDangKiThuongTru = new System.Windows.Forms.Label();
@@ -212,16 +211,16 @@
             this.lblHoTen.TabIndex = 14;
             this.lblHoTen.Text = "*";
             // 
-            // lblNguoiCap
+            // lblMaSO
             // 
-            this.lblNguoiCap.AutoSize = true;
-            this.lblNguoiCap.ForeColor = System.Drawing.Color.Red;
-            this.lblNguoiCap.Location = new System.Drawing.Point(333, 28);
-            this.lblNguoiCap.Name = "lblNguoiCap";
-            this.lblNguoiCap.Size = new System.Drawing.Size(11, 13);
-            this.lblNguoiCap.TabIndex = 13;
-            this.lblNguoiCap.Text = "*";
-            this.lblNguoiCap.Click += new System.EventHandler(this.lblNguoiCap_Click);
+            this.lblMaSO.AutoSize = true;
+            this.lblMaSO.ForeColor = System.Drawing.Color.Red;
+            this.lblMaSO.Location = new System.Drawing.Point(333, 28);
+            this.lblMaSO.Name = "lblMaSO";
+            this.lblMaSO.Size = new System.Drawing.Size(11, 13);
+            this.lblMaSO.TabIndex = 13;
+            this.lblMaSO.Text = "*";
+            this.lblMaSO.Click += new System.EventHandler(this.lblNguoiCap_Click);
             // 
             // lblNoiCap
             // 
@@ -233,24 +232,14 @@
             this.lblNoiCap.TabIndex = 13;
             this.lblNoiCap.Text = "*";
             // 
-            // lblNgayCap
-            // 
-            this.lblNgayCap.AutoSize = true;
-            this.lblNgayCap.ForeColor = System.Drawing.Color.Red;
-            this.lblNgayCap.Location = new System.Drawing.Point(470, 109);
-            this.lblNgayCap.Name = "lblNgayCap";
-            this.lblNgayCap.Size = new System.Drawing.Size(11, 13);
-            this.lblNgayCap.TabIndex = 13;
-            this.lblNgayCap.Text = "*";
-            // 
             // txtMaSoHoKhau
             // 
             this.txtMaSoHoKhau.AutoSize = true;
             this.txtMaSoHoKhau.Location = new System.Drawing.Point(161, 28);
             this.txtMaSoHoKhau.Name = "txtMaSoHoKhau";
-            this.txtMaSoHoKhau.Size = new System.Drawing.Size(53, 13);
+            this.txtMaSoHoKhau.Size = new System.Drawing.Size(11, 13);
             this.txtMaSoHoKhau.TabIndex = 15;
-            this.txtMaSoHoKhau.Text = "GD00002";
+            this.txtMaSoHoKhau.Text = "*";
             // 
             // lblHoSoHoKhauSo
             // 
@@ -315,6 +304,7 @@
             this.CboXa1.Name = "CboXa1";
             this.CboXa1.Size = new System.Drawing.Size(101, 21);
             this.CboXa1.TabIndex = 21;
+            this.CboXa1.SelectedIndexChanged += new System.EventHandler(this.CboXa1_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -450,9 +440,8 @@
             this.Controls.Add(this.lblNoiCap);
             this.Controls.Add(this.lblSoDangKiThuongTru);
             this.Controls.Add(this.lblHoSoHoKhauSo);
-            this.Controls.Add(this.lblNguoiCap);
+            this.Controls.Add(this.lblMaSO);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.lblNgayCap);
             this.Controls.Add(this.lblNoiThuongTru);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnThem);
@@ -494,9 +483,8 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label lblNoiThuongTru;
         private System.Windows.Forms.Label lblHoTen;
-        private System.Windows.Forms.Label lblNguoiCap;
+        private System.Windows.Forms.Label lblMaSO;
         private System.Windows.Forms.Label lblNoiCap;
-        private System.Windows.Forms.Label lblNgayCap;
         private System.Windows.Forms.Label txtMaSoHoKhau;
         private System.Windows.Forms.Label lblHoSoHoKhauSo;
         private System.Windows.Forms.Label lblSoDangKiThuongTru;
