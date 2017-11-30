@@ -31,9 +31,10 @@ namespace T02_Source_Code.Presentation
             txtMaSo.Text = q.First().MaHoKhau;
             lblHoSoHoKhauSo.Text = q.First().HoSoHKSo.ToString();
             lblNgayCap.Text = q.First().NgayCap.ToString();
-            lblNguoiCap.Text = (from s in DungChung.Db.NguoiDungs
-                where s.MaNguoiDung.Equals(q.First().NguoiDung.ToString())
-                select s.TenNguoiDung).ToString();
+            var qq = from s in DungChung.Db.NguoiDungs
+                where s.MaNguoiDung.Equals(q.First().NguoiCap)
+                select s;
+            lblNguoiCap.Text = qq.First().TenNguoiDung;
             lblNoiCap.Text = FrmMain.LayThongTinDiaDiem(q.First().NoiCap);
             var p = from s in DungChung.Db.NhanKhaus
                 where s.MaHoKhau.Equals(FrmMain.MaHoKhau)
