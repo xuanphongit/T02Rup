@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting.Native;
 using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Presentation
@@ -132,7 +133,7 @@ namespace T02_Source_Code.Presentation
 
 
         }
-        public string LayThongTinDiaDiem(string maXa)
+        public static string LayThongTinDiaDiem(string maXa)
         {
 
             var q = from s in DungChung.Db.PhuongXas
@@ -183,13 +184,20 @@ namespace T02_Source_Code.Presentation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmSuaHK frmSuaHk=new FrmSuaHK();
+            FrmSuaHk frmSuaHk=new FrmSuaHk();
             frmSuaHk.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+            DialogResult a=MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (a==DialogResult.Yes)
+            {
+                HoKhau hk = DungChung.Db.HoKhaus.Single(p => p.MaHoKhau.Equals(LstHoKhau.SelectedValue.ToString()));
+                DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
+                DungChung.Db.SubmitChanges();
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -218,6 +226,18 @@ namespace T02_Source_Code.Presentation
         private void tabPage4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (a == DialogResult.Yes)
+            {
+                NhanKhau nk = DungChung.Db.NhanKhaus.Single(p => p.MaNhanKhau.Equals(LstNhanKhau.SelectedValue.ToString()));
+                DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
+                DungChung.Db.SubmitChanges();
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
