@@ -62,8 +62,6 @@
             this.Cbohuyen2 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.Cboxa2 = new System.Windows.Forms.ComboBox();
-            this.lblNoiThuongTru2 = new System.Windows.Forms.Label();
-            this.lblNoiCap2 = new System.Windows.Forms.Label();
             this.DPNgayCap = new System.Windows.Forms.DateTimePicker();
             this.txtNguoiCap = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -378,26 +376,6 @@
             this.Cboxa2.Size = new System.Drawing.Size(101, 21);
             this.Cboxa2.TabIndex = 21;
             // 
-            // lblNoiThuongTru2
-            // 
-            this.lblNoiThuongTru2.AutoSize = true;
-            this.lblNoiThuongTru2.ForeColor = System.Drawing.Color.Red;
-            this.lblNoiThuongTru2.Location = new System.Drawing.Point(618, 83);
-            this.lblNoiThuongTru2.Name = "lblNoiThuongTru2";
-            this.lblNoiThuongTru2.Size = new System.Drawing.Size(11, 13);
-            this.lblNoiThuongTru2.TabIndex = 22;
-            this.lblNoiThuongTru2.Text = "*";
-            // 
-            // lblNoiCap2
-            // 
-            this.lblNoiCap2.AutoSize = true;
-            this.lblNoiCap2.ForeColor = System.Drawing.Color.Red;
-            this.lblNoiCap2.Location = new System.Drawing.Point(618, 135);
-            this.lblNoiCap2.Name = "lblNoiCap2";
-            this.lblNoiCap2.Size = new System.Drawing.Size(11, 13);
-            this.lblNoiCap2.TabIndex = 22;
-            this.lblNoiCap2.Text = "*";
-            // 
             // DPNgayCap
             // 
             this.DPNgayCap.Location = new System.Drawing.Point(167, 109);
@@ -421,8 +399,6 @@
             this.ClientSize = new System.Drawing.Size(687, 358);
             this.Controls.Add(this.txtNguoiCap);
             this.Controls.Add(this.DPNgayCap);
-            this.Controls.Add(this.lblNoiCap2);
-            this.Controls.Add(this.lblNoiThuongTru2);
             this.Controls.Add(this.Cboxa2);
             this.Controls.Add(this.CboXa1);
             this.Controls.Add(this.label15);
@@ -501,8 +477,6 @@
         private System.Windows.Forms.ComboBox Cbohuyen2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox Cboxa2;
-        private System.Windows.Forms.Label lblNoiThuongTru2;
-        private System.Windows.Forms.Label lblNoiCap2;
         private System.Windows.Forms.DateTimePicker DPNgayCap;
         private System.Windows.Forms.Label txtNguoiCap;
     }

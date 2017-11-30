@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -15,24 +14,21 @@ namespace T02_Source_Code.Presentation
             InitializeComponent();
         }
 
-        private string MaTinh, MaHuyen,MaXa;
-        private List<TinhThanh> _danhSachTinh;
-        private List<QuanHuyen> _danhSachHuyen,_danhSachHuyen2;
-        private List<PhuongXa> _danhSachXa,_danhSachXa2;
+        private string _maTinh, _maHuyen;
+
         private void ResetLoi()
         {
             lblHoTen.Text = "";
             lblHoSoHoKhauSo.Text = "";
           
             lblMaSO.Text = "";
-            lblNoiCap2.Text = "";
-            lblNoiThuongTru2.Text = "";
+            
             lblSoDangKiThuongTru.Text = "";
         }
         private void button2_Click(object sender, EventArgs e)
         {
             
-            int countError = 0, HoSoHoKhauSo=0;
+            int countError = 0, hoSoHoKhauSo=0;
             ResetLoi();
             
            
@@ -43,10 +39,10 @@ namespace T02_Source_Code.Presentation
             }
             else
             {
-                String HoTen = txtTenChuHo.Text;
-                bool Match = Regex.IsMatch(HoTen, "\\W");
-                bool Match2 = Regex.IsMatch(HoTen, @"\d");
-                if (!Match||!Match2)
+                String hoTen = txtTenChuHo.Text;
+                bool match = Regex.IsMatch(hoTen, "\\W");
+                bool match2 = Regex.IsMatch(hoTen, @"\d");
+                if (!match||!match2)
                 {
                     lblHoTen.Text = "Không nhập các kí tự số,các kí tự đặc biệt";
                     countError++;
@@ -60,7 +56,7 @@ namespace T02_Source_Code.Presentation
             }
             else
             {
-                HoSoHoKhauSo = int.Parse(txtHoSoHoKhauSo.Text);
+                hoSoHoKhauSo = int.Parse(txtHoSoHoKhauSo.Text);
             }
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
@@ -74,7 +70,7 @@ namespace T02_Source_Code.Presentation
 
             }
             var q = from s in DungChung.Db.HoKhaus
-                    where s.HoSoHKSo == HoSoHoKhauSo
+                    where s.HoSoHKSo == hoSoHoKhauSo
                     select s;
             if (q.Any())
             {
@@ -106,9 +102,9 @@ namespace T02_Source_Code.Presentation
         {
            
             
-                MaHuyen = CboTinh1.SelectedValue.ToString();
+                _maHuyen = CboTinh1.SelectedValue.ToString();
                 var q = from s in DungChung.Db.PhuongXas
-                        where s.MaQuanHuyen.Equals(MaHuyen)
+                        where s.MaQuanHuyen.Equals(_maHuyen)
                         select s;
                 CboXa1.DataSource = q.ToList();
                 CboXa1.DisplayMember = "TenPhuongXa";
@@ -119,9 +115,9 @@ namespace T02_Source_Code.Presentation
 
         private void CboTinh2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MaTinh = CboTinh2.SelectedValue.ToString();
+            _maTinh = CboTinh2.SelectedValue.ToString();
             var q = from s in DungChung.Db.QuanHuyens
-                    where s.MaTinhThanh.Equals(MaTinh)
+                    where s.MaTinhThanh.Equals(_maTinh)
                     select s;
             Cbohuyen2.DataSource = q.ToList();
             Cbohuyen2.DisplayMember = "TenQuanHuyen";
@@ -130,9 +126,9 @@ namespace T02_Source_Code.Presentation
 
         private void Cbohuyen2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MaHuyen = Cbohuyen2.SelectedValue.ToString();
+            _maHuyen = Cbohuyen2.SelectedValue.ToString();
             var q = from s in DungChung.Db.PhuongXas
-                    where s.MaQuanHuyen.Equals(MaHuyen)
+                    where s.MaQuanHuyen.Equals(_maHuyen)
                     select s;
             Cboxa2.DataSource = q.ToList();
             Cboxa2.DisplayMember = "TenPhuongXa";
@@ -219,9 +215,9 @@ namespace T02_Source_Code.Presentation
         {
          
             
-                MaTinh = CboTinh1.SelectedValue.ToString();
+                _maTinh = CboTinh1.SelectedValue.ToString();
                 var q = from s in DungChung.Db.QuanHuyens
-                        where s.MaTinhThanh.Equals(MaTinh)
+                        where s.MaTinhThanh.Equals(_maTinh)
                         select s;
                 CboHuyen1.DataSource = q.ToList();
                 CboHuyen1.DisplayMember = "TenQuanHuyen";
