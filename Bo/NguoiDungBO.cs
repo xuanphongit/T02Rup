@@ -9,7 +9,7 @@ namespace T02_Source_Code.Bo
 {
     class NguoiDungBO
     {
-        private bool AddUser(string id, string idTinh, string idHuyen, string idXa, string idChucVu, string name, string pass)
+        public bool AddUser(string id, string idTinh, string idHuyen, string idXa, string idChucVu, string name, string pass)
         {
             if (CheckID(id)) return false;
             NguoiDung user = new NguoiDung();
@@ -24,7 +24,7 @@ namespace T02_Source_Code.Bo
             DungChung.Db.SubmitChanges();
             return true;
         }
-        private void EditUser(string id, string idTinh, string idHuyen, string idXa, string idChucVu, string name, string pass)
+        public void EditUser(string id, string idTinh, string idHuyen, string idXa, string idChucVu, string name, string pass)
         {
             var q = from s in DungChung.Db.NguoiDungs
                     where s.MaNguoiDung.Equals(id)
@@ -41,7 +41,7 @@ namespace T02_Source_Code.Bo
                 DungChung.Db.SubmitChanges();
             }
         }
-        private void DeleteUser(string id)
+        public void DeleteUser(string id)
         {
             var q = from s in DungChung.Db.NguoiDungs
                     where s.MaNguoiDung.Equals(id)
@@ -87,7 +87,7 @@ namespace T02_Source_Code.Bo
             NguoiDung user = getNguoiDungByID(id);
 
             if (user.MaTinhThanh == null)
-                return (from s in DungChung.Db.NguoiDungs select s).ToList();
+                return DungChung.Db.NguoiDungs.ToList();
             else if (user.MaQuanHuyen == null)
                 return (from s in DungChung.Db.NguoiDungs
                         where s.MaTinhThanh.Equals(user.MaTinhThanh)

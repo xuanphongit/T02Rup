@@ -54,7 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bo\ChucVuBO.cs" />
     <Compile Include="Bo\NguoiDungBO.cs" />
+    <Compile Include="Bo\PhuongXaBO.cs" />
+    <Compile Include="Bo\QuanHuyenBO.cs" />
+    <Compile Include="Bo\TinhThanhBO.cs" />
     <Compile Include="Db.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
