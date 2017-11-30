@@ -75,10 +75,7 @@ namespace T02_Source_Code.Bo
             if (user.MaTinhThanh == null)           
                 return (from s in DungChung.Db.NguoiDungs select s).ToList();       
             else if (user.MaQuanHuyen == null)
-            {
-               
-            }
-
+          
             
                     
             return DungChung.Db.NguoiDungs.ToList();
