@@ -21,7 +21,7 @@ namespace T02_Source_Code.Presentation
             lblHoTen.Text = "";
             lblHoSoHoKhauSo.Text = "";
           
-            lblMaSO.Text = "";
+          
             
             lblSoDangKiThuongTru.Text = "";
         }
@@ -63,12 +63,7 @@ namespace T02_Source_Code.Presentation
                 lblSoDangKiThuongTru.Text = ("Mời nhập số đăng kí thường trú!");
                 countError++;
             }
-            if (!_themMa)
-            {
-                lblMaSO.Text = "Mời bấm thêm mã!";
-                countError++;
-
-            }
+           
             var q = from s in DungChung.Db.HoKhaus
                     where s.HoSoHKSo == hoSoHoKhauSo
                     select s;
@@ -82,7 +77,8 @@ namespace T02_Source_Code.Presentation
             {
                 
                 HoKhau hk=new HoKhau();
-                hk.MaHoKhau = txtMaSoHoKhau.Text;
+                int a = int.Parse(DungChung.Db.HoKhaus.Max(h => h.MaHoKhau)) + 1;
+                hk.MaHoKhau = a.ToString();
                 hk.TenChuHo = txtTenChuHo.Text;
                 hk.SoThanhVien = 1;
                 hk.NoiThuongTru = CboXa1.SelectedValue.ToString();
@@ -188,11 +184,6 @@ namespace T02_Source_Code.Presentation
             txtNguoiCap.Text = DungChung.HoTen;
         }
 
-        private void lblNguoiCap_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CboXa1_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -203,13 +194,6 @@ namespace T02_Source_Code.Presentation
             Close();
         }
 
-        private bool _themMa = false;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int max = int.Parse(DungChung.Db.HoKhaus.Max(hk => hk.MaHoKhau))+1;
-            txtMaSoHoKhau.Text = max.ToString();
-            _themMa = true;
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,14 +38,11 @@
             this.txtTenChuHo = new System.Windows.Forms.TextBox();
             this.txtHoSoHoKhauSo = new System.Windows.Forms.TextBox();
             this.txtSoDangKiThuongTru = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.lblNoiThuongTru = new System.Windows.Forms.Label();
             this.lblHoTen = new System.Windows.Forms.Label();
-            this.lblMaSO = new System.Windows.Forms.Label();
             this.lblNoiCap = new System.Windows.Forms.Label();
-            this.txtMaSoHoKhau = new System.Windows.Forms.Label();
             this.lblHoSoHoKhauSo = new System.Windows.Forms.Label();
             this.lblSoDangKiThuongTru = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,15 +61,6 @@
             this.DPNgayCap = new System.Windows.Forms.DateTimePicker();
             this.txtNguoiCap = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã số hộ khẩu: ";
             // 
             // label2
             // 
@@ -159,16 +146,6 @@
             this.txtSoDangKiThuongTru.Size = new System.Drawing.Size(298, 20);
             this.txtSoDangKiThuongTru.TabIndex = 11;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(248, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Thêm mã";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnThem
             // 
             this.btnThem.Location = new System.Drawing.Point(187, 277);
@@ -209,17 +186,6 @@
             this.lblHoTen.TabIndex = 14;
             this.lblHoTen.Text = "*";
             // 
-            // lblMaSO
-            // 
-            this.lblMaSO.AutoSize = true;
-            this.lblMaSO.ForeColor = System.Drawing.Color.Red;
-            this.lblMaSO.Location = new System.Drawing.Point(333, 28);
-            this.lblMaSO.Name = "lblMaSO";
-            this.lblMaSO.Size = new System.Drawing.Size(11, 13);
-            this.lblMaSO.TabIndex = 13;
-            this.lblMaSO.Text = "*";
-            this.lblMaSO.Click += new System.EventHandler(this.lblNguoiCap_Click);
-            // 
             // lblNoiCap
             // 
             this.lblNoiCap.AutoSize = true;
@@ -229,15 +195,6 @@
             this.lblNoiCap.Size = new System.Drawing.Size(11, 13);
             this.lblNoiCap.TabIndex = 13;
             this.lblNoiCap.Text = "*";
-            // 
-            // txtMaSoHoKhau
-            // 
-            this.txtMaSoHoKhau.AutoSize = true;
-            this.txtMaSoHoKhau.Location = new System.Drawing.Point(161, 28);
-            this.txtMaSoHoKhau.Name = "txtMaSoHoKhau";
-            this.txtMaSoHoKhau.Size = new System.Drawing.Size(11, 13);
-            this.txtMaSoHoKhau.TabIndex = 15;
-            this.txtMaSoHoKhau.Text = "*";
             // 
             // lblHoSoHoKhauSo
             // 
@@ -388,9 +345,9 @@
             this.txtNguoiCap.AutoSize = true;
             this.txtNguoiCap.Location = new System.Drawing.Point(167, 164);
             this.txtNguoiCap.Name = "txtNguoiCap";
-            this.txtNguoiCap.Size = new System.Drawing.Size(38, 13);
+            this.txtNguoiCap.Size = new System.Drawing.Size(11, 13);
             this.txtNguoiCap.TabIndex = 24;
-            this.txtNguoiCap.Text = "Phong";
+            this.txtNguoiCap.Text = "*";
             // 
             // FrmThemHk
             // 
@@ -411,17 +368,14 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.CboTinh1);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtMaSoHoKhau);
             this.Controls.Add(this.lblHoTen);
             this.Controls.Add(this.lblNoiCap);
             this.Controls.Add(this.lblSoDangKiThuongTru);
             this.Controls.Add(this.lblHoSoHoKhauSo);
-            this.Controls.Add(this.lblMaSO);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblNoiThuongTru);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtSoDangKiThuongTru);
             this.Controls.Add(this.txtHoSoHoKhauSo);
             this.Controls.Add(this.txtTenChuHo);
@@ -432,7 +386,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "FrmThemHk";
             this.Text = "FrmThemHK";
             this.Load += new System.EventHandler(this.FrmThemHK_Load);
@@ -442,8 +395,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -454,14 +405,11 @@
         private System.Windows.Forms.TextBox txtTenChuHo;
         private System.Windows.Forms.TextBox txtHoSoHoKhauSo;
         private System.Windows.Forms.TextBox txtSoDangKiThuongTru;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label lblNoiThuongTru;
         private System.Windows.Forms.Label lblHoTen;
-        private System.Windows.Forms.Label lblMaSO;
         private System.Windows.Forms.Label lblNoiCap;
-        private System.Windows.Forms.Label txtMaSoHoKhau;
         private System.Windows.Forms.Label lblHoSoHoKhauSo;
         private System.Windows.Forms.Label lblSoDangKiThuongTru;
         private System.Windows.Forms.Label label9;
