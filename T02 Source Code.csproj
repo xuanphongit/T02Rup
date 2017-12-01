@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -120,13 +121,43 @@
     <Compile Include="Presentation\FrmThemNK.designer.cs">
       <DependentUpon>FrmThemNK.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Presentation\Them_TinhThanh.cs">
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_PhuongXa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Them_TinhThanh.designer.cs">
-      <DependentUpon>Them_TinhThanh.cs</DependentUpon>
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_PhuongXa.designer.cs">
+      <DependentUpon>Frm_CapNhat_PhuongXa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_QuanHuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_QuanHuyen.designer.cs">
+      <DependentUpon>Frm_CapNhat_QuanHuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_TinhThanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_CapNhat_TinhThanh.designer.cs">
+      <DependentUpon>Frm_CapNhat_TinhThanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_Them_QuanHuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_Them_QuanHuyen.designer.cs">
+      <DependentUpon>Frm_Them_QuanHuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_Them_TinhThanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_Them_TinhThanh.designer.cs">
+      <DependentUpon>Frm_Them_TinhThanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Presentation\QLDM\Frm_Them_PhuongXa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\QLDM\Frm_Them_PhuongXa.designer.cs">
+      <DependentUpon>Frm_Them_PhuongXa.cs</DependentUpon>
     </Compile>
     <None Include="Db.dbml.layout">
       <DependentUpon>Db.dbml</DependentUpon>
@@ -161,6 +192,21 @@
     <EmbeddedResource Include="Presentation\FrmThemNK.resx">
       <DependentUpon>FrmThemNK.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_CapNhat_PhuongXa.resx">
+      <DependentUpon>Frm_CapNhat_PhuongXa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_CapNhat_QuanHuyen.resx">
+      <DependentUpon>Frm_CapNhat_QuanHuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_CapNhat_TinhThanh.resx">
+      <DependentUpon>Frm_CapNhat_TinhThanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_Them_QuanHuyen.resx">
+      <DependentUpon>Frm_Them_QuanHuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_Them_TinhThanh.resx">
+      <DependentUpon>Frm_Them_TinhThanh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,8 +217,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Presentation\Them_TinhThanh.resx">
-      <DependentUpon>Them_TinhThanh.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\QLDM\Frm_Them_PhuongXa.resx">
+      <DependentUpon>Frm_Them_PhuongXa.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Db.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

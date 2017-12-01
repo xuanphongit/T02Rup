@@ -17,6 +17,9 @@ namespace T02_Source_Code.Presentation
 
         private List<HoKhau> _danhSachHoKhau;
         private List<NhanKhau> _danhSachNhanKhau;
+        private List<TinhThanh> _danhsachTinhThanh;
+        private List<QuanHuyen> _danhsachQuanHuyen;
+        private List<PhuongXa> _danhsachPhuongXa;
         NguoiDungBO qluser = new NguoiDungBO();
         TinhThanhBO tinhThanhBo = new TinhThanhBO();
         QuanHuyenBO quanHuyenBO = new QuanHuyenBO();
@@ -30,6 +33,20 @@ namespace T02_Source_Code.Presentation
         {
             lblTenNguoiDung.Text = "Xin Chào : " + DungChung.HoTen;
             ResetKhungThongTin();
+            QLDanhMuc_Load();
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 1:
+                    dataGVDSUser.DataSource = null;
+                    dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+                    break;
+                default:
+                    break;
+            }
         }
 
         #region QlNhanKhauHoKhau
@@ -189,28 +206,57 @@ namespace T02_Source_Code.Presentation
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            FrmTachHk frmTachHk = new FrmTachHk();
-            frmTachHk.ShowDialog();
+            if (MaNhanKhau==null)
+            {
+                MessageBox.Show("Mời chọn nhân khẩu trước");
+            }
+            else
+            {
+                FrmTachHk frmTachHk = new FrmTachHk();
+                frmTachHk.ShowDialog();
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmSuaHk frmSuaHk = new FrmSuaHk();
-            frmSuaHk.ShowDialog();
+            if (MaHoKhau == null)
+            {
+                MessageBox.Show("Mời chọn hộ khẩu");
+            }
+            else
+            {
+                FrmSuaHk frmSuaHk = new FrmSuaHk();
+                frmSuaHk.ShowDialog();
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-            if (a == DialogResult.Yes)
+
+            if (MaHoKhau==null)
             {
-                HoKhau hk = DungChung.Db.HoKhaus.Single(p => p.MaHoKhau.Equals(LstHoKhau.SelectedValue.ToString()));
-                DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
-                DungChung.Db.SubmitChanges();
+                MessageBox.Show("Mời chọn hộ khẩu trước");
+            }
+            else
+            {
+                DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (a == DialogResult.Yes)
+                {
+
+                    HoKhau hk = DungChung.Db.HoKhaus.Single(p => p.MaHoKhau.Equals(LstHoKhau.SelectedValue.ToString()));
+                    _danhSachHoKhau.Remove(hk);
+                    LstHoKhau.DataSource = null;
+                    LstHoKhau.DataSource = _danhSachHoKhau;
+                    LstHoKhau.DisplayMember = "TenChuHo";
+                    LstHoKhau.ValueMember = "MaHoKhau";
+                    DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
+                    DungChung.Db.SubmitChanges();
+
+                }
             }
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             FrmThemNk frmThemNk = new FrmThemNk();
@@ -220,8 +266,16 @@ namespace T02_Source_Code.Presentation
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmSuaNk frmSuaNk = new FrmSuaNk();
-            frmSuaNk.ShowDialog();
+            if (MaNhanKhau==null)
+            {
+                MessageBox.Show("Mời chọn nhân khẩu trước");
+            }
+            else
+            {
+                FrmSuaNk frmSuaNk = new FrmSuaNk();
+                frmSuaNk.ShowDialog();
+            }
+            
         }
 
         private void label30_Click(object sender, EventArgs e)
@@ -241,13 +295,24 @@ namespace T02_Source_Code.Presentation
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-            if (a == DialogResult.Yes)
+            if (MaNhanKhau==null)
             {
-                NhanKhau nk = DungChung.Db.NhanKhaus.Single(p => p.MaNhanKhau.Equals(LstNhanKhau.SelectedValue.ToString()));
-                DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
-                DungChung.Db.SubmitChanges();
+                MessageBox.Show("Mời chọn nhân khẩu trước");
+            }
+            else
+            {
+                DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (a == DialogResult.Yes)
+                {
+                    NhanKhau nk = DungChung.Db.NhanKhaus.Single(p => p.MaNhanKhau.Equals(LstNhanKhau.SelectedValue.ToString()));
+                    _danhSachNhanKhau.Remove(nk);
+                    LstNhanKhau.DataSource = null;
+                    LstNhanKhau.DataSource = _danhSachNhanKhau;
+                    LstNhanKhau.DisplayMember = "TenNhanKhau";
+                    LstNhanKhau.ValueMember = "MaNhanKhau";
+                    DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
+                    DungChung.Db.SubmitChanges();
+                }
             }
         }
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -372,7 +437,187 @@ namespace T02_Source_Code.Presentation
 
         #endregion
 
+        #region Quản lý danh mục
+        private void comboBox_qlqh_tenTinhThanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            QLQuanHuyen_Load();
+        }
 
+        public void QLDanhMuc_Load()
+        {
+            QLTinhThanh_Load();
+        }
 
+        public void QLTinhThanh_Load()
+        {
+            _danhsachTinhThanh = DungChung.ttBO.getList();
+
+            comboBox_qlqh_tenTinhThanh.DataSource = _danhsachTinhThanh;
+            comboBox_qlqh_tenTinhThanh.DisplayMember = "TenTinhThanh";
+            comboBox_qlqh_tenTinhThanh.ValueMember = "MaTinhThanh";
+            comboBox_qlpx_tenTinhThanh.DataSource = _danhsachTinhThanh;
+            comboBox_qlpx_tenTinhThanh.DisplayMember = "TenTinhThanh";
+            comboBox_qlpx_tenTinhThanh.ValueMember = "MaTinhThanh";
+            dataGridView_dsTinhThanh.DataSource = _danhsachTinhThanh;
+
+            QLQuanHuyen_Load();
+        }
+
+        public void QLQuanHuyen_Load()
+        {
+            if(comboBox_qlqh_tenTinhThanh.Items.Count > 0)
+            {
+                _danhsachQuanHuyen = DungChung.qhBO.getList(comboBox_qlqh_tenTinhThanh.SelectedValue.ToString());
+                
+                comboBox_qlpx_tenQuanHuyen.DataSource = _danhsachQuanHuyen;
+
+                comboBox_qlpx_tenQuanHuyen.DisplayMember = "TenQuanHuyen";
+                comboBox_qlpx_tenQuanHuyen.ValueMember = "MaQuanHuyen";
+
+                dataGridView_dsQuanHuyen.DataSource = _danhsachQuanHuyen;
+                QLPhuongXa_Load();
+            }
+        }
+
+        public void QLPhuongXa_Load()
+        {
+            if(comboBox_qlpx_tenQuanHuyen.Items.Count > 0)
+            {
+                _danhsachPhuongXa = DungChung.pxBO.getList(comboBox_qlpx_tenQuanHuyen.SelectedValue.ToString());
+
+                dataGridView_dsPhuongXa.DataSource = _danhsachPhuongXa;
+            }
+        }
+
+        private void comboBox_qlpx_tenQuanHuyen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            QLPhuongXa_Load();
+        }
+
+        private void btn_qltt_Xoa_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsTinhThanh.CurrentRow.Index;
+            if (dataGridView_dsTinhThanh["MaTinhThanh", row].Value != null)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    DungChung.ttBO.Delete(dataGridView_dsTinhThanh["MaTinhThanh", row].Value.ToString());
+                    MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    QLTinhThanh_Load();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn tỉnh thành muốn xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_qlqh_Xoa_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsQuanHuyen.CurrentRow.Index;
+            if (dataGridView_dsQuanHuyen["MaQuanHuyen", row].Value != null)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    string mqh = dataGridView_dsQuanHuyen["MaQuanHuyen", row].Value.ToString();
+                    DungChung.qhBO.Delete(mqh);
+                    MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    QLQuanHuyen_Load();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn quận huyện muốn xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_qlpx_Xoa_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsPhuongXa.CurrentRow.Index;
+            if (dataGridView_dsPhuongXa["MaPhuongXa", row].Value != null)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    DungChung.pxBO.Delete(dataGridView_dsPhuongXa["MaPhuongXa", row].Value.ToString());
+                    MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    QLPhuongXa_Load();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phường xã muốn xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btn_qltt_CapNhat_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsTinhThanh.CurrentRow.Index;
+            if (dataGridView_dsTinhThanh["MaTinhThanh", row].Value != null)
+            {
+                Frm_CapNhat_TinhThanh frmCapNhatTinhThanh = new Frm_CapNhat_TinhThanh();
+                frmCapNhatTinhThanh.MaTinhThanh = dataGridView_dsTinhThanh["MaTinhThanh", row].Value.ToString();
+                frmCapNhatTinhThanh.TenTinhThanh = dataGridView_dsTinhThanh["TenTinhThanh", row].Value.ToString();
+                frmCapNhatTinhThanh.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn tỉnh thành muốn cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_qlqh_CapNhat_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsQuanHuyen.CurrentRow.Index;
+            if (dataGridView_dsQuanHuyen["MaQuanHuyen", row].Value != null)
+            {
+                Frm_CapNhat_QuanHuyen frmCapNhatQuanHuyen = new Frm_CapNhat_QuanHuyen();
+                frmCapNhatQuanHuyen.MaQuanHuyen = dataGridView_dsQuanHuyen["MaQuanHuyen", row].Value.ToString();
+                frmCapNhatQuanHuyen.TenQuanHuyen = dataGridView_dsQuanHuyen["TenQuanHuyen", row].Value.ToString();
+                frmCapNhatQuanHuyen.MaTinhThanh = comboBox_qlqh_tenTinhThanh.SelectedValue.ToString();
+                frmCapNhatQuanHuyen.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn quận huyện muốn cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_qlpx_CapNhat_Click(object sender, EventArgs e)
+        {
+            int row = dataGridView_dsPhuongXa.CurrentRow.Index;
+            if (dataGridView_dsPhuongXa["MaPhuongXa", row].Value != null)
+            {
+                Frm_CapNhat_PhuongXa frmCapNhatPhuongXa = new Frm_CapNhat_PhuongXa();
+                frmCapNhatPhuongXa.MaPhuongXa = dataGridView_dsPhuongXa["MaPhuongXa", row].Value.ToString();
+                frmCapNhatPhuongXa.TenPhuongXa = dataGridView_dsPhuongXa["TenPhuongXa", row].Value.ToString();
+                frmCapNhatPhuongXa.MaTinhThanh = comboBox_qlpx_tenTinhThanh.SelectedValue.ToString();
+                frmCapNhatPhuongXa.MaQuanHuyen = comboBox_qlpx_tenQuanHuyen.SelectedValue.ToString();
+                frmCapNhatPhuongXa.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phường xã muốn cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_qltt_Them_Click(object sender, EventArgs e)
+        {
+            Frm_Them_TinhThanh frmThemTinhThanh = new Frm_Them_TinhThanh();
+            frmThemTinhThanh.ShowDialog();
+        }
+        private void btn_qlqh_Them_Click(object sender, EventArgs e)
+        {
+            Frm_Them_QuanHuyen frmThemQuanHuyen = new Frm_Them_QuanHuyen();
+            frmThemQuanHuyen.ShowDialog();
+        }
+
+        private void btn_qlpx_Them_Click(object sender, EventArgs e)
+        {
+            Frm_Them_PhuongXa frmThemPhuongXa = new Frm_Them_PhuongXa();
+            frmThemPhuongXa.ShowDialog();
+        }
+
+        #endregion
     }
 }

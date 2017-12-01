@@ -14,7 +14,7 @@ namespace T02_Source_Code.Model
         //    this.chucvu = chucvu;
         //    this.name = name;
         //}
-
+        
         public string id { get; set; }
         public string name { get; set; }
         public string chucvu { get; set; }  

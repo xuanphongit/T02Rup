@@ -7,7 +7,7 @@ using T02_Source_Code.Model;
 
 namespace T02_Source_Code.Bo
 {
-    class TinhThanhBO
+    public class TinhThanhBO
     {
         public TinhThanh get(string id)
         {
@@ -23,6 +23,20 @@ namespace T02_Source_Code.Bo
         public List<TinhThanh> getList()
         {
             return DungChung.Db.TinhThanhs.ToList();
+        }
+        public void Delete(string id)
+        {
+            var t = DungChung.Db.TinhThanhs.Single(p => p.MaTinhThanh.Equals(id));
+            DungChung.Db.TinhThanhs.DeleteOnSubmit(t);
+            DungChung.Db.SubmitChanges();
+        }
+
+        public bool Exist(string id)
+        {
+            var q = from s in DungChung.Db.TinhThanhs
+                    where s.MaTinhThanh.Equals(id)
+                    select s;
+            return (q.Count() > 0);
         }
     }
 }
