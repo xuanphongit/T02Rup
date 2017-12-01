@@ -263,6 +263,7 @@ namespace T02_Source_Code.Presentation
             this.tabControl1.Size = new System.Drawing.Size(789, 400);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPage2
             // 
