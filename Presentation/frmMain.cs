@@ -123,6 +123,7 @@ namespace T02_Source_Code.Presentation
         {
             FrmThemHk frmThemHk = new FrmThemHk();
             frmThemHk.ShowDialog();
+            ReloadThongTin();
 
         }
 
@@ -221,6 +222,7 @@ namespace T02_Source_Code.Presentation
             {
                 FrmTachHk frmTachHk = new FrmTachHk();
                 frmTachHk.ShowDialog();
+                ReloadThongTin();
             }
             
         }
@@ -235,6 +237,7 @@ namespace T02_Source_Code.Presentation
             {
                 FrmSuaHk frmSuaHk = new FrmSuaHk();
                 frmSuaHk.ShowDialog();
+                ReloadThongTin();
             }
 
         }
@@ -260,6 +263,7 @@ namespace T02_Source_Code.Presentation
                     LstHoKhau.ValueMember = "MaHoKhau";
                     DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
                     DungChung.Db.SubmitChanges();
+                    ReloadThongTin();
 
                 }
             }
@@ -268,6 +272,7 @@ namespace T02_Source_Code.Presentation
         {
             FrmThemNk frmThemNk = new FrmThemNk();
             frmThemNk.ShowDialog();
+            ReloadThongTin();
 
         }
 
@@ -281,6 +286,7 @@ namespace T02_Source_Code.Presentation
             {
                 FrmSuaNk frmSuaNk = new FrmSuaNk();
                 frmSuaNk.ShowDialog();
+                ReloadThongTin();
             }
             
         }
@@ -319,6 +325,7 @@ namespace T02_Source_Code.Presentation
                     LstNhanKhau.ValueMember = "MaNhanKhau";
                     DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
                     DungChung.Db.SubmitChanges();
+                    ReloadThongTin();
                 }
             }
         }
@@ -327,6 +334,26 @@ namespace T02_Source_Code.Presentation
 
         }
 
+        private void ReloadThongTin()
+        {
+            _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
+            _danhSachNhanKhau = DungChung.Db.NhanKhaus.ToList();
+            LstHoKhau.DataSource = _danhSachHoKhau;
+            LstHoKhau.DisplayMember = "TenChuHo";
+            LstHoKhau.ValueMember = "MaHoKhau";
+
+            LstNhanKhau.DataSource = _danhSachNhanKhau;
+            LstNhanKhau.DisplayMember = "TenNhanKhau";
+            LstNhanKhau.ValueMember = "MaNhanKhau";
+        }
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            
+            ReloadThongTin();
+            MaHoKhau = _danhSachHoKhau.First().MaHoKhau;
+            MaNhanKhau = _danhSachNhanKhau.First().MaNhanKhau;
+
+        }
         #endregion
 
         #region QLUser
@@ -631,6 +658,8 @@ namespace T02_Source_Code.Presentation
             Frm_Them_QuanHuyen frmThemQuanHuyen = new Frm_Them_QuanHuyen();
             frmThemQuanHuyen.ShowDialog();
         }
+
+        
 
         private void btn_qlpx_Them_Click(object sender, EventArgs e)
         {
