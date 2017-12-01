@@ -1,4 +1,6 @@
-﻿namespace T02_Source_Code.Presentation
+﻿using System;
+
+namespace T02_Source_Code.Presentation
 {
     partial class FrmMain
     {
@@ -260,7 +262,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(789, 400);
             this.tabControl1.TabIndex = 2;
-            this.tabControl1.Click += new System.EventHandler(this.tabQluser_Click);
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage2
             // 
@@ -309,6 +311,7 @@
             this.btn_qltt_Xoa.TabIndex = 21;
             this.btn_qltt_Xoa.Text = "Xóa";
             this.btn_qltt_Xoa.UseVisualStyleBackColor = true;
+            this.btn_qltt_Xoa.Click += new System.EventHandler(this.btn_qltt_Xoa_Click);
             // 
             // btn_qltt_CapNhat
             // 
@@ -319,6 +322,7 @@
             this.btn_qltt_CapNhat.TabIndex = 20;
             this.btn_qltt_CapNhat.Text = "Cập nhật";
             this.btn_qltt_CapNhat.UseVisualStyleBackColor = true;
+            this.btn_qltt_CapNhat.Click += new System.EventHandler(this.btn_qltt_CapNhat_Click);
             // 
             // btn_qltt_Them
             // 
@@ -329,12 +333,19 @@
             this.btn_qltt_Them.TabIndex = 19;
             this.btn_qltt_Them.Text = "Thêm";
             this.btn_qltt_Them.UseVisualStyleBackColor = true;
+            this.btn_qltt_Them.Click += new System.EventHandler(this.btn_qltt_Them_Click);
             // 
             // dataGridView_dsTinhThanh
             // 
+            this.dataGridView_dsTinhThanh.AllowUserToAddRows = false;
+            this.dataGridView_dsTinhThanh.AllowUserToDeleteRows = false;
             this.dataGridView_dsTinhThanh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_dsTinhThanh.Location = new System.Drawing.Point(14, 35);
+            this.dataGridView_dsTinhThanh.MultiSelect = false;
             this.dataGridView_dsTinhThanh.Name = "dataGridView_dsTinhThanh";
+            this.dataGridView_dsTinhThanh.ReadOnly = true;
+            this.dataGridView_dsTinhThanh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_dsTinhThanh.ShowEditingIcon = false;
             this.dataGridView_dsTinhThanh.Size = new System.Drawing.Size(747, 221);
             this.dataGridView_dsTinhThanh.TabIndex = 1;
             // 
@@ -363,6 +374,7 @@
             this.btn_qlqh_Xoa.TabIndex = 24;
             this.btn_qlqh_Xoa.Text = "Xóa";
             this.btn_qlqh_Xoa.UseVisualStyleBackColor = true;
+            this.btn_qlqh_Xoa.Click += new System.EventHandler(this.btn_qlqh_Xoa_Click);
             // 
             // btn_qlqh_CapNhat
             // 
@@ -373,6 +385,7 @@
             this.btn_qlqh_CapNhat.TabIndex = 23;
             this.btn_qlqh_CapNhat.Text = "Cập nhật";
             this.btn_qlqh_CapNhat.UseVisualStyleBackColor = true;
+            this.btn_qlqh_CapNhat.Click += new System.EventHandler(this.btn_qlqh_CapNhat_Click);
             // 
             // btn_qlqh_Them
             // 
@@ -383,6 +396,7 @@
             this.btn_qlqh_Them.TabIndex = 22;
             this.btn_qlqh_Them.Text = "Thêm";
             this.btn_qlqh_Them.UseVisualStyleBackColor = true;
+            this.btn_qlqh_Them.Click += new System.EventHandler(this.btn_qlqh_Them_Click);
             // 
             // label2
             // 
@@ -401,12 +415,16 @@
             this.comboBox_qlqh_tenTinhThanh.Name = "comboBox_qlqh_tenTinhThanh";
             this.comboBox_qlqh_tenTinhThanh.Size = new System.Drawing.Size(133, 23);
             this.comboBox_qlqh_tenTinhThanh.TabIndex = 14;
+            this.comboBox_qlqh_tenTinhThanh.SelectedIndexChanged += new System.EventHandler(this.comboBox_qlqh_tenTinhThanh_SelectedIndexChanged);
             // 
             // dataGridView_dsQuanHuyen
             // 
             this.dataGridView_dsQuanHuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_dsQuanHuyen.Location = new System.Drawing.Point(14, 35);
+            this.dataGridView_dsQuanHuyen.MultiSelect = false;
             this.dataGridView_dsQuanHuyen.Name = "dataGridView_dsQuanHuyen";
+            this.dataGridView_dsQuanHuyen.ReadOnly = true;
+            this.dataGridView_dsQuanHuyen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_dsQuanHuyen.Size = new System.Drawing.Size(747, 221);
             this.dataGridView_dsQuanHuyen.TabIndex = 9;
             // 
@@ -436,6 +454,7 @@
             this.btn_qlpx_Xoa.TabIndex = 24;
             this.btn_qlpx_Xoa.Text = "Xóa";
             this.btn_qlpx_Xoa.UseVisualStyleBackColor = true;
+            this.btn_qlpx_Xoa.Click += new System.EventHandler(this.btn_qlpx_Xoa_Click);
             // 
             // btn_qlpx_CapNhat
             // 
@@ -446,6 +465,7 @@
             this.btn_qlpx_CapNhat.TabIndex = 23;
             this.btn_qlpx_CapNhat.Text = "Cập nhật";
             this.btn_qlpx_CapNhat.UseVisualStyleBackColor = true;
+            this.btn_qlpx_CapNhat.Click += new System.EventHandler(this.btn_qlpx_CapNhat_Click);
             // 
             // btn_qlpx_Them
             // 
@@ -456,6 +476,7 @@
             this.btn_qlpx_Them.TabIndex = 22;
             this.btn_qlpx_Them.Text = "Thêm";
             this.btn_qlpx_Them.UseVisualStyleBackColor = true;
+            this.btn_qlpx_Them.Click += new System.EventHandler(this.btn_qlpx_Them_Click);
             // 
             // label4
             // 
@@ -483,6 +504,7 @@
             this.comboBox_qlpx_tenQuanHuyen.Name = "comboBox_qlpx_tenQuanHuyen";
             this.comboBox_qlpx_tenQuanHuyen.Size = new System.Drawing.Size(133, 23);
             this.comboBox_qlpx_tenQuanHuyen.TabIndex = 16;
+            this.comboBox_qlpx_tenQuanHuyen.SelectedIndexChanged += new System.EventHandler(this.comboBox_qlpx_tenQuanHuyen_SelectedIndexChanged);
             // 
             // comboBox_qlpx_tenTinhThanh
             // 
@@ -497,7 +519,10 @@
             // 
             this.dataGridView_dsPhuongXa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_dsPhuongXa.Location = new System.Drawing.Point(14, 35);
+            this.dataGridView_dsPhuongXa.MultiSelect = false;
             this.dataGridView_dsPhuongXa.Name = "dataGridView_dsPhuongXa";
+            this.dataGridView_dsPhuongXa.ReadOnly = true;
+            this.dataGridView_dsPhuongXa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_dsPhuongXa.Size = new System.Drawing.Size(740, 221);
             this.dataGridView_dsPhuongXa.TabIndex = 9;
             // 
@@ -1681,6 +1706,7 @@
             this.PerformLayout();
 
         }
+
 
         #endregion
 

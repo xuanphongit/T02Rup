@@ -33,12 +33,12 @@ namespace T02_Source_Code.Presentation
             }
             if (txtMatKhauMoi.Text.Equals(""))
             {
-                lblMatKhauMoi.Text = "Mời nhập mật khẩu cũ!";
+                lblMatKhauMoi.Text = "Mời nhập mật khẩu mới!";
                 countError++;
             }
             if (txtNhapLaiMatKhau.Text.Equals(""))
             {
-                lblNhapLaiMatKhau.Text = "Mời nhập mật khẩu cũ!";
+                lblNhapLaiMatKhau.Text = "Mời nhập lại mật khẩu mới!";
                 countError++;
             }
             if (!txtMatKhauMoi.Text.Equals(txtNhapLaiMatKhau.Text))
