@@ -28,12 +28,15 @@ namespace T02_Source_Code.Presentation
 
         FrmThemNguoiDung frmAddUser = null;
         FrmChinhSua frmEditUser = null;
+        
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
             lblTenNguoiDung.Text = "Xin Chào : " + DungChung.HoTen;
             ResetKhungThongTin();
             QLDanhMuc_Load();
+            dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -41,9 +44,13 @@ namespace T02_Source_Code.Presentation
             switch (tabControl1.SelectedIndex)
             {
                 case 1:
-                    dataGVDSUser.DataSource = null;
-                    dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
-                    break;
+                    {
+                        //Tô màu người dùng hiện tại
+                        setcolor();
+                        dataGVDSUser_CellClick(null, new DataGridViewCellEventArgs(0,0));
+                        break;
+                    }
+                   
                 default:
                     break;
             }
@@ -323,16 +330,27 @@ namespace T02_Source_Code.Presentation
         #endregion
 
         #region QLUser
-
+        void setcolor()
+        {
+            foreach (DataGridViewRow row in dataGVDSUser.Rows)
+            {
+                if (dataGVDSUser[0, row.Index].Value.ToString() == DungChung.MaNguoiDung)
+                {
+                    foreach (DataGridViewColumn col in dataGVDSUser.Columns) 
+                        dataGVDSUser[col.Index, row.Index].Style.BackColor = System.Drawing.Color.Gray;
+                    return;
+                }
+            }
+        }
         public static string idUser_Select_qlUser = null;
 
         private void btnThemUser_Click(object sender, EventArgs e)
         {
-
             frmAddUser = new FrmThemNguoiDung();
             frmAddUser.ShowDialog();
             dataGVDSUser.DataSource = null;
             dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+            setcolor();
         }
 
         private void btnChinhSuaUser_Click(object sender, EventArgs e)
@@ -345,6 +363,7 @@ namespace T02_Source_Code.Presentation
                     frmEditUser.ShowDialog();
                     dataGVDSUser.DataSource = null;
                     dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+                    setcolor();
                 }
                 catch (Exception ee)
                 {
@@ -362,9 +381,13 @@ namespace T02_Source_Code.Presentation
             {
                 try
                 {
-                    qluser.DeleteUser(idUser_Select_qlUser);
-                    MessageBox.Show("Đã xóa!");
-                    dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), txtTKUser.Text);
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa", "Thông báo!", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        qluser.DeleteUser(idUser_Select_qlUser);
+                        MessageBox.Show("Đã xóa!");
+                        dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), txtTKUser.Text);
+                        setcolor();
+                    }                
                 }
                 catch (Exception ee)
                 {
@@ -375,19 +398,11 @@ namespace T02_Source_Code.Presentation
              MessageBox.Show("Bạn chưa chọn người dùng cần thao tác!", "Thông báo!",MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 
-        private void tabQluser_Click(object sender, EventArgs e)
-        {
-            dataGVDSUser.DataSource = null;
-            dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
-            idUser_Select_qlUser = null;
-        }
-
         private void dataGVDSUser_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 int r = e.RowIndex;
-
                 idUser_Select_qlUser = dataGVDSUser[0, r].Value.ToString();
 
                 lblTaiKhoan_user.Text = "Tài khoản: " + idUser_Select_qlUser;
@@ -427,7 +442,12 @@ namespace T02_Source_Code.Presentation
                 if (ds == null || ds.Count() == 0)
                     MessageBox.Show("Không tìm thấy!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
+                {
                     dataGVDSUser.DataSource = ds;
+                    //Tô màu người dùng hiện tại
+                    setcolor();
+                }
+                    
             }
             catch (Exception)
             {

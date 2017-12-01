@@ -37,45 +37,39 @@ namespace T02_Source_Code
             loadInfoUser(nguoi);
 
             if (DungChung.MaTinh == null)
-            {
                 quyen = 1;
-
-            }
             else if (DungChung.MaHuyen == null)
             {
                 quyen = 2;
-
                 cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
+                maTinh = nguoi.MaTinhThanh;
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
             }
             else if (DungChung.MaXa == null)
             {
                 quyen = 3;
 
                 cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
+                maTinh = nguoi.MaTinhThanh;
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
 
                 cbbHuyen.Enabled = false;
-                maHuyen = DungChung.MaHuyen;
+                maHuyen = nguoi.MaQuanHuyen;
                 cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-
             }
             else
             {
                 quyen = 4;
                 cbbXa.Enabled = false;
-                maXa = DungChung.MaXa;
+                maXa = nguoi.MaPhuongXa;
                 cbbXa.Text = phuongXaBo.get(maXa).TenPhuongXa;
 
                 cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
+                maTinh = nguoi.MaTinhThanh;
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
 
                 cbbHuyen.Enabled = false;
-                maHuyen = DungChung.MaHuyen;
+                maHuyen = nguoi.MaQuanHuyen;
                 cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
                 cbbLTK.Enabled = false;
             }
@@ -121,6 +115,16 @@ namespace T02_Source_Code
             txtMK.Text = nguoi.MatKhau;
             txtNLMK.Text = nguoi.MatKhau;
 
+            try
+            {
+                maTinh = nguoi.MaTinhThanh;
+                maHuyen = nguoi.MaQuanHuyen;
+                maXa = nguoi.MaPhuongXa;
+            }
+            catch (Exception)
+            {
+            }
+
         }
 
         #region setDefault
@@ -164,22 +168,19 @@ namespace T02_Source_Code
 
 
         #region evenSelectedIndexChange
+
         bool checkload_LTK = false;
-
-        bool chkload_Huyen = false;
-
-        bool chkload_Tinh = false;
-
-        bool chkLoad_Xa = false;
-
         private void cbbLTK_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             setDefaultCBB();
-
+            
             if (checkload_LTK)
             {
                 int select = Convert.ToInt32(cbbLTK.SelectedValue.ToString());
 
+                maTinh = null;
+                maHuyen = null;
+                maXa = null;
 
                 if (select == 1)
                 {
@@ -200,80 +201,79 @@ namespace T02_Source_Code
                 {
                     cbbXa.Enabled = false;
                     if (quyen == 1)
-                    {
                         loadCBBTinh();
-
-                    }
                     else if (quyen == 2)
                     {
+                        maTinh = nguoi.MaTinhThanh;
                         loadCBBHuyen(maTinh);
                     }
-
+                        
                 }
                 else if (select == 4)
                 {
                     if (quyen == 1)
-                    {
                         loadCBBTinh();
-                    }
                     else if (quyen == 2)
                     {
+                        maTinh = nguoi.MaTinhThanh;
                         loadCBBHuyen(maTinh);
                     }
                     else if (quyen == 3)
                     {
+                        maTinh = nguoi.MaTinhThanh;
+                        maHuyen = nguoi.MaQuanHuyen;
                         loadCBBXA(maHuyen);
                     }
                 }
             }
             try
             {
-                cbbTinh_SelectedIndexChanged(null, null);
+               cbbTinh_SelectedIndexChanged(null, null);
                 cbbHuyen_SelectedIndexChanged(null, null);
                 cbbXa_SelectedIndexChanged_1(null, null);
             }
             catch (Exception)
             {
             }
-
-         //   maTinh = null;
-        //    maHuyen = null;
-        //    maXa = null;
         }
-
+        bool chkload_Huyen = false;
         private void cbbTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (chkload_Tinh)
+            if (chkload_Tinh && cbbTinh.Enabled == true)
             {
                 maTinh = cbbTinh.SelectedValue.ToString();
-                // MessageBox.Show(maTinh);
                 if (cbbHuyen.Enabled == true)
-                {
-                    loadCBBHuyen(cbbTinh.SelectedValue.ToString());
-                }
+                    loadCBBHuyen(cbbTinh.SelectedValue.ToString());          
             }
+            else if (quyen != 1)
+                maTinh = nguoi.MaTinhThanh;
+            else maTinh = null;
         }
 
+        bool chkload_Tinh = false;
         private void cbbHuyen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (chkload_Huyen)
+            if (chkload_Huyen && cbbHuyen.Enabled==true)
             {
-                maHuyen = cbbHuyen.SelectedValue.ToString();
-                // MessageBox.Show(maTinh + maHuyen);
+                maHuyen = cbbHuyen.SelectedValue.ToString(); 
                 if (cbbXa.Enabled == true)
-                {
-                    loadCBBXA(cbbHuyen.SelectedValue.ToString());
-                }
+                    loadCBBXA(cbbHuyen.SelectedValue.ToString());      
             }
+            else if (quyen != 1 && quyen != 2)
+                maHuyen = nguoi.MaQuanHuyen;
+            else maHuyen = null;
         }
 
+        bool chkLoad_Xa = false;
         private void cbbXa_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (chkLoad_Xa)
+            if (chkLoad_Xa && cbbXa.Enabled==true)
             {
                 maXa = cbbXa.SelectedValue.ToString();
-                // MessageBox.Show(maTinh + maHuyen + maXa);
             }
+            else if (quyen == 4)
+                maXa = nguoi.MaPhuongXa;
+            else maXa = null;
         }
         #endregion
 
@@ -400,34 +400,7 @@ namespace T02_Source_Code
 
         private void btnDong_Click(object sender, System.EventArgs e)
         {
-            if (checkThayDoi())
-            {
-                DialogResult rs = MessageBox.Show("Có sự thay đổi, bạn có muốn đóng", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (rs == DialogResult.OK)
-                {
-                    this.Close();
-                }
-                else
-                    return;
-                this.Close();
-            }
-        }
-
-        private bool checkThayDoi()
-        {
-            if (txtHoTen.Text != nguoi.TenNguoiDung || txtMK.Text != nguoi.MatKhau)
-                return true;
-            try
-            {
-                if (cbbTinh.SelectedValue.ToString() != nguoi.MaTinhThanh || cbbHuyen.SelectedValue.ToString() != nguoi.MaQuanHuyen || cbbXa.SelectedValue.ToString() != nguoi.MaPhuongXa)
-                    return true;
-            }
-            catch (Exception)
-            {
-
-                return true;
-            }
-            return false;
+             this.Close();
         }
     }
 }
