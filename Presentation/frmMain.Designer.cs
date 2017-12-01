@@ -66,10 +66,10 @@
             this.txtTKUser = new System.Windows.Forms.TextBox();
             this.btnTK = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblDonVi_user = new System.Windows.Forms.Label();
+            this.lblChucVu_user = new System.Windows.Forms.Label();
+            this.lblHoTen_user = new System.Windows.Forms.Label();
+            this.lblTaiKhoan_user = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -520,9 +520,9 @@
             // 
             // btnXoaUser
             // 
-            this.btnXoaUser.Location = new System.Drawing.Point(641, 267);
+            this.btnXoaUser.Location = new System.Drawing.Point(641, 286);
             this.btnXoaUser.Name = "btnXoaUser";
-            this.btnXoaUser.Size = new System.Drawing.Size(94, 56);
+            this.btnXoaUser.Size = new System.Drawing.Size(108, 49);
             this.btnXoaUser.TabIndex = 18;
             this.btnXoaUser.Text = "Xóa";
             this.btnXoaUser.UseVisualStyleBackColor = true;
@@ -530,9 +530,9 @@
             // 
             // btnThemUser
             // 
-            this.btnThemUser.Location = new System.Drawing.Point(407, 267);
+            this.btnThemUser.Location = new System.Drawing.Point(407, 286);
             this.btnThemUser.Name = "btnThemUser";
-            this.btnThemUser.Size = new System.Drawing.Size(94, 56);
+            this.btnThemUser.Size = new System.Drawing.Size(108, 49);
             this.btnThemUser.TabIndex = 20;
             this.btnThemUser.Text = "Thêm người dùng";
             this.btnThemUser.UseVisualStyleBackColor = true;
@@ -540,9 +540,9 @@
             // 
             // btnChinhSuaUser
             // 
-            this.btnChinhSuaUser.Location = new System.Drawing.Point(525, 267);
+            this.btnChinhSuaUser.Location = new System.Drawing.Point(525, 286);
             this.btnChinhSuaUser.Name = "btnChinhSuaUser";
-            this.btnChinhSuaUser.Size = new System.Drawing.Size(94, 56);
+            this.btnChinhSuaUser.Size = new System.Drawing.Size(108, 49);
             this.btnChinhSuaUser.TabIndex = 19;
             this.btnChinhSuaUser.Text = "Chỉnh sửa";
             this.btnChinhSuaUser.UseVisualStyleBackColor = true;
@@ -553,25 +553,28 @@
             this.groupBox5.Controls.Add(this.dataGVDSUser);
             this.groupBox5.Location = new System.Drawing.Point(35, 37);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(351, 301);
+            this.groupBox5.Size = new System.Drawing.Size(366, 301);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Danh sách người dùng";
             // 
             // dataGVDSUser
             // 
+            this.dataGVDSUser.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGVDSUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVDSUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGVDSUser.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGVDSUser.Location = new System.Drawing.Point(3, 16);
             this.dataGVDSUser.Name = "dataGVDSUser";
-            this.dataGVDSUser.Size = new System.Drawing.Size(345, 282);
+            this.dataGVDSUser.Size = new System.Drawing.Size(360, 282);
             this.dataGVDSUser.TabIndex = 0;
+            this.dataGVDSUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVDSUser_CellClick);
             // 
             // txtTKUser
             // 
-            this.txtTKUser.Location = new System.Drawing.Point(392, 42);
+            this.txtTKUser.Location = new System.Drawing.Point(407, 42);
             this.txtTKUser.Name = "txtTKUser";
-            this.txtTKUser.Size = new System.Drawing.Size(273, 20);
+            this.txtTKUser.Size = new System.Drawing.Size(258, 20);
             this.txtTKUser.TabIndex = 16;
             // 
             // btnTK
@@ -586,52 +589,52 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.label26);
-            this.groupBox6.Controls.Add(this.label27);
-            this.groupBox6.Controls.Add(this.label28);
-            this.groupBox6.Controls.Add(this.label29);
-            this.groupBox6.Location = new System.Drawing.Point(392, 70);
+            this.groupBox6.Controls.Add(this.lblDonVi_user);
+            this.groupBox6.Controls.Add(this.lblChucVu_user);
+            this.groupBox6.Controls.Add(this.lblHoTen_user);
+            this.groupBox6.Controls.Add(this.lblTaiKhoan_user);
+            this.groupBox6.Location = new System.Drawing.Point(407, 70);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(354, 191);
+            this.groupBox6.Size = new System.Drawing.Size(339, 210);
             this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Thông tin";
             // 
-            // label26
+            // lblDonVi_user
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(12, 121);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(41, 13);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Đơn vị:";
+            this.lblDonVi_user.AutoSize = true;
+            this.lblDonVi_user.Location = new System.Drawing.Point(12, 121);
+            this.lblDonVi_user.Name = "lblDonVi_user";
+            this.lblDonVi_user.Size = new System.Drawing.Size(41, 13);
+            this.lblDonVi_user.TabIndex = 0;
+            this.lblDonVi_user.Text = "Đơn vị:";
             // 
-            // label27
+            // lblChucVu_user
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(11, 87);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(50, 13);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "Chức vụ:";
+            this.lblChucVu_user.AutoSize = true;
+            this.lblChucVu_user.Location = new System.Drawing.Point(11, 87);
+            this.lblChucVu_user.Name = "lblChucVu_user";
+            this.lblChucVu_user.Size = new System.Drawing.Size(50, 13);
+            this.lblChucVu_user.TabIndex = 0;
+            this.lblChucVu_user.Text = "Chức vụ:";
             // 
-            // label28
+            // lblHoTen_user
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(11, 56);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(42, 13);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "Họ tên:";
+            this.lblHoTen_user.AutoSize = true;
+            this.lblHoTen_user.Location = new System.Drawing.Point(11, 56);
+            this.lblHoTen_user.Name = "lblHoTen_user";
+            this.lblHoTen_user.Size = new System.Drawing.Size(42, 13);
+            this.lblHoTen_user.TabIndex = 0;
+            this.lblHoTen_user.Text = "Họ tên:";
             // 
-            // label29
+            // lblTaiKhoan_user
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(11, 26);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(58, 13);
-            this.label29.TabIndex = 0;
-            this.label29.Text = "Tài khoản:";
+            this.lblTaiKhoan_user.AutoSize = true;
+            this.lblTaiKhoan_user.Location = new System.Drawing.Point(11, 26);
+            this.lblTaiKhoan_user.Name = "lblTaiKhoan_user";
+            this.lblTaiKhoan_user.Size = new System.Drawing.Size(58, 13);
+            this.lblTaiKhoan_user.TabIndex = 0;
+            this.lblTaiKhoan_user.Text = "Tài khoản:";
             // 
             // tabPage4
             // 
@@ -1795,10 +1798,10 @@
         private System.Windows.Forms.TextBox txtTKUser;
         private System.Windows.Forms.Button btnTK;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblDonVi_user;
+        private System.Windows.Forms.Label lblChucVu_user;
+        private System.Windows.Forms.Label lblHoTen_user;
+        private System.Windows.Forms.Label lblTaiKhoan_user;
         private System.Windows.Forms.Label lblTenNguoiDung;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
