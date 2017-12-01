@@ -231,13 +231,11 @@ namespace T02_Source_Code.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String Key = Microsoft.VisualBasic.Interaction.InputBox("Nhập tên chủ hộ cần tìm", "Tìm tên", "");
-            var q = from s in Ds
-                where s.TenChuHo.Contains(Key)
-                select s;
-            CboTenHoKhau.DataSource = q.ToList();
-            CboTenHoKhau.DisplayMember = "TenChuHo";
-            CboTenHoKhau.ValueMember = "MaHoKhau";
+           
+        }
+
+        private void Cboxa3_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

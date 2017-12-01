@@ -207,21 +207,29 @@ namespace T02_Source_Code.Presentation
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult a=MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-            if (a==DialogResult.Yes)
+            if (MaHoKhau==null)
             {
-
-                HoKhau hk = DungChung.Db.HoKhaus.Single(p => p.MaHoKhau.Equals(LstHoKhau.SelectedValue.ToString()));
-                _danhSachHoKhau.Remove(hk);
-                LstHoKhau.DataSource = null;
-                LstHoKhau.DataSource = _danhSachHoKhau;
-                LstHoKhau.DisplayMember = "TenChuHo";
-                LstHoKhau.ValueMember = "MaHoKhau";
-                DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
-                DungChung.Db.SubmitChanges();
-                
+                MessageBox.Show("Mời chọn hộ khẩu trước");
             }
+            else
+            {
+                DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+                if (a == DialogResult.Yes)
+                {
+
+                    HoKhau hk = DungChung.Db.HoKhaus.Single(p => p.MaHoKhau.Equals(LstHoKhau.SelectedValue.ToString()));
+                    _danhSachHoKhau.Remove(hk);
+                    LstHoKhau.DataSource = null;
+                    LstHoKhau.DataSource = _danhSachHoKhau;
+                    LstHoKhau.DisplayMember = "TenChuHo";
+                    LstHoKhau.ValueMember = "MaHoKhau";
+                    DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
+                    DungChung.Db.SubmitChanges();
+
+                }
+            }
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -233,8 +241,16 @@ namespace T02_Source_Code.Presentation
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmSuaNk frmSuaNk=new FrmSuaNk();
-            frmSuaNk.ShowDialog();
+            if (MaNhanKhau==null)
+            {
+                MessageBox.Show("Chọn nhân khẩu trước");
+            }
+            else
+            {
+                FrmSuaNk frmSuaNk = new FrmSuaNk();
+                frmSuaNk.ShowDialog();
+            }
+            
         }
 
         private void label30_Click(object sender, EventArgs e)
@@ -254,19 +270,27 @@ namespace T02_Source_Code.Presentation
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-            if (a == DialogResult.Yes)
+            if (MaNhanKhau==null)
             {
-                NhanKhau nk = DungChung.Db.NhanKhaus.Single(p => p.MaNhanKhau.Equals(LstNhanKhau.SelectedValue.ToString()));
-                _danhSachNhanKhau.Remove(nk);
-                LstNhanKhau.DataSource = null;
-                LstNhanKhau.DataSource = _danhSachNhanKhau;
-                LstNhanKhau.DisplayMember = "TenNhanKhau";
-                LstNhanKhau.ValueMember = "MaNhanKhau";
-                DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
-                DungChung.Db.SubmitChanges();
+                MessageBox.Show("Mời chọn nhân khẩu trước");
             }
+            else
+            {
+                DialogResult a = MessageBox.Show("Bạn muốn chắc chắn xóa không?", "Hỏi xóa", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+                if (a == DialogResult.Yes)
+                {
+                    NhanKhau nk = DungChung.Db.NhanKhaus.Single(p => p.MaNhanKhau.Equals(LstNhanKhau.SelectedValue.ToString()));
+                    _danhSachNhanKhau.Remove(nk);
+                    LstNhanKhau.DataSource = null;
+                    LstNhanKhau.DataSource = _danhSachNhanKhau;
+                    LstNhanKhau.DisplayMember = "TenNhanKhau";
+                    LstNhanKhau.ValueMember = "MaNhanKhau";
+                    DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
+                    DungChung.Db.SubmitChanges();
+                }
+            }
+            
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {

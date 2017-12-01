@@ -114,4 +114,14 @@
       <Column Name="SoDKThuongTru" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TinhQuanHuyen" Member="TinhQuanHuyens">
+    <Type Name="TinhQuanHuyen">
+      <Column Name="MaPhuongXa" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TenPhuongXa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaQuanHuyen" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TenQuanHuyen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTinhThanh" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTinhThanh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
