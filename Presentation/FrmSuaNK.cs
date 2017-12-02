@@ -42,11 +42,7 @@ namespace T02_Source_Code.Presentation
         private void FrmSuaNK_Load(object sender, EventArgs e)
         {
 
-            /*
-            Cboxa3.SelectedValue = _nk.QueQuan;
-            Cboxa2.SelectedValue = _nk.NoiThuongTruTruocKhiChuyenDen;
-            CboXa1.SelectedValue = _nk.NoiLamViec;
-            */
+           
             var pp = from s in FrmMain._danhSachNhanKhau
                      where s.MaNhanKhau.Equals(FrmMain.MaNhanKhau)
                      select s;
