@@ -15,11 +15,11 @@ namespace T02_Source_Code.Presentation
             InitializeComponent();
         }
 
-        private List<HoKhau> _danhSachHoKhau=new List<HoKhau>();
-        private List<NhanKhau> _danhSachNhanKhau=new List<NhanKhau>();
-        private List<TinhThanh> _danhsachTinhThanh;
-        private List<QuanHuyen> _danhsachQuanHuyen;
-        private List<PhuongXa> _danhsachPhuongXa;
+        public static List<HoKhau> _danhSachHoKhau=new List<HoKhau>();
+        public static List<NhanKhau> _danhSachNhanKhau=new List<NhanKhau>();
+        public static List<TinhThanh> _danhsachTinhThanh;
+        public static List<QuanHuyen> _danhsachQuanHuyen;
+        public static List<PhuongXa> _danhsachPhuongXa;
         NguoiDungBO qluser = new NguoiDungBO();
         TinhThanhBO tinhThanhBo = new TinhThanhBO();
         QuanHuyenBO quanHuyenBO = new QuanHuyenBO();
@@ -38,11 +38,17 @@ namespace T02_Source_Code.Presentation
             QLDanhMuc_Load();
 
             //Nếu chức vụ k phải ad thì xóa tab người dùng
-            if(checkChucVu())
-               dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
+            if (checkChucVu())
+                dataGVDSUser.DataSource = qluser.search(qluser.getListUser(DungChung.MaNguoiDung), "");
             else
+            {
                 tabControl1.TabPages.RemoveAt(1);
+                tabControl1.TabPages.RemoveAt(0);
 
+            }
+
+
+            tabControl1_Click(null,null);
         }
         bool checkChucVu()
         {
@@ -118,10 +124,10 @@ namespace T02_Source_Code.Presentation
         private void button8_Click_1(object sender, EventArgs e)
         {
             string tuKhoa = txtTimKiemHoKhauNhanKhau.Text.ToLower();
-            var q = from s in DungChung.Db.HoKhaus
+            var q = from s in _danhSachHoKhau
                     where s.TenChuHo.ToLower().Contains(tuKhoa)
                     select s;
-            var p = from s in DungChung.Db.NhanKhaus
+            var p = from s in _danhSachNhanKhau
                     where s.TenNhanKhau.ToLower().Contains(tuKhoa) || s.TenThuongGoi.ToLower().Contains(tuKhoa)
                     select s;
             _danhSachHoKhau = q.ToList();
@@ -140,7 +146,10 @@ namespace T02_Source_Code.Presentation
         {
             FrmThemHk frmThemHk = new FrmThemHk();
             frmThemHk.ShowDialog();
-            ReloadThongTin();
+            LstHoKhau.DataSource = null;
+            LstHoKhau.DataSource = _danhSachHoKhau;
+            LstHoKhau.DisplayMember = "TenChuHo";
+            LstHoKhau.ValueMember = "MaHoKhau";
 
         }
 
@@ -258,7 +267,7 @@ namespace T02_Source_Code.Presentation
             {
                 FrmTachHk frmTachHk = new FrmTachHk();
                 frmTachHk.ShowDialog();
-                ReloadThongTin();
+                
             }
             
         }
@@ -273,7 +282,11 @@ namespace T02_Source_Code.Presentation
             {
                 FrmSuaHk frmSuaHk = new FrmSuaHk();
                 frmSuaHk.ShowDialog();
-                ReloadThongTin();
+                LstHoKhau.DataSource = null;
+                LstHoKhau.DataSource = _danhSachHoKhau;
+                LstHoKhau.DisplayMember = "TenChuHo";
+                LstHoKhau.ValueMember = "MaHoKhau";
+
             }
 
         }
@@ -299,7 +312,7 @@ namespace T02_Source_Code.Presentation
                     LstHoKhau.ValueMember = "MaHoKhau";
                     DungChung.Db.HoKhaus.DeleteOnSubmit(hk);
                     DungChung.Db.SubmitChanges();
-                    ReloadThongTin();
+                
 
                 }
             }
@@ -308,7 +321,12 @@ namespace T02_Source_Code.Presentation
         {
             FrmThemNk frmThemNk = new FrmThemNk();
             frmThemNk.ShowDialog();
-            ReloadThongTin();
+            LstNhanKhau.DataSource = null;
+            LstNhanKhau.DataSource = _danhSachNhanKhau;
+            LstNhanKhau.DisplayMember = "TenNhanKhau";
+            LstNhanKhau.ValueMember = "MaNhanKhau";
+
+
 
         }
 
@@ -322,7 +340,20 @@ namespace T02_Source_Code.Presentation
             {
                 FrmSuaNk frmSuaNk = new FrmSuaNk();
                 frmSuaNk.ShowDialog();
-                ReloadThongTin();
+                String MaNhanKhau = LstNhanKhau.SelectedValue.ToString();
+                var q = from s in _danhSachNhanKhau
+                    where s.MaNhanKhau.Equals(LstNhanKhau.SelectedValue)
+                    select s;
+                _danhSachNhanKhau.Remove(q.First());
+                var q2 = from s in DungChung.Db.NhanKhaus
+                    where s.MaNhanKhau.Equals(MaNhanKhau)
+                    select s;
+                _danhSachNhanKhau.Add(q2.First());
+                LstNhanKhau.DataSource = null;
+                LstNhanKhau.DataSource = _danhSachNhanKhau;
+                LstNhanKhau.DisplayMember = "TenNhanKhau";
+                LstNhanKhau.ValueMember = "MaNhanKhau";
+
             }
             
         }
@@ -361,7 +392,7 @@ namespace T02_Source_Code.Presentation
                     LstNhanKhau.ValueMember = "MaNhanKhau";
                     DungChung.Db.NhanKhaus.DeleteOnSubmit(nk);
                     DungChung.Db.SubmitChanges();
-                    ReloadThongTin();
+                   
                 }
             }
         }
@@ -370,10 +401,14 @@ namespace T02_Source_Code.Presentation
 
         }
         List<TinhQuanHuyen> _ds=new List<TinhQuanHuyen>();
-        private void ReloadThongTin()
-        {
+       
 
-            _finished = false;
+            
+
+           
+           
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
 
             if (DungChung.MaTinh == null)
             {
@@ -430,10 +465,10 @@ namespace T02_Source_Code.Presentation
                         }
                     }
                 }
-                
+
 
             }
-           
+
 
             LstHoKhau.DataSource = _danhSachHoKhau;
             LstHoKhau.DisplayMember = "TenChuHo";
@@ -450,15 +485,9 @@ namespace T02_Source_Code.Presentation
             {
                 LstNhanKhau.SelectedValue = _danhSachNhanKhau.First();
             }
-          
+
             _finished = true;
-           
-        }
-        private void tabControl1_Click(object sender, EventArgs e)
-        {
-            
-            ReloadThongTin();
-            
+
 
         }
         #endregion

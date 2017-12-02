@@ -51,6 +51,12 @@ namespace T02_Source_Code.Presentation
                 q.First().NoiThuongTru = CboXa1.SelectedValue.ToString();
                 q.First().SoDKThuongTru = int.Parse(txtSoDangKiThuongTru.Text);
                 DungChung.Db.SubmitChanges();
+                var q2 = from s in FrmMain._danhSachHoKhau
+                        where s.MaHoKhau.Equals(FrmMain.MaHoKhau)
+                        select s;
+                q2.First().TenChuHo = CboHoTenChuHo.Text;
+                q2.First().NoiThuongTru = CboXa1.SelectedValue.ToString();
+                q2.First().SoDKThuongTru = int.Parse(txtSoDangKiThuongTru.Text);
                 MessageBox.Show("Thay đổi thành công");
             }
         }

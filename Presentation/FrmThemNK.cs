@@ -71,7 +71,7 @@ namespace T02_Source_Code.Presentation
                 NhanKhau nKhau=new NhanKhau();
                 
                 int a= int.Parse(DungChung.Db.NhanKhaus.Max(h => h.MaNhanKhau))+1;
-                MessageBox.Show(a.ToString());
+                
                 nKhau.MaNhanKhau = a.ToString();
                 if (CboTenHoKhau.SelectedValue!= null)
                 {
@@ -110,7 +110,7 @@ namespace T02_Source_Code.Presentation
                 nKhau.NoiThuongTruTruocKhiChuyenDen = Cboxa2.SelectedValue.ToString();
                 DungChung.Db.NhanKhaus.InsertOnSubmit(nKhau);
                 
-
+                FrmMain._danhSachNhanKhau.Add(nKhau);
 
                 
                 DungChung.Db.SubmitChanges();

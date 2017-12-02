@@ -138,6 +138,7 @@
             this.Cboxa3.Name = "Cboxa3";
             this.Cboxa3.Size = new System.Drawing.Size(101, 21);
             this.Cboxa3.TabIndex = 93;
+            this.Cboxa3.SelectedIndexChanged += new System.EventHandler(this.Cboxa3_SelectedIndexChanged);
             // 
             // label25
             // 

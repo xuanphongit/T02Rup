@@ -113,6 +113,7 @@ namespace T02_Source_Code.Presentation
                 hk.SoDKThuongTru = int.Parse(txtSoDangKiThuongTru.Text);
                 DungChung.Db.HoKhaus.InsertOnSubmit(hk);
                 DungChung.Db.SubmitChanges();
+                FrmMain._danhSachHoKhau.Add(hk);
                 MessageBox.Show("Thêm thành công");
             }
         }

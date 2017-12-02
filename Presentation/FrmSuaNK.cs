@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using T02_Source_Code.Model;
-
+using T02_Source_Code.Bo;
 namespace T02_Source_Code.Presentation
 {
     public partial class FrmSuaNk : Form
@@ -12,22 +12,20 @@ namespace T02_Source_Code.Presentation
         {
             InitializeComponent();
         }
+
         private List<TinhThanh> DsTinh1 = DungChung.Db.TinhThanhs.ToList();
         private List<TinhThanh> DsTinh2 = DungChung.Db.TinhThanhs.ToList();
         private List<TinhThanh> DsTinh3 = DungChung.Db.TinhThanhs.ToList();
-        private List<PhuongXa> DsXa1 = DungChung.Db.PhuongXas.ToList();
-        private List<PhuongXa> DsXa2 = DungChung.Db.PhuongXas.ToList();
-        private List<PhuongXa> DsXa3 = DungChung.Db.PhuongXas.ToList();
-        private List<QuanHuyen> DsHuyen1 = DungChung.Db.QuanHuyens.ToList();
-        private List<QuanHuyen> DsHuyen2 = DungChung.Db.QuanHuyens.ToList();
-        private List<QuanHuyen> DsHuyen3 = DungChung.Db.QuanHuyens.ToList();
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-          
-        }
-        
-
+        private List<PhuongXa> DsXa1;
+        private List<PhuongXa> DsXa2;
+        private List<PhuongXa> DsXa3;
+        private List<QuanHuyen> DsHuyen1;
+        private List<QuanHuyen> DsHuyen2;
+        private List<QuanHuyen> DsHuyen3;
+        PhuongXaBO bo = new PhuongXaBO();
+        PhuongXa xa3, xa2, xa1;
+        QuanHuyenBO huyenBo = new QuanHuyenBO();
+        QuanHuyen huyen3, huyen2, huyen1;
         private void ResetLoi()
         {
             lblCMND.Text = "";
@@ -38,15 +36,43 @@ namespace T02_Source_Code.Presentation
             lblNoiThuongTruTruocKia.Text = "";
             lblNoiLamViec.Text = "";
         }
-        private NhanKhau nk;
-        List<TinhQuanHuyen> _ds = new List<TinhQuanHuyen>();
-        List<HoKhau> _danhSachHoKhau = new List<HoKhau>();
+        private NhanKhau _nk;
+
+
         private void FrmSuaNK_Load(object sender, EventArgs e)
         {
-            var pp = from s in DungChung.Db.NhanKhaus
-                where s.MaNhanKhau.Equals(FrmMain.MaNhanKhau)
-                select s;
-            nk=pp.First();
+
+            /*
+            Cboxa3.SelectedValue = _nk.QueQuan;
+            Cboxa2.SelectedValue = _nk.NoiThuongTruTruocKhiChuyenDen;
+            CboXa1.SelectedValue = _nk.NoiLamViec;
+            */
+            var pp = from s in FrmMain._danhSachNhanKhau
+                     where s.MaNhanKhau.Equals(FrmMain.MaNhanKhau)
+                     select s;
+            _nk = pp.First();
+
+            
+            
+            xa3 = bo.get(_nk.QueQuan);
+            xa2 = bo.get(_nk.NoiThuongTruTruocKhiChuyenDen);
+            xa1 = bo.get(_nk.NoiLamViec);
+            DsXa3 = bo.getList(xa3.MaQuanHuyen);
+            DsXa2 = bo.getList(xa2.MaQuanHuyen);
+            DsXa1 = bo.getList(xa1.MaQuanHuyen);
+           
+           
+            huyen3 = huyenBo.get(xa3.MaQuanHuyen);
+            huyen2 = huyenBo.get(xa2.MaQuanHuyen);
+            huyen1 = huyenBo.get(xa1.MaQuanHuyen);
+
+
+            DsHuyen3 = huyenBo.getList(huyen3.MaTinhThanh);
+            DsHuyen2 = huyenBo.getList(huyen2.MaTinhThanh);
+            DsHuyen1 = huyenBo.getList(huyen1.MaTinhThanh);
+
+
+
             CboTinh1.DataSource = DsTinh1;
             CboTinh2.DataSource = DsTinh2;
             CboTinh3.DataSource = DsTinh3;
@@ -80,72 +106,29 @@ namespace T02_Source_Code.Presentation
             Cbohuyen3.ValueMember = "MaQuanHuyen";
 
 
-            if (DungChung.MaTinh == null)
-            {
-                var q = from s in DungChung.Db.TinhQuanHuyens
-                        select s;
-                _ds = q.ToList();
-                _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
-            }
-            else
-            {
-                if (DungChung.MaTinh != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaTinhThanh.Equals(DungChung.MaTinh)
-                            select s;
-                    _ds = q.ToList();
-                }
-                if (DungChung.MaHuyen != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
-                            select s;
-                    _ds = q.ToList();
-                }
-                if (DungChung.MaXa != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaPhuongXa.Equals(DungChung.MaXa)
-                            select s;
-                    _ds = q.ToList();
-                }
-                foreach (TinhQuanHuyen xa in _ds)
-                {
-                    var p = from s in DungChung.Db.HoKhaus
-                            where s.MaPhuongXa.Equals(xa.MaPhuongXa)
-                            select s;
-                    foreach (HoKhau hoKhau in p.ToList())
-                    {
-                        _danhSachHoKhau.Add(hoKhau);
-                    }
 
-                }
-
-
-            }
-            CboTenHoKhau.DataSource = _danhSachHoKhau;
+            CboTenHoKhau.DataSource = FrmMain._danhSachHoKhau;
             CboTenHoKhau.DisplayMember = "TenChuHo";
             CboTenHoKhau.ValueMember = "MaHoKhau";
-            Cboxa3.SelectedValue = nk.QueQuan;
-            Cboxa2.SelectedValue = nk.NoiThuongTruTruocKhiChuyenDen;
-            CboXa1.SelectedValue = nk.NoiLamViec;
-            var q1 = from s in DungChung.Db.TinhQuanHuyens
-                where s.MaPhuongXa.Equals(nk.QueQuan)
-                select s;
-            Cbohuyen3.SelectedValue = q1.First().MaQuanHuyen;
-            CboTinh3.SelectedValue = q1.First().MaTinhThanh;
-            var q2 = from s in DungChung.Db.TinhQuanHuyens
-                     where s.MaPhuongXa.Equals(nk.NoiThuongTruTruocKhiChuyenDen)
+            Cboxa3.SelectedValue = _nk.QueQuan;
+            Cboxa2.SelectedValue = _nk.NoiThuongTruTruocKhiChuyenDen;
+            CboXa1.SelectedValue = _nk.NoiLamViec;
+            CboHuyen1.SelectedValue = huyen1.MaQuanHuyen;
+            Cbohuyen2.SelectedValue = huyen2.MaQuanHuyen;
+            Cbohuyen3.SelectedValue = huyen3.MaQuanHuyen;
+            var q1 = from s in DsXa3
+                     where s.MaPhuongXa.Equals(_nk.QueQuan)
                      select s;
-            Cbohuyen2.SelectedValue = q2.First().MaQuanHuyen;
-            CboTinh2.SelectedValue = q2.First().MaTinhThanh;
-            var q3 = from s in DungChung.Db.TinhQuanHuyens
-                     where s.MaPhuongXa.Equals(nk.NoiLamViec)
+
+            var q2 = from s in DsXa2
+                     where s.MaPhuongXa.Equals(_nk.NoiThuongTruTruocKhiChuyenDen)
                      select s;
-            CboHuyen1.SelectedValue = q1.First().MaQuanHuyen;
-            CboTinh1.SelectedValue = q1.First().MaTinhThanh;
-            if (nk.GioiTinh.Value.Equals("1"))
+
+            var q3 = from s in DsXa1
+                     where s.MaPhuongXa.Equals(_nk.NoiLamViec)
+                     select s;
+
+            if (_nk.GioiTinh != null && _nk.GioiTinh.Value.Equals("1"))
             {
                 CboGioiTinh.Text = "Nam";
             }
@@ -153,14 +136,14 @@ namespace T02_Source_Code.Presentation
             {
                 CboGioiTinh.Text = "Nữ";
             }
-            CboDanToc.Text = nk.DanToc;
-            txtHoTen.Text = nk.TenNhanKhau;
-            txtTenKhac.Text = nk.TenThuongGoi;
-            txtCMND.Text = nk.CMND;
-            txtNgheNghiep.Text = nk.NgheNghiep;
-            txtTonGiao.Text = nk.TonGiao;
-            if (nk.NgaySinh != null) DTPKNgaySinh.Value = nk.NgaySinh.Value;
-            if (nk.NgayChuyenDen != null) DTPKChuyenDenNgay.Value = nk.NgayChuyenDen.Value;
+            CboDanToc.Text = _nk.DanToc;
+            txtHoTen.Text = _nk.TenNhanKhau;
+            txtTenKhac.Text = _nk.TenThuongGoi;
+            txtCMND.Text = _nk.CMND;
+            txtNgheNghiep.Text = _nk.NgheNghiep;
+            txtTonGiao.Text = _nk.TonGiao;
+            if (_nk.NgaySinh != null) DTPKNgaySinh.Value = _nk.NgaySinh.Value;
+            if (_nk.NgayChuyenDen != null) DTPKChuyenDenNgay.Value = _nk.NgayChuyenDen.Value;
 
         }
 
@@ -171,60 +154,44 @@ namespace T02_Source_Code.Presentation
 
         private void CboTinh3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q3 = from s in DungChung.Db.QuanHuyens
-                     where s.MaTinhThanh.Equals(CboTinh3.SelectedValue.ToString())
-                     select s;
-            Cbohuyen3.DataSource = q3.ToList();
+            Cbohuyen3.DataSource = huyenBo.getList(CboTinh3.SelectedValue.ToString()) ;
+                    
             Cbohuyen3.DisplayMember = "TenQuanHuyen";
             Cbohuyen3.ValueMember = "MaQuanHuyen";
         }
 
         private void Cbohuyen3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q = from s in DungChung.Db.PhuongXas
-                    where s.MaQuanHuyen.Equals(Cbohuyen3.SelectedValue.ToString())
-                    select s;
-            Cboxa3.DataSource = q.ToList();
+
+            Cboxa3.DataSource = bo.getList(Cbohuyen3.SelectedValue.ToString());
             Cboxa3.DisplayMember = "TenPhuongXa";
             Cboxa3.ValueMember = "MaPhuongXa";
         }
 
         private void CboTinh1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q1 = from s in DungChung.Db.QuanHuyens
-                     where s.MaTinhThanh.Equals(CboTinh1.SelectedValue.ToString())
-                     select s;
-            CboHuyen1.DataSource = q1.ToList();
+            CboHuyen1.DataSource = huyenBo.getList(CboTinh1.SelectedValue.ToString());
             CboHuyen1.DisplayMember = "TenQuanHuyen";
             CboHuyen1.ValueMember = "MaQuanHuyen";
         }
 
         private void CboHuyen1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q = from s in DungChung.Db.PhuongXas
-                    where s.MaQuanHuyen.Equals(CboHuyen1.SelectedValue.ToString())
-                    select s;
-            CboXa1.DataSource = q.ToList();
+            CboXa1.DataSource = bo.getList(CboHuyen1.SelectedValue.ToString());
             CboXa1.DisplayMember = "TenPhuongXa";
             CboXa1.ValueMember = "MaPhuongXa";
         }
 
         private void CboTinh2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q2 = from s in DungChung.Db.QuanHuyens
-                     where s.MaTinhThanh.Equals(CboTinh2.SelectedValue.ToString())
-                     select s;
-            Cbohuyen2.DataSource = q2.ToList();
+            Cbohuyen2.DataSource = huyenBo.getList(CboTinh2.SelectedValue.ToString());
             Cbohuyen2.DisplayMember = "TenQuanHuyen";
             Cbohuyen2.ValueMember = "MaQuanHuyen";
         }
 
         private void Cbohuyen2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var q = from s in DungChung.Db.PhuongXas
-                    where s.MaQuanHuyen.Equals(Cbohuyen2.SelectedValue.ToString())
-                    select s;
-            Cboxa2.DataSource = q.ToList();
+            Cboxa2.DataSource = bo.getList(Cbohuyen2.SelectedValue.ToString());
             Cboxa2.DisplayMember = "TenPhuongXa";
             Cboxa2.ValueMember = "MaPhuongXa";
         }
@@ -253,53 +220,53 @@ namespace T02_Source_Code.Presentation
                 lblTonGiao.Text = "Mời nhập tôn giáo";
                 countErrror++;
             }
-            if (countErrror==0)
+            if (countErrror == 0)
             {
-                
 
-                
-                nk.TenNhanKhau = txtHoTen.Text;
+
+
+                _nk.TenNhanKhau = txtHoTen.Text;
                 if (!txtTenKhac.Text.Equals(""))
                 {
-                    nk.TenThuongGoi = txtTenKhac.Text;
+                    _nk.TenThuongGoi = txtTenKhac.Text;
                 }
 
                 if (CboGioiTinh.Text.Equals("Nam"))
                 {
-                    nk.GioiTinh = true;
+                    _nk.GioiTinh = true;
                 }
                 else
                 {
-                    nk.GioiTinh = false;
+                    _nk.GioiTinh = false;
                 }
-                nk.NgaySinh = DTPKNgaySinh.Value;
-                nk.DanToc = CboDanToc.Text;
-                nk.TonGiao = txtTonGiao.Text;
-                nk.QueQuan = Cboxa3.SelectedValue.ToString();
-                nk.CMND = txtCMND.Text;
-                nk.NgheNghiep = txtNgheNghiep.Text;
-                nk.NoiLamViec = CboXa1.SelectedValue.ToString();
-                nk.NgayChuyenDen = DTPKChuyenDenNgay.Value;
-                nk.NoiThuongTruTruocKhiChuyenDen = Cboxa2.SelectedValue.ToString();
+                _nk.NgaySinh = DTPKNgaySinh.Value;
+                _nk.DanToc = CboDanToc.Text;
+                _nk.TonGiao = txtTonGiao.Text;
+                _nk.QueQuan = Cboxa3.SelectedValue.ToString();
+                _nk.CMND = txtCMND.Text;
+                _nk.NgheNghiep = txtNgheNghiep.Text;
+                _nk.NoiLamViec = CboXa1.SelectedValue.ToString();
+                _nk.NgayChuyenDen = DTPKChuyenDenNgay.Value;
+                _nk.NoiThuongTruTruocKhiChuyenDen = Cboxa2.SelectedValue.ToString();
                 if (CboTenHoKhau.SelectedValue != null)
                 {
-                    if (!nk.MaHoKhau.Equals(CboTenHoKhau.SelectedValue.ToString()))
+                    if (!_nk.MaHoKhau.Equals(CboTenHoKhau.SelectedValue.ToString()))
                     {
                         var q = from s in DungChung.Db.HoKhaus
-                                where s.MaHoKhau.Equals(nk.MaHoKhau)
+                                where s.MaHoKhau.Equals(_nk.MaHoKhau)
                                 select s;
                         q.First().SoThanhVien--;
-                        nk.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
+                        _nk.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
 
                         var q2 = from s in DungChung.Db.HoKhaus
-                                 where s.MaHoKhau.Equals(nk.MaHoKhau)
+                                 where s.MaHoKhau.Equals(_nk.MaHoKhau)
                                  select s;
                         q.First().SoThanhVien++;
                     }
                 }
-                
+
                 DungChung.Db.SubmitChanges();
-                
+
             }
         }
 
@@ -307,6 +274,11 @@ namespace T02_Source_Code.Presentation
         {
             Close();
         }
+
+        private void Cboxa3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-    
+
 }
