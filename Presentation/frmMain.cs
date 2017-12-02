@@ -47,7 +47,6 @@ namespace T02_Source_Code.Presentation
 
             }
 
-
             tabControl1_Click(null,null);
         }
         bool checkChucVu()
@@ -352,13 +351,13 @@ namespace T02_Source_Code.Presentation
             {
                 FrmSuaNk frmSuaNk = new FrmSuaNk();
                 frmSuaNk.ShowDialog();
-                String MaNhanKhau = LstNhanKhau.SelectedValue.ToString();
+                string maNhanKhau = LstNhanKhau.SelectedValue.ToString();
                 var q = from s in _danhSachNhanKhau
                     where s.MaNhanKhau.Equals(LstNhanKhau.SelectedValue)
                     select s;
                 _danhSachNhanKhau.Remove(q.First());
                 var q2 = from s in DungChung.Db.NhanKhaus
-                    where s.MaNhanKhau.Equals(MaNhanKhau)
+                    where s.MaNhanKhau.Equals(maNhanKhau)
                     select s;
                 _danhSachNhanKhau.Add(q2.First());
                 LstNhanKhau.DataSource = null;
@@ -708,6 +707,10 @@ namespace T02_Source_Code.Presentation
                 comboBox_qlpx_tenQuanHuyen.ValueMember = "MaQuanHuyen";
 
                 dataGridView_dsQuanHuyen.DataSource = _danhsachQuanHuyen;
+                if (dataGridView_dsQuanHuyen.Columns.Count > 3)
+                {
+                    dataGridView_dsQuanHuyen.Columns[3].Visible = false;
+                }
                 QLPhuongXa_Load();
             }
         }
@@ -719,6 +722,10 @@ namespace T02_Source_Code.Presentation
                 _danhsachPhuongXa = DungChung.pxBO.getList(comboBox_qlpx_tenQuanHuyen.SelectedValue.ToString());
 
                 dataGridView_dsPhuongXa.DataSource = _danhsachPhuongXa;
+                if (dataGridView_dsPhuongXa.Columns.Count > 3)
+                {
+                    dataGridView_dsPhuongXa.Columns[3].Visible = false;
+                }
             }
         }
 
