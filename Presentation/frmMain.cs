@@ -124,22 +124,31 @@ namespace T02_Source_Code.Presentation
         private void button8_Click_1(object sender, EventArgs e)
         {
             string tuKhoa = txtTimKiemHoKhauNhanKhau.Text.ToLower();
-            var q = from s in _danhSachHoKhau
-                    where s.TenChuHo.ToLower().Contains(tuKhoa)
-                    select s;
-            var p = from s in _danhSachNhanKhau
-                    where s.TenNhanKhau.ToLower().Contains(tuKhoa) || s.TenThuongGoi.ToLower().Contains(tuKhoa)
-                    select s;
-            _danhSachHoKhau = q.ToList();
-            _danhSachNhanKhau = p.ToList();
-            LstHoKhau.DataSource = _danhSachHoKhau;
-            LstHoKhau.DisplayMember = "TenChuHo";
-            LstHoKhau.ValueMember = "MaHoKhau";
-
-            LstNhanKhau.DataSource = _danhSachNhanKhau;
-            LstNhanKhau.DisplayMember = "TenNhanKhau";
-            LstNhanKhau.ValueMember = "MaNhanKhau";
-            _finished = true;
+            if (tuKhoa.Equals(""))
+            {
+                MessageBox.Show("Nhập vào họ tên");
+            }
+            else
+            {
+                var q = from s in _danhSachHoKhau
+                        where s.TenChuHo.ToLower().Contains(tuKhoa)
+                        select s;
+                var p = from s in _danhSachNhanKhau
+                        where s.TenNhanKhau.ToLower().Contains(tuKhoa) || s.TenThuongGoi.ToLower().Contains(tuKhoa)
+                        select s;
+                List<HoKhau> LstTimKiemHoKhau = q.ToList();
+                List<NhanKhau>LstTimKiemNhanKhau = p.ToList();
+                LstHoKhau.DataSource = null;
+                LstHoKhau.DataSource = LstTimKiemHoKhau;
+                LstHoKhau.DisplayMember = "TenChuHo";
+                LstHoKhau.ValueMember = "MaHoKhau";
+                LstNhanKhau.DataSource = null;
+                LstNhanKhau.DataSource = LstTimKiemNhanKhau;
+                LstNhanKhau.DisplayMember = "TenNhanKhau";
+                LstNhanKhau.ValueMember = "MaNhanKhau";
+                _finished = true;
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -258,18 +267,21 @@ namespace T02_Source_Code.Presentation
             {
                 MessageBox.Show("Mời chọn nhân khẩu trước");
             }
-            else if (q.First().TenNhanKhau==qq.First().TenChuHo)
+            if (q.Any())
             {
-                MessageBox.Show("Người này đã là chủ hộ");
+                if (q.First().TenNhanKhau == qq.First().TenChuHo)
+                {
+                    MessageBox.Show("Người này đã là chủ hộ");
+                }
+
+                else
+                {
+                    FrmTachHk frmTachHk = new FrmTachHk();
+                    frmTachHk.ShowDialog();
+
+                }
+
             }
-          
-            else
-            {
-                FrmTachHk frmTachHk = new FrmTachHk();
-                frmTachHk.ShowDialog();
-                
-            }
-            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -401,93 +413,116 @@ namespace T02_Source_Code.Presentation
 
         }
         List<TinhQuanHuyen> _ds=new List<TinhQuanHuyen>();
-       
 
-            
 
-           
+        private bool loader = false;    
            
         private void tabControl1_Click(object sender, EventArgs e)
         {
-
-            if (DungChung.MaTinh == null)
+            if (!loader)
             {
-                var q = from s in DungChung.Db.TinhQuanHuyens
-                        select s;
-                _ds = q.ToList();
-                _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
-                _danhSachNhanKhau = DungChung.Db.NhanKhaus.ToList();
+                if (DungChung.MaTinh == null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            select s;
+                    _ds = q.ToList();
+                    _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
+                    _danhSachNhanKhau = DungChung.Db.NhanKhaus.ToList();
+                }
+                else
+                {
+                    if (DungChung.MaTinh != null)
+                    {
+                        var q = from s in DungChung.Db.TinhQuanHuyens
+                                where s.MaTinhThanh.Equals(DungChung.MaTinh)
+                                select s;
+                        _ds = q.ToList();
+                    }
+                    if (DungChung.MaHuyen != null)
+                    {
+                        var q = from s in DungChung.Db.TinhQuanHuyens
+                                where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
+                                select s;
+                        _ds = q.ToList();
+                    }
+                    if (DungChung.MaXa != null)
+                    {
+                        var q = from s in DungChung.Db.TinhQuanHuyens
+                                where s.MaPhuongXa.Equals(DungChung.MaXa)
+                                select s;
+                        _ds = q.ToList();
+                    }
+                    foreach (TinhQuanHuyen xa in _ds)
+                    {
+                        var p = from s in DungChung.Db.HoKhaus
+                                where s.MaPhuongXa.Equals(xa.MaPhuongXa)
+                                select s;
+                        foreach (HoKhau hoKhau in p.ToList())
+                        {
+                            _danhSachHoKhau.Add(hoKhau);
+                        }
+
+                    }
+                    if (_danhSachHoKhau.Any())
+                    {
+                        foreach (HoKhau hokhau in _danhSachHoKhau)
+                        {
+                            var q = from s in DungChung.Db.NhanKhaus
+                                    where s.MaHoKhau.Equals(hokhau.MaHoKhau)
+                                    select s;
+                            foreach (NhanKhau Nk in q.ToList())
+                            {
+                                _danhSachNhanKhau.Add(Nk);
+                            }
+                        }
+                    }
+
+
+                }
+
+                LstHoKhau.DataSource = null;
+                LstHoKhau.DataSource = _danhSachHoKhau;
+                LstHoKhau.DisplayMember = "TenChuHo";
+                LstHoKhau.ValueMember = "MaHoKhau";
+                LstNhanKhau.DataSource = null;
+                LstNhanKhau.DataSource = _danhSachNhanKhau;
+                LstNhanKhau.DisplayMember = "TenNhanKhau";
+                LstNhanKhau.ValueMember = "MaNhanKhau";
+                if (_danhSachHoKhau.Any())
+                {
+                    LstHoKhau.SelectedValue = _danhSachHoKhau.First();
+                }
+                if (_danhSachNhanKhau.Any())
+                {
+                    LstNhanKhau.SelectedValue = _danhSachNhanKhau.First();
+                }
+
+                _finished = true;
+                loader = true;
+
+
             }
             else
             {
-                if (DungChung.MaTinh != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaTinhThanh.Equals(DungChung.MaTinh)
-                            select s;
-                    _ds = q.ToList();
-                }
-                if (DungChung.MaHuyen != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
-                            select s;
-                    _ds = q.ToList();
-                }
-                if (DungChung.MaXa != null)
-                {
-                    var q = from s in DungChung.Db.TinhQuanHuyens
-                            where s.MaPhuongXa.Equals(DungChung.MaXa)
-                            select s;
-                    _ds = q.ToList();
-                }
-                foreach (TinhQuanHuyen xa in _ds)
-                {
-                    var p = from s in DungChung.Db.HoKhaus
-                            where s.MaPhuongXa.Equals(xa.MaPhuongXa)
-                            select s;
-                    foreach (HoKhau hoKhau in p.ToList())
-                    {
-                        _danhSachHoKhau.Add(hoKhau);
-                    }
-
-                }
+                LstHoKhau.DataSource = null;
+                LstHoKhau.DataSource = _danhSachHoKhau;
+                LstHoKhau.DisplayMember = "TenChuHo";
+                LstHoKhau.ValueMember = "MaHoKhau";
+                LstNhanKhau.DataSource = null;
+                LstNhanKhau.DataSource = _danhSachNhanKhau;
+                LstNhanKhau.DisplayMember = "TenNhanKhau";
+                LstNhanKhau.ValueMember = "MaNhanKhau";
                 if (_danhSachHoKhau.Any())
                 {
-                    foreach (HoKhau hokhau in _danhSachHoKhau)
-                    {
-                        var q = from s in DungChung.Db.NhanKhaus
-                                where s.MaHoKhau.Equals(hokhau.MaHoKhau)
-                                select s;
-                        foreach (NhanKhau Nk in q.ToList())
-                        {
-                            _danhSachNhanKhau.Add(Nk);
-                        }
-                    }
+                    LstHoKhau.SelectedValue = _danhSachHoKhau.First();
+                }
+                if (_danhSachNhanKhau.Any())
+                {
+                    LstNhanKhau.SelectedValue = _danhSachNhanKhau.First();
                 }
 
-
+                _finished = true;
             }
-
-
-            LstHoKhau.DataSource = _danhSachHoKhau;
-            LstHoKhau.DisplayMember = "TenChuHo";
-            LstHoKhau.ValueMember = "MaHoKhau";
-
-            LstNhanKhau.DataSource = _danhSachNhanKhau;
-            LstNhanKhau.DisplayMember = "TenNhanKhau";
-            LstNhanKhau.ValueMember = "MaNhanKhau";
-            if (_danhSachHoKhau.Any())
-            {
-                LstHoKhau.SelectedValue = _danhSachHoKhau.First();
-            }
-            if (_danhSachNhanKhau.Any())
-            {
-                LstNhanKhau.SelectedValue = _danhSachNhanKhau.First();
-            }
-
-            _finished = true;
-
 
         }
         #endregion

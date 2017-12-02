@@ -206,6 +206,19 @@ namespace T02_Source_Code.Presentation
                 countErrror++;
 
             }
+            else
+            {
+                try
+                {
+                    int a = int.Parse(txtCMND.Text);
+                }
+                catch (Exception exception)
+                {
+                    lblCMND.Text = "Số CMND không hợp lệ vui lòng nhập lại";
+                    countErrror++;
+                }
+
+            }
             if (txtNgheNghiep.Text.Equals(""))
             {
                 lblNgheNghiep.Text = "Vui lòng nhập nghề nghiệp";

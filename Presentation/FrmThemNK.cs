@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using T02_Source_Code.Model;
 
@@ -37,6 +38,19 @@ namespace T02_Source_Code.Presentation
                 countErrror++;
 
             }
+            else
+            {
+                try
+                {
+                    int a = int.Parse(txtCMND.Text);
+                }
+                catch (Exception exception)
+                {
+                    lblCMND.Text = "Số CMND không hợp lệ vui lòng nhập lại";
+                    countErrror++;
+                }
+                
+            }
             if (txtNgheNghiep.Text.Equals(""))
             {
                 lblNgheNghiep.Text = "Vui lòng nhập nghề nghiệp";
@@ -45,6 +59,19 @@ namespace T02_Source_Code.Presentation
             if (txtHoTen.Text.Equals(""))
             {
                 lblHoTen.Text = "Vui lòng nhập họ tên";
+            }
+            else
+            {
+                String hoTen = txtHoTen.Text.Trim();
+                String output = Regex.Replace(hoTen, "\\s+", "");
+
+                bool match = Regex.IsMatch(output, "\\W");
+                bool match2 = Regex.IsMatch(output, @"\d");
+                if (match2 || match)
+                {
+                    lblHoTen.Text = "Không nhập các kí tự số,các kí tự đặc biệt";
+                    countErrror++;
+                }
             }
             if (txtTonGiao.Text.Equals(""))
             {
