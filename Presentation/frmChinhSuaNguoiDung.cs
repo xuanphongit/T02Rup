@@ -23,63 +23,28 @@ namespace T02_Source_Code
         Dictionary<int, string> dicLoaiTaiKhoan = null;
 
         int quyen;
-
         string maTinh = null;
         string maHuyen = null;
         string maXa = null;
 
         NguoiDung nguoi;
 
+       
         private void frmChinhSua_Load(object sender, System.EventArgs e)
         {
             nguoi = nguoiDungBO.getNguoiDungByID(FrmMain.idUser_Select_qlUser);
 
-            loadInfoUser(nguoi);
-
-            if (DungChung.MaTinh == null)
-                quyen = 1;
-            else if (DungChung.MaHuyen == null)
-            {
-                quyen = 2;
-                cbbTinh.Enabled = false;
-                maTinh = nguoi.MaTinhThanh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-            }
-            else if (DungChung.MaXa == null)
-            {
-                quyen = 3;
-
-                cbbTinh.Enabled = false;
-                maTinh = nguoi.MaTinhThanh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
-                cbbHuyen.Enabled = false;
-                maHuyen = nguoi.MaQuanHuyen;
-                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-            }
-            else
-            {
-                quyen = 4;
-                cbbXa.Enabled = false;
-                maXa = nguoi.MaPhuongXa;
-                cbbXa.Text = phuongXaBo.get(maXa).TenPhuongXa;
-
-                cbbTinh.Enabled = false;
-                maTinh = nguoi.MaTinhThanh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
-                cbbHuyen.Enabled = false;
-                maHuyen = nguoi.MaQuanHuyen;
-                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-                cbbLTK.Enabled = false;
-            }
+            getQuyenNguoiDangNhap();
+            loadInfoUser(nguoi);           
             //Load cbb loại TK  
             loadCBBLTK();
             cbbLTK_SelectedIndexChanged_1(null, null);
             loadCBBQuyen();
-
+            //load thông tin đơn vị vs chức vụ của tk
             try
             {
+                cbbQuyen.SelectedValue = nguoi.MaChucVu;
+
                 if (nguoi.MaTinhThanh == null)
                 {
                     cbbLTK.SelectedValue = 1;
@@ -110,13 +75,14 @@ namespace T02_Source_Code
 
         private void loadInfoUser(NguoiDung nguoi)
         {
+            try
+            {
             lblUser.Text = nguoi.MaNguoiDung;
             txtHoTen.Text = nguoi.TenNguoiDung;
             txtMK.Text = nguoi.MatKhau;
             txtNLMK.Text = nguoi.MatKhau;
 
-            try
-            {
+            
                 maTinh = nguoi.MaTinhThanh;
                 maHuyen = nguoi.MaQuanHuyen;
                 maXa = nguoi.MaPhuongXa;
@@ -126,6 +92,19 @@ namespace T02_Source_Code
             }
 
         }
+
+        private void getQuyenNguoiDangNhap()
+        {
+            if (DungChung.MaTinh == null)
+                quyen = 1;
+            else if (DungChung.MaHuyen == null)
+                quyen = 2;
+            else if (DungChung.MaXa == null)
+                quyen = 3;
+            else
+                quyen = 4;
+        }
+
 
         #region setDefault
         private void setDefaultCBB()
@@ -144,6 +123,9 @@ namespace T02_Source_Code
             {
                 cbbHuyen.Enabled = true;
                 cbbXa.Enabled = true;
+                cbbTinh.Enabled = false;
+                maTinh = nguoi.MaTinhThanh;
+
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
                 cbbHuyen.Text = "";
                 cbbXa.Text = "";
@@ -151,10 +133,30 @@ namespace T02_Source_Code
             else if (quyen == 3)
             {
                 cbbXa.Enabled = true;
+                cbbTinh.Enabled = false;
+                maTinh = nguoi.MaTinhThanh;
+
+                cbbHuyen.Enabled = false;
+                maHuyen = nguoi.MaQuanHuyen;
+
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
                 cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
                 cbbXa.Text = "";
+            }
+            else
+            {
+                cbbXa.Enabled = false;
+                maXa = nguoi.MaPhuongXa;
+                cbbXa.Text = phuongXaBo.get(maXa).TenPhuongXa;
 
+                cbbTinh.Enabled = false;
+                maTinh = nguoi.MaTinhThanh;
+                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
+
+                cbbHuyen.Enabled = false;
+                maHuyen = nguoi.MaQuanHuyen;
+                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
+                cbbLTK.Enabled = false;
             }
         }
         private void setDefaultCheckLabel()

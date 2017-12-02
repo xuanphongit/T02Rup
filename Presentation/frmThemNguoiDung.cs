@@ -22,58 +22,34 @@ namespace T02_Source_Code.Presentation
         Dictionary<int, string> dicLoaiTaiKhoan = null;
 
         int quyen;
-
         string maTinh = null;
         string maHuyen = null;
         string maXa = null;
 
         private void frmThemNguoiDung_Load(object sender, System.EventArgs e)
         {
-            if (DungChung.MaTinh == null)
-                quyen = 1;
-            else if (DungChung.MaHuyen == null)
-            {
-                quyen = 2;
-
-                cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
-            }
-            else if (DungChung.MaXa == null)
-            {
-                quyen = 3;
-
-                cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
-                cbbHuyen.Enabled = false;
-                maHuyen = DungChung.MaHuyen;
-                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-
-            }
-            else
-            {
-                quyen = 4;
-                cbbXa.Enabled = false;
-                maXa = DungChung.MaXa;
-                cbbXa.Text = phuongXaBo.get(maXa).TenPhuongXa;
-
-                cbbTinh.Enabled = false;
-                maTinh = DungChung.MaTinh;
-                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
-
-                cbbHuyen.Enabled = false;
-                maHuyen = DungChung.MaHuyen;
-                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-                cbbLTK.Enabled = false;
-            }
+            getQuyenNguoiDangNhap();
+            setDefaultCBB();
             //Load cbb loại TK  
             loadCBBLTK();
             cbbLTK_SelectedIndexChanged(null, null);
             loadCBBQuyen();
         }
+
+        #region get
+        private void getQuyenNguoiDangNhap()
+        {
+            if (DungChung.MaTinh == null)
+                quyen = 1;
+            else if (DungChung.MaHuyen == null)
+                quyen = 2;
+            else if (DungChung.MaXa == null)
+                quyen = 3;
+            else
+                quyen = 4;
+        }
+        #endregion
+
 
         #region setDefault
         private void setDefaultCBB()
@@ -93,6 +69,7 @@ namespace T02_Source_Code.Presentation
                 cbbHuyen.Enabled = true;
                 cbbXa.Enabled = true;
 
+                cbbTinh.Enabled = false;
                 maTinh = DungChung.MaTinh;
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
                 cbbHuyen.Text = "";
@@ -101,13 +78,30 @@ namespace T02_Source_Code.Presentation
             else if (quyen == 3)
             {
                 cbbXa.Enabled = true;
+                cbbXa.Text = "";
+
+                cbbTinh.Enabled = false;
+                cbbHuyen.Enabled = false;
 
                 maTinh = DungChung.MaTinh;
                 cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
                 maHuyen = DungChung.MaHuyen;
                 cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
-                cbbXa.Text = "";
+            }
+            else
+            {
+                cbbXa.Enabled = false;
+                maXa = DungChung.MaXa;
+                cbbXa.Text = phuongXaBo.get(maXa).TenPhuongXa;
 
+                cbbTinh.Enabled = false;
+                maTinh = DungChung.MaTinh;
+                cbbTinh.Text = tinhThanhBO.get(maTinh).TenTinhThanh;
+
+                cbbHuyen.Enabled = false;
+                maHuyen = DungChung.MaHuyen;
+                cbbHuyen.Text = quanHuyenBo.get(maHuyen).TenQuanHuyen;
+                cbbLTK.Enabled = false;
             }
         }
         private void setDefaultCheckLabel()
@@ -122,7 +116,35 @@ namespace T02_Source_Code.Presentation
 
 
 
-        #region evenSelectedIndexChange
+        #region even
+        private void btnThem_Click_1(object sender, EventArgs e)
+        {
+            setDefaultCheckLabel();
+
+            if (checkTextBox())
+                return;
+            else
+            {
+                try
+                {
+                    bool kq = false;
+                    kq = nguoiDungBO.AddUser(txtTK.Text, maTinh, maHuyen, maXa, cbbQuyen.SelectedValue.ToString(), txtHoTen.Text, txtMK.Text);
+
+                    if (kq == true)
+                        MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception tt)
+                {
+                    MessageBox.Show(tt.Message);
+                }
+            }
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         bool checkload_LTK = false;
         private void cbbLTK_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -144,36 +166,24 @@ namespace T02_Source_Code.Presentation
                     cbbHuyen.Enabled = false;
                     cbbXa.Enabled = false;
                     if (quyen == 1)
-                    {
                         loadCBBTinh();
-                    }
                 }
                 else if (select == 3)
                 {
                     cbbXa.Enabled = false;
                     if (quyen == 1)
-                    {
                         loadCBBTinh();
-                    }
                     else if (quyen == 2)
-                    {
                         loadCBBHuyen(maTinh);
-                    }
                 }
                 else if (select == 4)
                 {
                     if (quyen == 1)
-                    {
                         loadCBBTinh();
-                    }
                     else if (quyen == 2)
-                    {
                         loadCBBHuyen(maTinh);
-                    }
                     else if (quyen == 3)
-                    {
                         loadCBBXA(maHuyen);
-                    }
                 }
             }
             try
@@ -302,6 +312,7 @@ namespace T02_Source_Code.Presentation
         #endregion
 
 
+        #region check
         private bool checkTextBox()
         {
             bool chk = false;
@@ -338,34 +349,7 @@ namespace T02_Source_Code.Presentation
             }
             return chk;
         }
-
-        private void btnThem_Click_1(object sender, EventArgs e)
-        {
-            setDefaultCheckLabel();
-
-            if (checkTextBox())
-                return;
-            else
-            {
-                try
-                {
-                    bool kq = false;
-                    kq = nguoiDungBO.AddUser(txtTK.Text, maTinh, maHuyen, maXa, cbbQuyen.SelectedValue.ToString(), txtHoTen.Text, txtMK.Text);
-
-                    if (kq == true)
-                        MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception tt)
-                {
-                    MessageBox.Show(tt.Message);
-                }
-            }
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        #endregion   
 
     }
 }
