@@ -40,8 +40,10 @@ namespace T02_Source_Code.Presentation
             else
             {
                 String hoTen = txtTenChuHo.Text.Trim();
-                bool match = Regex.IsMatch(hoTen.Trim(), "\\W");
-                bool match2 = Regex.IsMatch(hoTen, @"\d");
+                String output= Regex.Replace(hoTen, "\\s+", "");
+
+                bool match = Regex.IsMatch(output, "\\W");
+                bool match2 = Regex.IsMatch(output, @"\d");
                 if (match2 || match)
                 {
                     lblHoTen.Text = "Không nhập các kí tự số,các kí tự đặc biệt";
