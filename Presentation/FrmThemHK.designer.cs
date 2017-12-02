@@ -60,6 +60,8 @@
             this.Cboxa2 = new System.Windows.Forms.ComboBox();
             this.DPNgayCap = new System.Windows.Forms.DateTimePicker();
             this.txtNguoiCap = new System.Windows.Forms.Label();
+            this.lblXa2 = new System.Windows.Forms.Label();
+            this.lblXa1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -349,11 +351,33 @@
             this.txtNguoiCap.TabIndex = 24;
             this.txtNguoiCap.Text = "*";
             // 
+            // lblXa2
+            // 
+            this.lblXa2.AutoSize = true;
+            this.lblXa2.ForeColor = System.Drawing.Color.Red;
+            this.lblXa2.Location = new System.Drawing.Point(617, 132);
+            this.lblXa2.Name = "lblXa2";
+            this.lblXa2.Size = new System.Drawing.Size(11, 13);
+            this.lblXa2.TabIndex = 25;
+            this.lblXa2.Text = "*";
+            // 
+            // lblXa1
+            // 
+            this.lblXa1.AutoSize = true;
+            this.lblXa1.ForeColor = System.Drawing.Color.Red;
+            this.lblXa1.Location = new System.Drawing.Point(617, 78);
+            this.lblXa1.Name = "lblXa1";
+            this.lblXa1.Size = new System.Drawing.Size(11, 13);
+            this.lblXa1.TabIndex = 25;
+            this.lblXa1.Text = "*";
+            // 
             // FrmThemHk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 358);
+            this.Controls.Add(this.lblXa1);
+            this.Controls.Add(this.lblXa2);
             this.Controls.Add(this.txtNguoiCap);
             this.Controls.Add(this.DPNgayCap);
             this.Controls.Add(this.Cboxa2);
@@ -427,5 +451,7 @@
         private System.Windows.Forms.ComboBox Cboxa2;
         private System.Windows.Forms.DateTimePicker DPNgayCap;
         private System.Windows.Forms.Label txtNguoiCap;
+        private System.Windows.Forms.Label lblXa2;
+        private System.Windows.Forms.Label lblXa1;
     }
 }

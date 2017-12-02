@@ -97,23 +97,6 @@
       <Association Name="TinhThanh_QuanHuyen" Member="QuanHuyens" ThisKey="MaTinhThanh" OtherKey="MaTinhThanh" Type="QuanHuyen" />
     </Type>
   </Table>
-  <Table Name="dbo.View_1" Member="View_1s">
-    <Type Name="View_1">
-      <Column Name="STT" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="MaQuanHuyen" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="MaTinhThanh" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="MaHoKhau" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="MaPhuongXa" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="TenChuHo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoThanhVien" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NoiThuongTru" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="NoiCap" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="NgayCap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NguoiCap" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="HoSoHKSo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoDKThuongTru" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TinhQuanHuyen" Member="TinhQuanHuyens">
     <Type Name="TinhQuanHuyen">
       <Column Name="MaPhuongXa" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />

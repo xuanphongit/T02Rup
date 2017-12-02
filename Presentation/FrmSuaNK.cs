@@ -26,7 +26,7 @@ namespace T02_Source_Code.Presentation
 
           
         }
-        List<View_1> Ds = new List<View_1>();
+        
 
         private void ResetLoi()
         {
@@ -39,6 +39,8 @@ namespace T02_Source_Code.Presentation
             lblNoiLamViec.Text = "";
         }
         private NhanKhau nk;
+        List<TinhQuanHuyen> _ds = new List<TinhQuanHuyen>();
+        List<HoKhau> _danhSachHoKhau = new List<HoKhau>();
         private void FrmSuaNK_Load(object sender, EventArgs e)
         {
             var pp = from s in DungChung.Db.NhanKhaus
@@ -76,41 +78,53 @@ namespace T02_Source_Code.Presentation
             CboHuyen1.ValueMember = "MaQuanHuyen";
             Cbohuyen2.ValueMember = "MaQuanHuyen";
             Cbohuyen3.ValueMember = "MaQuanHuyen";
-            
+
 
             if (DungChung.MaTinh == null)
             {
-
-                var p = from s in DungChung.Db.View_1s
+                var q = from s in DungChung.Db.TinhQuanHuyens
                         select s;
-                Ds = p.ToList();
+                _ds = q.ToList();
+                _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
             }
             else
             {
+                if (DungChung.MaTinh != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaTinhThanh.Equals(DungChung.MaTinh)
+                            select s;
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaHuyen != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
+                            select s;
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaXa != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaPhuongXa.Equals(DungChung.MaXa)
+                            select s;
+                    _ds = q.ToList();
+                }
+                foreach (TinhQuanHuyen xa in _ds)
+                {
+                    var p = from s in DungChung.Db.HoKhaus
+                            where s.MaPhuongXa.Equals(xa.MaPhuongXa)
+                            select s;
+                    foreach (HoKhau hoKhau in p.ToList())
+                    {
+                        _danhSachHoKhau.Add(hoKhau);
+                    }
 
-                var p = from s in DungChung.Db.View_1s
-                        where s.MaTinhThanh.Equals(DungChung.MaTinh)
-                        select s;
-                Ds = p.ToList();
+                }
+
+
             }
-            if (DungChung.MaHuyen != null)
-            {
-
-
-                var p = from s in DungChung.Db.View_1s
-                        where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
-                        select s;
-                Ds = p.ToList();
-            }
-            if (DungChung.MaXa != null)
-            {
-
-                var p = from s in DungChung.Db.View_1s
-                        where s.MaPhuongXa.Equals(DungChung.MaXa)
-                        select s;
-                Ds = p.ToList();
-            }
-            CboTenHoKhau.DataSource = Ds;
+            CboTenHoKhau.DataSource = _danhSachHoKhau;
             CboTenHoKhau.DisplayMember = "TenChuHo";
             CboTenHoKhau.ValueMember = "MaHoKhau";
             Cboxa3.SelectedValue = nk.QueQuan;
@@ -267,22 +281,31 @@ namespace T02_Source_Code.Presentation
                 nk.NoiLamViec = CboXa1.SelectedValue.ToString();
                 nk.NgayChuyenDen = DTPKChuyenDenNgay.Value;
                 nk.NoiThuongTruTruocKhiChuyenDen = Cboxa2.SelectedValue.ToString();
-                if (!nk.MaHoKhau.Equals(CboTenHoKhau.SelectedValue.ToString()))
+                if (CboTenHoKhau.SelectedValue != null)
                 {
-                    var q = from s in DungChung.Db.HoKhaus
-                        where s.MaHoKhau.Equals(nk.MaHoKhau)
-                        select s;
-                    q.First().SoThanhVien--;
-                    nk.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
+                    if (!nk.MaHoKhau.Equals(CboTenHoKhau.SelectedValue.ToString()))
+                    {
+                        var q = from s in DungChung.Db.HoKhaus
+                                where s.MaHoKhau.Equals(nk.MaHoKhau)
+                                select s;
+                        q.First().SoThanhVien--;
+                        nk.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
 
-                    var q2 = from s in DungChung.Db.HoKhaus
-                            where s.MaHoKhau.Equals(nk.MaHoKhau)
-                            select s;
-                    q.First().SoThanhVien++;
+                        var q2 = from s in DungChung.Db.HoKhaus
+                                 where s.MaHoKhau.Equals(nk.MaHoKhau)
+                                 select s;
+                        q.First().SoThanhVien++;
+                    }
                 }
+                
                 DungChung.Db.SubmitChanges();
                 
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
     

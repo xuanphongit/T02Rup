@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using T02_Source_Code.Model;
 
@@ -17,9 +18,20 @@ namespace T02_Source_Code.Presentation
         private void button2_Click(object sender, EventArgs e)
         {
             lblSoDangKiThuongTru.Text = "";
+            lblXa1.Text = "";
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
                 lblSoDangKiThuongTru.Text = "Mời nhập số đăng kí thường trú";
+                countError++;
+            }
+            else if (Regex.IsMatch(txtSoDangKiThuongTru.Text, @"\D"))
+            {
+                lblSoDangKiThuongTru.Text = "Không nhập chữ cái hoặc kí tự đặc biệt vào đây";
+                countError++;
+            }
+            if (CboXa1.SelectedValue == null)
+            {
+                lblXa1.Text = "Mời chọn";
                 countError++;
             }
             if (!_thayDoi)

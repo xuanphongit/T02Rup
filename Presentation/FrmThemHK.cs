@@ -20,9 +20,9 @@ namespace T02_Source_Code.Presentation
         {
             lblHoTen.Text = "";
             lblHoSoHoKhauSo.Text = "";
-          
-          
-            
+            lblXa1.Text = "";
+
+            lblXa2.Text = "";
             lblSoDangKiThuongTru.Text = "";
         }
         private void button2_Click(object sender, EventArgs e)
@@ -39,10 +39,10 @@ namespace T02_Source_Code.Presentation
             }
             else
             {
-                String hoTen = txtTenChuHo.Text;
-                bool match = Regex.IsMatch(hoTen, "\\W");
+                String hoTen = txtTenChuHo.Text.Trim();
+                bool match = Regex.IsMatch(hoTen.Trim(), "\\W");
                 bool match2 = Regex.IsMatch(hoTen, @"\d");
-                if (!match||!match2)
+                if (match2 || match)
                 {
                     lblHoTen.Text = "Không nhập các kí tự số,các kí tự đặc biệt";
                     countError++;
@@ -54,25 +54,46 @@ namespace T02_Source_Code.Presentation
                 lblHoSoHoKhauSo.Text = ("Mời nhập số Hồ sơ hộ khẩu!");
                 countError++;
             }
+            else if (Regex.IsMatch(txtHoSoHoKhauSo.Text, @"\D"))
+            {
+                lblHoSoHoKhauSo.Text = "Không nhập chữ cái hoặc kí tự đặc biệt vào đây";
+                countError++;
+            }
             else
             {
                 hoSoHoKhauSo = int.Parse(txtHoSoHoKhauSo.Text);
+                var q = from s in DungChung.Db.HoKhaus
+                        where s.HoSoHKSo == hoSoHoKhauSo
+                        select s;
+                if (q.Any())
+                {
+                    lblHoSoHoKhauSo.Text = "Số hồ sơ hộ khẩu trùng!";
+                    countError++;
+                }
             }
+                
+            
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
                 lblSoDangKiThuongTru.Text = ("Mời nhập số đăng kí thường trú!");
                 countError++;
             }
-           
-            var q = from s in DungChung.Db.HoKhaus
-                    where s.HoSoHKSo == hoSoHoKhauSo
-                    select s;
-            if (q.Any())
+            else if(Regex.IsMatch(txtSoDangKiThuongTru.Text,@"\D"))
             {
-                lblHoSoHoKhauSo.Text = "Số hồ sơ hộ khẩu trùng!";
+                lblSoDangKiThuongTru.Text = "Không nhập chữ cái hoặc kí tự đặc biệt vào đây";
                 countError++;
             }
 
+            if (CboXa1.SelectedValue==null)
+            {
+                lblXa1.Text = "Mời chọn";
+                countError++;
+            }
+            if (Cboxa2.SelectedValue==null)
+            {
+                lblXa2.Text = "Mời chọn";
+                countError++;
+            }
             if (countError==0)
             {
                 
@@ -98,7 +119,7 @@ namespace T02_Source_Code.Presentation
         {
            
             
-                _maHuyen = CboTinh1.SelectedValue.ToString();
+                _maHuyen = CboHuyen1.SelectedValue.ToString();
                 var q = from s in DungChung.Db.PhuongXas
                         where s.MaQuanHuyen.Equals(_maHuyen)
                         select s;

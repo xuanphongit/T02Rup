@@ -581,6 +581,7 @@
             this.btnHuy.TabIndex = 97;
             this.btnHuy.Text = "Thoát";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // FrmSuaNk
             // 

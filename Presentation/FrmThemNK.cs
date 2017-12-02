@@ -70,10 +70,21 @@ namespace T02_Source_Code.Presentation
             {
                 NhanKhau nKhau=new NhanKhau();
                 
-                int a= int.Parse(DungChung.Db.NhanKhaus.Max(h => h.MaHoKhau))+1;
+                int a= int.Parse(DungChung.Db.NhanKhaus.Max(h => h.MaNhanKhau))+1;
+                MessageBox.Show(a.ToString());
                 nKhau.MaNhanKhau = a.ToString();
-                
-                nKhau.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
+                if (CboTenHoKhau.SelectedValue!= null)
+                {
+                    nKhau.MaHoKhau = CboTenHoKhau.SelectedValue.ToString();
+                    var q = from s in DungChung.Db.HoKhaus
+                            where s.MaHoKhau.Equals(nKhau.MaHoKhau)
+                            select s;
+                    q.First().SoThanhVien++;
+                }
+                else
+                {
+                    nKhau.MaHoKhau = null;
+                }
                 nKhau.TenNhanKhau = txtHoTen.Text;
                 if (!txtTenKhac.Text.Equals(""))
                 {
@@ -101,16 +112,14 @@ namespace T02_Source_Code.Presentation
                 
 
 
-                var q = from s in DungChung.Db.HoKhaus
-                    where s.MaHoKhau.Equals(nKhau.MaHoKhau)
-                    select s;
-                q.First().SoThanhVien++;
+                
                 DungChung.Db.SubmitChanges();
                 MessageBox.Show("Thêm thành công!");
 
             }
         }
-        List<View_1> Ds = new List<View_1>();
+        List<TinhQuanHuyen> _ds=new List<TinhQuanHuyen>();
+        List<HoKhau> _danhSachHoKhau=new List<HoKhau>();
         private void FrmThemNK_Load(object sender, EventArgs e)
         {
 
@@ -126,37 +135,50 @@ namespace T02_Source_Code.Presentation
 
             if (DungChung.MaTinh == null)
             {
-               
-                var p = from s in DungChung.Db.View_1s
+                var q = from s in DungChung.Db.TinhQuanHuyens
                     select s;
-                Ds = p.ToList();
+                _ds = q.ToList();
+                _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
             }
             else
             {
-               
-                var p = from s in DungChung.Db.View_1s
-                    where s.MaTinhThanh.Equals(DungChung.MaTinh) 
-                select s;
-                Ds = p.ToList();
-            }
-            if (DungChung.MaHuyen != null)
-            {
-               
-                
-                var p = from s in DungChung.Db.View_1s
+                if (DungChung.MaTinh != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                        where s.MaTinhThanh.Equals(DungChung.MaTinh)
+                        select s;
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaHuyen != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
                         where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
                         select s;
-                Ds = p.ToList();
-            }
-            if (DungChung.MaXa != null)
-            {
-               
-                var p = from s in DungChung.Db.View_1s
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaXa != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
                         where s.MaPhuongXa.Equals(DungChung.MaXa)
                         select s;
-                Ds = p.ToList();
+                    _ds = q.ToList();
+                }
+                foreach (TinhQuanHuyen xa in _ds)
+                {
+                    var p = from s in DungChung.Db.HoKhaus
+                        where s.MaPhuongXa.Equals(xa.MaPhuongXa)
+                        select s;
+                    foreach (HoKhau hoKhau in p.ToList())
+                    {
+                        _danhSachHoKhau.Add(hoKhau);
+                    }
+
+                }
+
+
             }
-            CboTenHoKhau.DataSource = Ds;
+
+            CboTenHoKhau.DataSource =_danhSachHoKhau;
             CboTenHoKhau.DisplayMember = "TenChuHo";
             CboTenHoKhau.ValueMember = "MaHoKhau";
             CboGioiTinh.Text = "Nam";

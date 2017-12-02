@@ -52,12 +52,13 @@
             this.lblNguoiCap = new System.Windows.Forms.Label();
             this.lblHoSoHoKhauSo = new System.Windows.Forms.Label();
             this.lblSoDangKiThuongTru = new System.Windows.Forms.Label();
+            this.lblXa1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 28);
+            this.label1.Location = new System.Drawing.Point(12, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 0;
@@ -66,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 62);
+            this.label2.Location = new System.Drawing.Point(12, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 0;
@@ -75,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 88);
+            this.label3.Location = new System.Drawing.Point(12, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 0;
@@ -84,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 114);
+            this.label4.Location = new System.Drawing.Point(12, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 0;
@@ -93,7 +94,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 218);
+            this.label5.Location = new System.Drawing.Point(12, 217);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(115, 13);
             this.label5.TabIndex = 1;
@@ -102,7 +103,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(39, 191);
+            this.label6.Location = new System.Drawing.Point(12, 190);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 13);
             this.label6.TabIndex = 2;
@@ -111,7 +112,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(39, 165);
+            this.label7.Location = new System.Drawing.Point(12, 164);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 13);
             this.label7.TabIndex = 3;
@@ -120,7 +121,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(39, 139);
+            this.label8.Location = new System.Drawing.Point(12, 138);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 4;
@@ -128,7 +129,7 @@
             // 
             // txtSoDangKiThuongTru
             // 
-            this.txtSoDangKiThuongTru.Location = new System.Drawing.Point(199, 211);
+            this.txtSoDangKiThuongTru.Location = new System.Drawing.Point(172, 210);
             this.txtSoDangKiThuongTru.Name = "txtSoDangKiThuongTru";
             this.txtSoDangKiThuongTru.Size = new System.Drawing.Size(263, 20);
             this.txtSoDangKiThuongTru.TabIndex = 11;
@@ -156,7 +157,7 @@
             // txtMaSo
             // 
             this.txtMaSo.AutoSize = true;
-            this.txtMaSo.Location = new System.Drawing.Point(205, 28);
+            this.txtMaSo.Location = new System.Drawing.Point(178, 27);
             this.txtMaSo.Name = "txtMaSo";
             this.txtMaSo.Size = new System.Drawing.Size(11, 13);
             this.txtMaSo.TabIndex = 15;
@@ -165,7 +166,7 @@
             // CboHoTenChuHo
             // 
             this.CboHoTenChuHo.FormattingEnabled = true;
-            this.CboHoTenChuHo.Location = new System.Drawing.Point(199, 54);
+            this.CboHoTenChuHo.Location = new System.Drawing.Point(172, 53);
             this.CboHoTenChuHo.Name = "CboHoTenChuHo";
             this.CboHoTenChuHo.Size = new System.Drawing.Size(263, 21);
             this.CboHoTenChuHo.TabIndex = 16;
@@ -174,7 +175,7 @@
             // CboXa1
             // 
             this.CboXa1.FormattingEnabled = true;
-            this.CboXa1.Location = new System.Drawing.Point(510, 85);
+            this.CboXa1.Location = new System.Drawing.Point(483, 84);
             this.CboXa1.Name = "CboXa1";
             this.CboXa1.Size = new System.Drawing.Size(101, 21);
             this.CboXa1.TabIndex = 28;
@@ -183,7 +184,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(470, 91);
+            this.label9.Location = new System.Drawing.Point(443, 90);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(20, 13);
             this.label9.TabIndex = 27;
@@ -192,7 +193,7 @@
             // CboHuyen1
             // 
             this.CboHuyen1.FormattingEnabled = true;
-            this.CboHuyen1.Location = new System.Drawing.Point(361, 85);
+            this.CboHuyen1.Location = new System.Drawing.Point(334, 84);
             this.CboHuyen1.Name = "CboHuyen1";
             this.CboHuyen1.Size = new System.Drawing.Size(101, 21);
             this.CboHuyen1.TabIndex = 26;
@@ -201,7 +202,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(321, 91);
+            this.label15.Location = new System.Drawing.Point(294, 90);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(38, 13);
             this.label15.TabIndex = 25;
@@ -210,7 +211,7 @@
             // CboTinh1
             // 
             this.CboTinh1.FormattingEnabled = true;
-            this.CboTinh1.Location = new System.Drawing.Point(199, 85);
+            this.CboTinh1.Location = new System.Drawing.Point(172, 84);
             this.CboTinh1.Name = "CboTinh1";
             this.CboTinh1.Size = new System.Drawing.Size(115, 21);
             this.CboTinh1.TabIndex = 24;
@@ -219,7 +220,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(142, 88);
+            this.label16.Location = new System.Drawing.Point(115, 87);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(34, 13);
             this.label16.TabIndex = 23;
@@ -228,7 +229,7 @@
             // lblNgayCap
             // 
             this.lblNgayCap.AutoSize = true;
-            this.lblNgayCap.Location = new System.Drawing.Point(205, 114);
+            this.lblNgayCap.Location = new System.Drawing.Point(178, 113);
             this.lblNgayCap.Name = "lblNgayCap";
             this.lblNgayCap.Size = new System.Drawing.Size(11, 13);
             this.lblNgayCap.TabIndex = 15;
@@ -237,7 +238,7 @@
             // lblNoiCap
             // 
             this.lblNoiCap.AutoSize = true;
-            this.lblNoiCap.Location = new System.Drawing.Point(205, 139);
+            this.lblNoiCap.Location = new System.Drawing.Point(178, 138);
             this.lblNoiCap.Name = "lblNoiCap";
             this.lblNoiCap.Size = new System.Drawing.Size(11, 13);
             this.lblNoiCap.TabIndex = 15;
@@ -246,7 +247,7 @@
             // lblNguoiCap
             // 
             this.lblNguoiCap.AutoSize = true;
-            this.lblNguoiCap.Location = new System.Drawing.Point(205, 165);
+            this.lblNguoiCap.Location = new System.Drawing.Point(178, 164);
             this.lblNguoiCap.Name = "lblNguoiCap";
             this.lblNguoiCap.Size = new System.Drawing.Size(11, 13);
             this.lblNguoiCap.TabIndex = 15;
@@ -255,7 +256,7 @@
             // lblHoSoHoKhauSo
             // 
             this.lblHoSoHoKhauSo.AutoSize = true;
-            this.lblHoSoHoKhauSo.Location = new System.Drawing.Point(205, 191);
+            this.lblHoSoHoKhauSo.Location = new System.Drawing.Point(178, 190);
             this.lblHoSoHoKhauSo.Name = "lblHoSoHoKhauSo";
             this.lblHoSoHoKhauSo.Size = new System.Drawing.Size(11, 13);
             this.lblHoSoHoKhauSo.TabIndex = 15;
@@ -264,17 +265,28 @@
             // lblSoDangKiThuongTru
             // 
             this.lblSoDangKiThuongTru.AutoSize = true;
-            this.lblSoDangKiThuongTru.Location = new System.Drawing.Point(479, 218);
+            this.lblSoDangKiThuongTru.ForeColor = System.Drawing.Color.Red;
+            this.lblSoDangKiThuongTru.Location = new System.Drawing.Point(452, 217);
             this.lblSoDangKiThuongTru.Name = "lblSoDangKiThuongTru";
             this.lblSoDangKiThuongTru.Size = new System.Drawing.Size(11, 13);
             this.lblSoDangKiThuongTru.TabIndex = 15;
             this.lblSoDangKiThuongTru.Text = "*";
             // 
+            // lblXa1
+            // 
+            this.lblXa1.AutoSize = true;
+            this.lblXa1.ForeColor = System.Drawing.Color.Red;
+            this.lblXa1.Location = new System.Drawing.Point(590, 90);
+            this.lblXa1.Name = "lblXa1";
+            this.lblXa1.Size = new System.Drawing.Size(11, 13);
+            this.lblXa1.TabIndex = 15;
+            this.lblXa1.Text = "*";
+            // 
             // FrmSuaHk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 341);
+            this.ClientSize = new System.Drawing.Size(703, 341);
             this.Controls.Add(this.CboXa1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.CboHuyen1);
@@ -282,6 +294,7 @@
             this.Controls.Add(this.CboTinh1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.CboHoTenChuHo);
+            this.Controls.Add(this.lblXa1);
             this.Controls.Add(this.lblSoDangKiThuongTru);
             this.Controls.Add(this.lblHoSoHoKhauSo);
             this.Controls.Add(this.lblNguoiCap);
@@ -333,5 +346,6 @@
         private System.Windows.Forms.Label lblNguoiCap;
         private System.Windows.Forms.Label lblHoSoHoKhauSo;
         private System.Windows.Forms.Label lblSoDangKiThuongTru;
+        private System.Windows.Forms.Label lblXa1;
     }
 }

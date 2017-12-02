@@ -556,7 +556,7 @@
             // 
             this.lblQueQuan.AutoSize = true;
             this.lblQueQuan.ForeColor = System.Drawing.Color.Red;
-            this.lblQueQuan.Location = new System.Drawing.Point(508, 114);
+            this.lblQueQuan.Location = new System.Drawing.Point(645, 80);
             this.lblQueQuan.Name = "lblQueQuan";
             this.lblQueQuan.Size = new System.Drawing.Size(11, 13);
             this.lblQueQuan.TabIndex = 13;
@@ -566,7 +566,7 @@
             // 
             this.lblNoiThuongTruTruocKia.AutoSize = true;
             this.lblNoiThuongTruTruocKia.ForeColor = System.Drawing.Color.Red;
-            this.lblNoiThuongTruTruocKia.Location = new System.Drawing.Point(498, 384);
+            this.lblNoiThuongTruTruocKia.Location = new System.Drawing.Point(645, 355);
             this.lblNoiThuongTruTruocKia.Name = "lblNoiThuongTruTruocKia";
             this.lblNoiThuongTruTruocKia.Size = new System.Drawing.Size(11, 13);
             this.lblNoiThuongTruTruocKia.TabIndex = 13;
@@ -576,7 +576,7 @@
             // 
             this.lblNoiLamViec.AutoSize = true;
             this.lblNoiLamViec.ForeColor = System.Drawing.Color.Red;
-            this.lblNoiLamViec.Location = new System.Drawing.Point(496, 333);
+            this.lblNoiLamViec.Location = new System.Drawing.Point(645, 300);
             this.lblNoiLamViec.Name = "lblNoiLamViec";
             this.lblNoiLamViec.Size = new System.Drawing.Size(11, 13);
             this.lblNoiLamViec.TabIndex = 13;
@@ -586,7 +586,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 451);
+            this.ClientSize = new System.Drawing.Size(767, 451);
             this.Controls.Add(this.DTPKChuyenDenNgay);
             this.Controls.Add(this.CboDanToc);
             this.Controls.Add(this.DTPKNgaySinh);

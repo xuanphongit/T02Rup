@@ -15,8 +15,8 @@ namespace T02_Source_Code.Presentation
             InitializeComponent();
         }
 
-        private List<HoKhau> _danhSachHoKhau;
-        private List<NhanKhau> _danhSachNhanKhau;
+        private List<HoKhau> _danhSachHoKhau=new List<HoKhau>();
+        private List<NhanKhau> _danhSachNhanKhau=new List<NhanKhau>();
         private List<TinhThanh> _danhsachTinhThanh;
         private List<QuanHuyen> _danhsachQuanHuyen;
         private List<PhuongXa> _danhsachPhuongXa;
@@ -144,19 +144,23 @@ namespace T02_Source_Code.Presentation
             if (_finished)
             {
                 ResetKhungThongTin();
-                MaHoKhau = LstHoKhau.SelectedValue.ToString();
-                var q = from hoKhau in _danhSachHoKhau
-                        where hoKhau.MaHoKhau.Equals(MaHoKhau)
-                        select hoKhau;
-                txtMaSo.Text = "Mã số :     " + q.First().MaHoKhau;
-                txtHoTen.Text = "Họ tên:     " + q.First().TenChuHo;
-                txtGioiTinh_SoThanhVien.Text = "Số thành viên:     " + q.First().SoThanhVien;
-                txtQueQuan_NoiThuongTru.Text = "Nơi thường trú:     " + LayThongTinDiaDiem(q.First().NoiThuongTru);
-                txtDanToc_NoiCap.Text = "Nơi cấp:     " + LayThongTinDiaDiem(q.First().NoiCap);
-                txtTonGiaoNgayCap.Text = "Ngày cấp:     " + q.First().NgayCap.Value.Day + "/" + q.First().NgayCap.Value.Month + "/" + q.First().NgayCap.Value.Year;
-                txtNoiLamViec_NguoiCap.Text = "Người cấp:     " + q.First().NguoiCap;
-                txtNgheNghiep_HoSoHoKhauSo.Text = "Hồ sơ hộ khẩu số:     " + q.First().HoSoHKSo;
-                txtNoiThuongTruTruocKhiChuyenDen_SoDKThuongTru.Text = "Số đăng kí thường trú:     " + q.First().SoDKThuongTru;
+                if (LstHoKhau.SelectedValue!=null)
+                {
+                    MaHoKhau = LstHoKhau.SelectedValue.ToString();
+                    var q = from hoKhau in _danhSachHoKhau
+                            where hoKhau.MaHoKhau.Equals(MaHoKhau)
+                            select hoKhau;
+                    txtMaSo.Text = "Mã số :     " + q.First().MaHoKhau;
+                    txtHoTen.Text = "Họ tên:     " + q.First().TenChuHo;
+                    txtGioiTinh_SoThanhVien.Text = "Số thành viên:     " + q.First().SoThanhVien;
+                    txtQueQuan_NoiThuongTru.Text = "Nơi thường trú:     " + LayThongTinDiaDiem(q.First().NoiThuongTru);
+                    txtDanToc_NoiCap.Text = "Nơi cấp:     " + LayThongTinDiaDiem(q.First().NoiCap);
+                    txtTonGiaoNgayCap.Text = "Ngày cấp:     " + q.First().NgayCap.Value.Day + "/" + q.First().NgayCap.Value.Month + "/" + q.First().NgayCap.Value.Year;
+                    txtNoiLamViec_NguoiCap.Text = "Người cấp:     " + q.First().NguoiCap;
+                    txtNgheNghiep_HoSoHoKhauSo.Text = "Hồ sơ hộ khẩu số:     " + q.First().HoSoHKSo;
+                    txtNoiThuongTruTruocKhiChuyenDen_SoDKThuongTru.Text = "Số đăng kí thường trú:     " + q.First().SoDKThuongTru;
+
+                }
 
             }
 
@@ -185,32 +189,47 @@ namespace T02_Source_Code.Presentation
             if (_finished)
             {
                 ResetKhungThongTin();
-                MaNhanKhau = LstNhanKhau.SelectedValue.ToString();
-                var q = from nhanKhau in _danhSachNhanKhau
-                        where nhanKhau.MaNhanKhau.Equals(MaNhanKhau)
-                        select nhanKhau;
-                txtMaSo.Text = "Mã số:      " + q.First().MaNhanKhau;
-                txtHoTen.Text = "Họ tên     " + q.First().TenNhanKhau;
-                txtTenThuongGoi.Text = "Tên thường gọi:     " + q.First().TenThuongGoi;
-                txtGioiTinh_SoThanhVien.Text = "Giới tính:     " + q.First().GioiTinh;
-                txtNgaySinh.Text = "Ngày sinh:     " + q.First().NgaySinh;
-                txtDanToc_NoiCap.Text = "Nơi cấp:     " + q.First().DanToc;
-                txtTonGiaoNgayCap.Text = "Tôn giáo:     " + q.First().TonGiao;
-                txtQueQuan_NoiThuongTru.Text = "Quê quán:     " + LayThongTinDiaDiem(q.First().QueQuan);
-                txtCMND.Text = "CMND:     " + q.First().CMND;
-                txtNgheNghiep_HoSoHoKhauSo.Text = "Nghề nghiệp:     " + q.First().NgheNghiep;
-                txtNoiLamViec_NguoiCap.Text = "Nơi làm việc:     " + LayThongTinDiaDiem(q.First().NoiLamViec);
-                txtNgayChuyenDen.Text = "Ngày chuyển đến:     " + q.First().NgayChuyenDen;
-                txtNoiThuongTruTruocKhiChuyenDen_SoDKThuongTru.Text = "Nơi thường trú trước khi chuyển đến:   " + LayThongTinDiaDiem(q.First().NoiThuongTruTruocKhiChuyenDen);
+                if (LstNhanKhau.SelectedValue!=null)
+                {
+                    MaNhanKhau = LstNhanKhau.SelectedValue.ToString();
+                    var q = from nhanKhau in _danhSachNhanKhau
+                            where nhanKhau.MaNhanKhau.Equals(MaNhanKhau)
+                            select nhanKhau;
+                    txtMaSo.Text = "Mã số:      " + q.First().MaNhanKhau;
+                    txtHoTen.Text = "Họ tên     " + q.First().TenNhanKhau;
+                    txtTenThuongGoi.Text = "Tên thường gọi:     " + q.First().TenThuongGoi;
+                    txtGioiTinh_SoThanhVien.Text = "Giới tính:     " + q.First().GioiTinh;
+                    txtNgaySinh.Text = "Ngày sinh:     " + q.First().NgaySinh;
+                    txtDanToc_NoiCap.Text = "Nơi cấp:     " + q.First().DanToc;
+                    txtTonGiaoNgayCap.Text = "Tôn giáo:     " + q.First().TonGiao;
+                    txtQueQuan_NoiThuongTru.Text = "Quê quán:     " + LayThongTinDiaDiem(q.First().QueQuan);
+                    txtCMND.Text = "CMND:     " + q.First().CMND;
+                    txtNgheNghiep_HoSoHoKhauSo.Text = "Nghề nghiệp:     " + q.First().NgheNghiep;
+                    txtNoiLamViec_NguoiCap.Text = "Nơi làm việc:     " + LayThongTinDiaDiem(q.First().NoiLamViec);
+                    txtNgayChuyenDen.Text = "Ngày chuyển đến:     " + q.First().NgayChuyenDen;
+                    txtNoiThuongTruTruocKhiChuyenDen_SoDKThuongTru.Text = "Nơi thường trú trước khi chuyển đến: " + LayThongTinDiaDiem(q.First().NoiThuongTruTruocKhiChuyenDen);
+                }
+                  
             }
 
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            var q = from s in DungChung.Db.NhanKhaus
+                where s.MaNhanKhau.Equals(MaNhanKhau)
+                select s;
+            var qq = from s in DungChung.Db.HoKhaus
+                where s.MaHoKhau.Equals(q.First().MaHoKhau)
+                select s;
             if (MaNhanKhau==null)
             {
                 MessageBox.Show("Mời chọn nhân khẩu trước");
             }
+            else if (q.First().TenNhanKhau==qq.First().TenChuHo)
+            {
+                MessageBox.Show("Người này đã là chủ hộ");
+            }
+          
             else
             {
                 FrmTachHk frmTachHk = new FrmTachHk();
@@ -326,11 +345,72 @@ namespace T02_Source_Code.Presentation
         {
 
         }
-
+        List<TinhQuanHuyen> _ds=new List<TinhQuanHuyen>();
         private void ReloadThongTin()
         {
-            _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
-            _danhSachNhanKhau = DungChung.Db.NhanKhaus.ToList();
+
+            _finished = false;
+
+            if (DungChung.MaTinh == null)
+            {
+                var q = from s in DungChung.Db.TinhQuanHuyens
+                        select s;
+                _ds = q.ToList();
+                _danhSachHoKhau = DungChung.Db.HoKhaus.ToList();
+                _danhSachNhanKhau = DungChung.Db.NhanKhaus.ToList();
+            }
+            else
+            {
+                if (DungChung.MaTinh != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaTinhThanh.Equals(DungChung.MaTinh)
+                            select s;
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaHuyen != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaQuanHuyen.Equals(DungChung.MaHuyen)
+                            select s;
+                    _ds = q.ToList();
+                }
+                if (DungChung.MaXa != null)
+                {
+                    var q = from s in DungChung.Db.TinhQuanHuyens
+                            where s.MaPhuongXa.Equals(DungChung.MaXa)
+                            select s;
+                    _ds = q.ToList();
+                }
+                foreach (TinhQuanHuyen xa in _ds)
+                {
+                    var p = from s in DungChung.Db.HoKhaus
+                            where s.MaPhuongXa.Equals(xa.MaPhuongXa)
+                            select s;
+                    foreach (HoKhau hoKhau in p.ToList())
+                    {
+                        _danhSachHoKhau.Add(hoKhau);
+                    }
+
+                }
+                if (_danhSachHoKhau.Any())
+                {
+                    foreach (HoKhau hokhau in _danhSachHoKhau)
+                    {
+                        var q = from s in DungChung.Db.NhanKhaus
+                                where s.MaHoKhau.Equals(hokhau.MaHoKhau)
+                                select s;
+                        foreach (NhanKhau Nk in q.ToList())
+                        {
+                            _danhSachNhanKhau.Add(Nk);
+                        }
+                    }
+                }
+                
+
+            }
+           
+
             LstHoKhau.DataSource = _danhSachHoKhau;
             LstHoKhau.DisplayMember = "TenChuHo";
             LstHoKhau.ValueMember = "MaHoKhau";
@@ -338,13 +418,23 @@ namespace T02_Source_Code.Presentation
             LstNhanKhau.DataSource = _danhSachNhanKhau;
             LstNhanKhau.DisplayMember = "TenNhanKhau";
             LstNhanKhau.ValueMember = "MaNhanKhau";
+            if (_danhSachHoKhau.Any())
+            {
+                LstHoKhau.SelectedValue = _danhSachHoKhau.First();
+            }
+            if (_danhSachNhanKhau.Any())
+            {
+                LstNhanKhau.SelectedValue = _danhSachNhanKhau.First();
+            }
+          
+            _finished = true;
+           
         }
         private void tabControl1_Click(object sender, EventArgs e)
         {
             
             ReloadThongTin();
-            MaHoKhau = _danhSachHoKhau.First().MaHoKhau;
-            MaNhanKhau = _danhSachNhanKhau.First().MaNhanKhau;
+            
 
         }
         #endregion
