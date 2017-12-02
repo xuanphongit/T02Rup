@@ -20,7 +20,5 @@ namespace T02_Source_Code.Model
         {
             Db = new DataClasses1DataContext();
         }
-        //update dung hcung
-        //test comming
     }
 }
