@@ -81,6 +81,7 @@
             this.lblQueQuan = new System.Windows.Forms.Label();
             this.lblNoiThuongTruTruocKia = new System.Windows.Forms.Label();
             this.lblNoiLamViec = new System.Windows.Forms.Label();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -582,11 +583,22 @@
             this.lblNoiLamViec.TabIndex = 13;
             this.lblNoiLamViec.Text = "*";
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(230, 385);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(11, 13);
+            this.lblThongBao.TabIndex = 46;
+            this.lblThongBao.Text = "*";
+            // 
             // FrmThemNk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 451);
+            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.DTPKChuyenDenNgay);
             this.Controls.Add(this.CboDanToc);
             this.Controls.Add(this.DTPKNgaySinh);
@@ -703,5 +715,6 @@
         private System.Windows.Forms.Label lblQueQuan;
         private System.Windows.Forms.Label lblNoiThuongTruTruocKia;
         private System.Windows.Forms.Label lblNoiLamViec;
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

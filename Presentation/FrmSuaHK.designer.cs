@@ -53,6 +53,7 @@
             this.lblHoSoHoKhauSo = new System.Windows.Forms.Label();
             this.lblSoDangKiThuongTru = new System.Windows.Forms.Label();
             this.lblXa1 = new System.Windows.Forms.Label();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -153,6 +154,7 @@
             this.button3.TabIndex = 12;
             this.button3.Text = "Hủy";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtMaSo
             // 
@@ -282,6 +284,16 @@
             this.lblXa1.TabIndex = 15;
             this.lblXa1.Text = "*";
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(207, 263);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(11, 13);
+            this.lblThongBao.TabIndex = 15;
+            this.lblThongBao.Text = "*";
+            // 
             // FrmSuaHk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +307,7 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.CboHoTenChuHo);
             this.Controls.Add(this.lblXa1);
+            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.lblSoDangKiThuongTru);
             this.Controls.Add(this.lblHoSoHoKhauSo);
             this.Controls.Add(this.lblNguoiCap);
@@ -347,5 +360,6 @@
         private System.Windows.Forms.Label lblHoSoHoKhauSo;
         private System.Windows.Forms.Label lblSoDangKiThuongTru;
         private System.Windows.Forms.Label lblXa1;
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

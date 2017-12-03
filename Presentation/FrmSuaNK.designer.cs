@@ -82,6 +82,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DTPKChuyenDenNgay
@@ -566,7 +567,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(244, 384);
+            this.btnLuu.Location = new System.Drawing.Point(244, 419);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(75, 23);
             this.btnLuu.TabIndex = 97;
@@ -576,7 +577,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(340, 384);
+            this.btnHuy.Location = new System.Drawing.Point(340, 419);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(75, 23);
             this.btnHuy.TabIndex = 97;
@@ -584,11 +585,21 @@
             this.btnHuy.UseVisualStyleBackColor = true;
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(241, 375);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(11, 13);
+            this.lblThongBao.TabIndex = 67;
+            this.lblThongBao.Text = "*";
+            // 
             // FrmSuaNk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 419);
+            this.ClientSize = new System.Drawing.Size(675, 478);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.DTPKChuyenDenNgay);
@@ -620,6 +631,7 @@
             this.Controls.Add(this.lblTonGiao);
             this.Controls.Add(this.lblCMND);
             this.Controls.Add(this.lblNoiLamViec);
+            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.lblNoiThuongTruTruocKia);
             this.Controls.Add(this.lblNgheNghiep);
             this.Controls.Add(this.lblQueQuan);
@@ -705,5 +717,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

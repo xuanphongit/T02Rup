@@ -134,7 +134,7 @@ namespace T02_Source_Code.Presentation
                         where s.TenChuHo.ToLower().Contains(tuKhoa)
                         select s;
                 var p = from s in _danhSachNhanKhau
-                        where s.TenNhanKhau.ToLower().Contains(tuKhoa) || s.TenThuongGoi.ToLower().Contains(tuKhoa)
+                        where s.TenNhanKhau.ToLower().Contains(tuKhoa)
                         select s;
                 List<HoKhau> LstTimKiemHoKhau = q.ToList();
                 List<NhanKhau>LstTimKiemNhanKhau = p.ToList();

@@ -60,6 +60,7 @@
             this.lblNgayCap = new System.Windows.Forms.Label();
             this.lblXa2 = new System.Windows.Forms.Label();
             this.lblXa1 = new System.Windows.Forms.Label();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button2
@@ -362,11 +363,22 @@
             this.lblXa1.TabIndex = 37;
             this.lblXa1.Text = "*";
             // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(178, 210);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(11, 13);
+            this.lblThongBao.TabIndex = 57;
+            this.lblThongBao.Text = "*";
+            // 
             // FrmTachHk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 285);
+            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.lblNgayCap);
             this.Controls.Add(this.txtTenChuHo);
             this.Controls.Add(this.txtNguoiCap);
@@ -442,5 +454,6 @@
         private System.Windows.Forms.Label lblNgayCap;
         private System.Windows.Forms.Label lblXa2;
         private System.Windows.Forms.Label lblXa1;
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -21,7 +22,8 @@ namespace T02_Source_Code.Presentation
             lblHoTen.Text = "";
             lblHoSoHoKhauSo.Text = "";
             lblXa1.Text = "";
-
+            lblThongBao.Text = "";
+            lblThongBao.ForeColor=Color.Red;
             lblXa2.Text = "";
             lblSoDangKiThuongTru.Text = "";
         }
@@ -34,7 +36,9 @@ namespace T02_Source_Code.Presentation
            
             if (txtTenChuHo.Text.Equals(""))
             {
-                lblHoTen.Text = ("Mời nhập họ tên!");
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
+                lblHoTen.Text = "*";
+             
                 countError++;
             }
             else
@@ -53,8 +57,9 @@ namespace T02_Source_Code.Presentation
            
             if (txtHoSoHoKhauSo.Text.Equals(""))
             {
-                lblHoSoHoKhauSo.Text = ("Mời nhập số Hồ sơ hộ khẩu!");
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
+                lblHoSoHoKhauSo.Text = "";
             }
             else if (Regex.IsMatch(txtHoSoHoKhauSo.Text, @"\D"))
             {
@@ -77,8 +82,9 @@ namespace T02_Source_Code.Presentation
             
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
-                lblSoDangKiThuongTru.Text = ("Mời nhập số đăng kí thường trú!");
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
+                lblSoDangKiThuongTru.Text = "";
             }
             else if(Regex.IsMatch(txtSoDangKiThuongTru.Text,@"\D"))
             {
@@ -88,12 +94,13 @@ namespace T02_Source_Code.Presentation
 
             if (CboXa1.SelectedValue==null)
             {
-                lblXa1.Text = "Mời chọn";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
+                
             }
             if (Cboxa2.SelectedValue==null)
             {
-                lblXa2.Text = "Mời chọn";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             if (countError==0)

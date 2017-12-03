@@ -20,7 +20,7 @@ namespace T02_Source_Code.Presentation
             lblHoSoHoKhauSo.Text = "";
             lblXa1.Text = "";
             lblXa2.Text = "";
-
+            lblThongBao.Text = "";
 
             lblSoDangKiThuongTru.Text = "";
         }
@@ -30,7 +30,8 @@ namespace T02_Source_Code.Presentation
             ResetLoi();
             if (txtHoSoHoKhauSo.Text.Equals(""))
             {
-                lblHoSoHoKhauSo.Text = ("Mời nhập số Hồ sơ hộ khẩu!");
+                lblHoSoHoKhauSo.Text = ("*");
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             else if (Regex.IsMatch(txtHoSoHoKhauSo.Text, @"\D"))
@@ -52,7 +53,8 @@ namespace T02_Source_Code.Presentation
             }
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
-                lblSoDangKiThuongTru.Text = ("Mời nhập số đăng kí thường trú!");
+                lblSoDangKiThuongTru.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             else if (Regex.IsMatch(txtSoDangKiThuongTru.Text, @"\D"))
@@ -62,12 +64,14 @@ namespace T02_Source_Code.Presentation
             }
             if (CboXa1.SelectedValue == null)
             {
-                lblXa1.Text = "Mời chọn";
+                lblXa1.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             if (Cboxa2.SelectedValue == null)
             {
-                lblXa2.Text = "Mời chọn";
+                lblXa2.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             if (countError == 0)

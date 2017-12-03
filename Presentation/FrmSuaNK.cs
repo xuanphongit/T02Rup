@@ -35,6 +35,7 @@ namespace T02_Source_Code.Presentation
             lblQueQuan.Text = "";
             lblNoiThuongTruTruocKia.Text = "";
             lblNoiLamViec.Text = "";
+            lblThongBao.Text = "";
         }
         private NhanKhau _nk;
 
@@ -198,9 +199,9 @@ namespace T02_Source_Code.Presentation
             int countErrror = 0;
             if (txtCMND.Text.Equals(""))
             {
-                lblCMND.Text = "Vui lòng nhập số CMND";
+                lblCMND.Text = "*";
                 countErrror++;
-
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
             }
             else
             {
@@ -217,16 +218,20 @@ namespace T02_Source_Code.Presentation
             }
             if (txtNgheNghiep.Text.Equals(""))
             {
-                lblNgheNghiep.Text = "Vui lòng nhập nghề nghiệp";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
+                lblNgheNghiep.Text = "*";
                 countErrror++;
             }
             if (txtHoTen.Text.Equals(""))
             {
-                lblHoTen.Text = "Vui lòng nhập họ tên";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
+                lblHoTen.Text = "*";
+                countErrror++;
             }
             if (txtTonGiao.Text.Equals(""))
             {
-                lblTonGiao.Text = "Mời nhập tôn giáo";
+                lblTonGiao.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (countErrror == 0)

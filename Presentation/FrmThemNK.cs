@@ -27,6 +27,7 @@ namespace T02_Source_Code.Presentation
             lblQueQuan.Text = "";
             lblNoiThuongTruTruocKia.Text = "";
             lblNoiLamViec.Text = "";
+            lblThongBao.Text = "";
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -34,7 +35,8 @@ namespace T02_Source_Code.Presentation
             int countErrror=0;
             if (txtCMND.Text.Equals(""))
             {
-                lblCMND.Text = "Vui lòng nhập số CMND";
+                lblCMND.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
 
             }
@@ -53,12 +55,14 @@ namespace T02_Source_Code.Presentation
             }
             if (txtNgheNghiep.Text.Equals(""))
             {
-                lblNgheNghiep.Text = "Vui lòng nhập nghề nghiệp";
+                lblNgheNghiep.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (txtHoTen.Text.Equals(""))
             {
-                lblHoTen.Text = "Vui lòng nhập họ tên";
+                lblHoTen.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
             }
             else
             {
@@ -75,22 +79,26 @@ namespace T02_Source_Code.Presentation
             }
             if (txtTonGiao.Text.Equals(""))
             {
-                lblTonGiao.Text = "Mời nhập tôn giáo";
+                lblTonGiao.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (Cbohuyen3.Text.Equals("")||Cboxa3.Text.Equals(""))
             {
-                lblQueQuan.Text = "Mời chọn quê quán";
+                lblQueQuan.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (Cbohuyen2.Text.Equals("") || Cboxa2.Text.Equals(""))
             {
-                lblNoiThuongTruTruocKia.Text = "Mời chọn nơi thường trú";
+                lblNoiThuongTruTruocKia.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (CboHuyen1.Text.Equals("") || CboXa1.Text.Equals(""))
             {
-                lblNoiLamViec.Text = "Mời chọn nơi làm việc";
+                lblNoiLamViec.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countErrror++;
             }
             if (countErrror==0)

@@ -19,9 +19,11 @@ namespace T02_Source_Code.Presentation
         {
             lblSoDangKiThuongTru.Text = "";
             lblXa1.Text = "";
+            lblThongBao.Text = "";
             if (txtSoDangKiThuongTru.Text.Equals(""))
             {
-                lblSoDangKiThuongTru.Text = "Mời nhập số đăng kí thường trú";
+                lblSoDangKiThuongTru.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             else if (Regex.IsMatch(txtSoDangKiThuongTru.Text, @"\D"))
@@ -31,7 +33,8 @@ namespace T02_Source_Code.Presentation
             }
             if (CboXa1.SelectedValue == null)
             {
-                lblXa1.Text = "Mời chọn";
+                lblXa1.Text = "*";
+                lblThongBao.Text = "Vui lòng nhập các thông tin bắt buộc";
                 countError++;
             }
             if (!_thayDoi)
@@ -94,7 +97,7 @@ namespace T02_Source_Code.Presentation
             else
             {
                 var q2 = from s in DungChung.Db.TinhThanhs
-                        where s.MaTinhThanh.Equals(DungChung.MaTinh)
+                       
                         select s;
                 CboTinh1.DataSource = q2.ToList();
                 CboTinh1.DisplayMember = "TenTinhThanh";
@@ -132,7 +135,7 @@ namespace T02_Source_Code.Presentation
 
         private void CboHuyen1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _maHuyen = CboTinh1.SelectedValue.ToString();
+            _maHuyen = CboHuyen1.SelectedValue.ToString();
             var q = from s in DungChung.Db.PhuongXas
                     where s.MaQuanHuyen.Equals(_maHuyen)
                     select s;
@@ -151,6 +154,11 @@ namespace T02_Source_Code.Presentation
         private void txtSoDangKiThuongTru_TextChanged(object sender, EventArgs e)
         {
             _thayDoi = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void CboTinh1_SelectedIndexChanged(object sender, EventArgs e)
