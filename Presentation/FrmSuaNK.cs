@@ -280,6 +280,7 @@ namespace T02_Source_Code.Presentation
                 }
 
                 DungChung.Db.SubmitChanges();
+                MessageBox.Show("Lưu thành công");
 
             }
         }
